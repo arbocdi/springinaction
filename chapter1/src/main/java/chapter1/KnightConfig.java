@@ -9,10 +9,28 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class KnightConfig {
-
-    @Bean
+    //по умолчанию id бина = имя метода
+    @Bean(name = "knight")
     public Knight knight() {
+        //spring перехватывает вызов метода quest()
+        //и всегда возвращает один и тот же синглетон quest
         return new BraveKnight(quest());
+    }
+    
+    //для примера
+    @Bean
+    public Knight knight2() {
+        //spring перехватывает вызов метода quest()
+        //и всегда возвращает один и тот же синглетон quest
+        return new BraveKnight(quest());
+    }
+    
+    //для примера
+    @Bean
+    public Knight knight3(Quest quest) {
+        //можно явно и не вызывать метод quest()
+        //spring может выполнить инжекцию в метод
+        return new BraveKnight(quest);
     }
 
     @Bean

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--пример бина с инжекцией конструктора и свойств -->
+    <bean id="cd1" class="chapter2.GenericCD">
+        <constructor-arg value="The Beatles" />
+        <constructor-arg>
+            <list>
+                <value>song1</value>
+                <value>song2</value>
+            </list>
+        </constructor-arg>
+        <property name="price" value="12$"/> 
+    </bean>
+</beans>
