@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans.xsd">
+
     <!-- по умолчанию id = полноеИмяКласса#n, n автогенерируемое
     натуральное число, оно требуется, если есть несколько объявлений
     бина с одним и тем же классом    -->
@@ -14,17 +18,6 @@ http://www.springframework.org/schema/beans/spring-beans.xsd">
     </bean>
     <bean id="minstrel" class="chapter1.Minstrel">
         <constructor-arg value="#{T(System).out}" />
-    </bean>
-    <!--пример бина с инжекцией зачений и свойств -->
-    <bean id="cd1" class="chapter1.CompactDisc">
-        <constructor-arg value="The Beatles" />
-        <constructor-arg>
-            <list>
-                <value>song1</value>
-                <value>song2</value>
-            </list>
-        </constructor-arg>
-        <property name="price" value="12$"/> 
     </bean>
     <aop:config>
         <aop:aspect ref="minstrel">

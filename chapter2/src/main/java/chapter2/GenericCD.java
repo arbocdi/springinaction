@@ -8,7 +8,7 @@ import lombok.Setter;
  *
  * @author arbocdi
  */
-public class GenericCD {
+public class GenericCD implements CompactDisc{
     private String artist;
     private List<String> songs;
     @Setter@Getter
@@ -16,5 +16,10 @@ public class GenericCD {
     public GenericCD(String artist,List<String> songs){
         this.artist = artist;
         this.songs = songs;
+    }
+
+    @Override
+    public void play() {
+        System.out.println("Playing GenericCD");
     }
 }

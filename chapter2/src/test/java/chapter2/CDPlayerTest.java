@@ -41,6 +41,6 @@ public class CDPlayerTest {
     @Test
     public void testMediaPlayer() {
         this.player.play();
-        Assert.assertEquals(MSG, systemOutRule.getLog());
+        Assert.assertTrue(systemOutRule.getLog().contains(MSG));
     }
 }

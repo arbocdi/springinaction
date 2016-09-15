@@ -12,7 +12,7 @@ public class AnnotationLauncher {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext ctx
                 = new AnnotationConfigApplicationContext(KnightConfig.class);
-        ctx.getBean(Knight.class).embarkOnQuest();
+        ctx.getBean("knight",Knight.class).embarkOnQuest();
         ctx.close();
     }
 }
