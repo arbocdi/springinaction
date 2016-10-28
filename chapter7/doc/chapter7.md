@@ -37,3 +37,7 @@ GIF87a.............,...........D..;
 <max-request-size>4194304</max-request-size>
 </multipart-config>
  ```
+
+
+ ### Обработка исключений
+ 
