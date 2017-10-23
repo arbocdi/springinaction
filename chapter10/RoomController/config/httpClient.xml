@@ -1,0 +1,6 @@
+<httpClientWrapper>
+   <sleepInterval>10000</sleepInterval>
+   <idleTimeout>60</idleTimeout>
+   <maxConnections>100</maxConnections>
+   <maxConnectionsPerRoute>20</maxConnectionsPerRoute>
+</httpClientWrapper>

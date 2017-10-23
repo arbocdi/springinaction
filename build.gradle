@@ -3,11 +3,7 @@ subprojects{
     apply plugin: 'java'
     compileJava.options.encoding = 'UTF-8'
     
-    tasks.withType(Compile) {
-        options.encoding = 'UTF-8'
-    }
-
-    def srcVersion = 1.7
+    def srcVersion = 1.8
     def springVersion = '4.3.1.RELEASE'
 
     sourceCompatibility = srcVersion

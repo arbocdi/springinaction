@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>chapter5.html</title>
+<style>
+* {
+    overflow: visible !important;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    box-decoration-break: clone;
+}
+
+html, body {
+    background: #FFF;
+    font-family: "Segoe UI", Arial, freesans, sans-serif;
+    font-size: 10px;
+    line-height: 1.4;
+    color: #333;
+    word-wrap: break-word;
+	hyphens: auto;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 4px solid #EEE;
+}
+
+code {
+    padding: .1em .4em;
+    display: inline-block;
+    background-color: #f9f2f4;
+    color: #c7254e;
+    border-radius: 3px;
+    border: 0 none;
+    font: 9px Consolas, "Liberation Mono", Menlo, "Courier New", Courier, monospace;
+    hyphens: manual;
+}
+
+pre code {
+    padding: 15px;
+    display: block;
+    background-color: #F9F9F9;
+    color: #555;
+    font-size: 10px;
+    box-shadow: inset -1px -1px 0 rgba(0, 0, 0, .08);
+    word-wrap: normal;
+}
+
+/* replace light background for some hljs themes */
+code.github-css,
+code.github-gist-css,
+code.tomorrow-css,
+code.default-css,
+code.googlecode-css,
+code.ascetic-css,
+code.color-brewer-css,
+code.grayscale-css,
+code.idea-css,
+code.vs-css,
+code.xcode-css {
+    background-color: #F9F9F9 !important;
+}
+
+blockquote {
+    padding: 10px;
+    margin-left: 0;
+    color: #666;
+    border: 0 none;
+    border-left: 4px solid #EEE;
+}
+
+blockquote p:last-child,
+blockquote ul:last-child,
+blockquote ol:last-child {
+    margin-bottom: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #FFF;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #DDD;
+}
+
+table div {
+    page-break-inside: avoid;
+}
+
+th, td {
+    text-align: left;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+    padding: 8px 14px;
+    vertical-align: top;
+    border-top: 1px solid #DDD;
+}
+
+table > caption + thead > tr:first-child > th,
+table > colgroup + thead > tr:first-child > th,
+table > thead:first-child > tr:first-child > th,
+table > caption + thead > tr:first-child > td,
+table > colgroup + thead > tr:first-child > td,
+table > thead:first-child > tr:first-child > td {
+    border-top: 0;
+}
+
+table > tbody + tbody {
+    border-top: 2px solid #DDD;
+}
+
+table table {
+    background-color: #FFF;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+    border: 1px solid #DDD;
+}
+
+table > thead > tr > th,
+table > thead > tr > td {
+    border-bottom-width: 2px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 90%;
+}
+
+table > tbody > tr:nth-of-type(odd) {
+    background-color: #F9F9F9;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: inherit;
+    font-weight: normal;
+    line-height: 1.1;
+    color: #111;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 0;
+    page-break-after: avoid;
+}
+
+h1, h2 {
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 7px;
+    margin-top: 10px;
+    margin-bottom: 12px;
+}
+
+h1 {
+    font-size: 22px;
+}
+
+h2 {
+    font-size: 17px;
+}
+
+h3 {
+    font-size: 15px;
+}
+
+h4 {
+    font-size: 11px;
+}
+
+h5, h6 {
+    font-size: 10px;
+    font-weight: bold;
+    color: #666;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+input[type="checkbox"] {
+    margin-right: 6px;
+    position: relative;
+    bottom: 1px;
+}
+
+ul,
+ol {
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+
+ul li,
+ol li {
+    margin-bottom: 2px;
+}
+
+dl {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin-left: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+    color: #4078C0;
+}
+
+.new-page,
+.page-break,
+.next-page,
+.page-end {
+    page-break-before: always;
+}
+
+#pageHeader,
+#pageHeader a,
+#pageHeader a:visited {
+    color: #777;
+}
+
+#pageHeader span {
+    vertical-align: middle;
+}
+
+#pageFooter {
+    border-top: 1px solid #EEE;
+    padding-top: 5px;
+    color: #777;
+    font-size: 80%;
+}
+#pageFooter a,
+#pageFooter a:visited {
+    color: #777;
+}
+
+/**
+ * Your markdown-themeable-pdf custom styles
+ *
+ * The default file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/templates
+ * The base css file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/css
+ * The current highlight.js css file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/node_modules/highlight.js/styles
+ */
+
+/*
+html, body {
+	color: red;
+}
+*/
+
+/**
+ * GitHub Gist Theme
+ * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro
+ */
+
+.hljs {
+  display: block;
+  background: white;
+  padding: 0.5em;
+  color: #333333;
+  overflow-x: auto;
+}
+
+.hljs-comment,
+.hljs-meta {
+  color: #969896;
+}
+
+.hljs-string,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-strong,
+.hljs-emphasis,
+.hljs-quote {
+  color: #df5000;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-type {
+  color: #a71d5d;
+}
+
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-attribute {
+  color: #0086b3;
+}
+
+.hljs-section,
+.hljs-name {
+  color: #63a35c;
+}
+
+.hljs-tag {
+  color: #333333;
+}
+
+.hljs-title,
+.hljs-attr,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #795da3;
+}
+
+.hljs-addition {
+  color: #55a532;
+  background-color: #eaffea;
+}
+
+.hljs-deletion {
+  color: #bd2c00;
+  background-color: #ffecec;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+pre { white-space: pre-wrap !important; word-break: break-word !important; overflow: hidden !important;}
+</style>
+</head>
+<body>
+<div id="pageContent">
+<h3 id="spring-mvc">Spring MVC</h3>
+<p><img src="requestPath.png" alt="requestPath"></p>
+<ol>
+<li>DispatcherServlet - это единая точка входа в спринг
+приложение. В него попадают все запросы клиентов.</li>
+<li>DispatcherServlet консультируется с набором
+HandlerMapping чтобы определить какой Controller  должен
+обработать запрос.</li>
+<li>Controller использует данные запроса и модель чтобы
+обработать запрос.</li>
+<li>Контроллер возвращает модель (отображаемые
+пользователю данные) и имя представления, которое будет
+отрисовывать модель.</li>
+<li>DispatcherServlet консультируется с ViewResolver,
+чтобы найти нужный view по его имени. Т.о. контроллер и
+представление полностью разделены.</li>
+<li>Выбранный view использует модель чтобы сформировать
+html-ответ клиенту 7.</li>
+</ol>
+<h3 id="configure-dispatcherservlet">Configure DispatcherServlet</h3>
+<ul>
+<li>
+<p>ContextLoaderListener создает ApplicationContext,
+доступный всем DispatcherServletам (если их несколько),
+DispatcherServlet создает вложенный AppCtx, содержащий
+контроллеры, ViewResolvers и прочее (веб бины).
+<img src="dispatcherConfig.png" alt="dispatcherConfig"></p>
+</li>
+<li>
+<p>Spittr - это веб приложение типа твиттера, spitters -
+это пользователи приложения, а spittlets - это краткие
+обновления статусов пользователей.</p>
+</li>
+<li>
+<p>Controller - это бин аннотированный @Controller,
+методы бина аннотируются через @RequestMapping, которая
+определяет какие пути обслуживает данный контроллер.</p>
+</li>
+<li>
+<p>Model - это набор пар ключ-значение, передаваемых
+представлению. Вместо model можно использовать обычный
+Map.</p>
+</li>
+<li>
+<p>В представлении данные модели доступны через JSTL
+как параметры запроса ${spittleList}</p>
+</li>
+<li>
+<p>Способы передачи данных в контроллер:</p>
+<p>1 При помощи параметров запроса:</p>
+<pre><code class="hljs github-gist-css java"><span class="hljs-meta">@RequestParam</span>(name = <span class="hljs-string">"count"</span>,defaultValue = <span class="hljs-string">"2"</span>)
+<span class="hljs-keyword">int</span> count
+</code></pre>
+<p>2 При помощи параметров адреса:</p>
+<pre><code class="hljs github-gist-css java"><span class="hljs-meta">@RequestMapping</span>(path = <span class="hljs-string">"/spittles/{spittleId}"</span>,
+method = RequestMethod.GET)
+<span class="hljs-comment">//GET /spittles/12345</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">spittle</span><span class="hljs-params">(
+    @PathVariable(<span class="hljs-string">"spittleId"</span>)</span> <span class="hljs-keyword">long</span> spittleId,
+    Model model) </span>{
+      ...}
+</code></pre>
+<p>3 Можно напрямую использовать HttpServletRequest:</p>
+<pre><code class="hljs github-gist-css java"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">register</span><span class="hljs-params">(HttpServletRequest request)</span> </span>{
+  ...
+}
+</code></pre>
+<h3 id="validators">validators</h3>
+<ul>
+<li>Spring 3.0 поддерживает Java Validation API в
+spring MVC, чтобы использовать апи, нжно:
+<ol>
+<li>Добавить в cp реализацию апи</li>
+<li>Аннотировать параметры Spitter спец. аннотациями.</li>
+<li>Внести изменения в метод регистрации.</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p><img src="validators.png" alt="validators"></p>
+
+</div></body>
+</html>

@@ -7,6 +7,7 @@ gretty {
     contextPath = 'spitter'
     servletContainer = 'jetty9' //tomcat7 or tomcat8
 }
+//defines depemdencies for build.gradle
 buildscript {
     repositories {
         maven {

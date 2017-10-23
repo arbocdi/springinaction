@@ -1,0 +1,59 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 24, 2016, 3:34:37 PM
+    Author     : arbocdi
+*/
+.error {
+    color: red;
+}
+
+.roomTable{
+    width:100%;
+}
+
+table.datatable th, table.datatable td {
+    text-align: left;
+    padding: 8px;
+}
+
+table.roomTable tr:nth-child(even){background-color: #f2f2f2}
+
+table.roomTable th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.roomForm input{
+    width:250px;
+}
+.block {
+    border:1px solid #0215ab;
+}
+.blue {
+    color:#0215ab;
+}
+.smallColumn{
+    width:50px;
+}
+table th {
+    border-top: 1px solid black;
+}
+.table {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 10px;
+}
+
+.row { display:table-row; }
+
+.cell {
+  display:table-cell;
+  padding:5px;
+  background-color: gold;
+}
+
+

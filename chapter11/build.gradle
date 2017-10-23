@@ -1,0 +1,41 @@
+apply plugin: 'war'
+//apply plugin: 'jetty'
+apply plugin: 'org.akhikhl.gretty'
+def tilesVersion = "3.0.1"
+gretty {
+    port = 9090
+    contextPath = 'spitter'
+    servletContainer = 'jetty9' //tomcat7 or tomcat8
+}
+//defines depemdencies for build.gradle
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.akhikhl.gretty:gretty:1.4.0"
+    }
+}
+
+dependencies {
+    compile group: 'org.springframework',name:'spring-webmvc',version:'4.3.1.RELEASE'
+    compile 'javax.servlet:jstl:1.2'
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    providedCompile 'javax.servlet.jsp:jsp-api:2.1'
+    providedCompile 'javax.el:javax.el-api:2.2.4' 
+    compile group: 'org.hibernate', name: 'hibernate-validator', version: '5.2.1.Final'
+    compile ("org.apache.tiles:tiles-core:$tilesVersion") {
+        exclude group: 'org.slf4j'
+    }
+    compile ("org.apache.tiles:tiles-jsp:$tilesVersion") {
+        exclude group: 'org.slf4j'
+    }
+    compile "org.springframework:spring-orm:4.3.1.RELEASE"
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.0.0.RELEASE'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.11.Final'
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.1.4'
+    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.0.Final'
+    compile group: 'org.hibernate.javax.persistence', name: 'hibernate-jpa-2.1-api', version: '1.0.0.Final',classifier: 'javadoc'
+}

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>chapter11.html</title>
+<style>
+* {
+    overflow: visible !important;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    box-decoration-break: clone;
+}
+
+html, body {
+    background: #FFF;
+    font-family: "Segoe UI", Arial, freesans, sans-serif;
+    font-size: 10px;
+    line-height: 1.4;
+    color: #333;
+    word-wrap: break-word;
+	hyphens: auto;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 4px solid #EEE;
+}
+
+code {
+    padding: .1em .4em;
+    display: inline-block;
+    background-color: #f9f2f4;
+    color: #c7254e;
+    border-radius: 3px;
+    border: 0 none;
+    font: 9px Consolas, "Liberation Mono", Menlo, "Courier New", Courier, monospace;
+    hyphens: manual;
+}
+
+pre code {
+    padding: 15px;
+    display: block;
+    background-color: #F9F9F9;
+    color: #555;
+    font-size: 10px;
+    box-shadow: inset -1px -1px 0 rgba(0, 0, 0, .08);
+    word-wrap: normal;
+}
+
+/* replace light background for some hljs themes */
+code.github-css,
+code.github-gist-css,
+code.tomorrow-css,
+code.default-css,
+code.googlecode-css,
+code.ascetic-css,
+code.color-brewer-css,
+code.grayscale-css,
+code.idea-css,
+code.vs-css,
+code.xcode-css {
+    background-color: #F9F9F9 !important;
+}
+
+blockquote {
+    padding: 10px;
+    margin-left: 0;
+    color: #666;
+    border: 0 none;
+    border-left: 4px solid #EEE;
+}
+
+blockquote p:last-child,
+blockquote ul:last-child,
+blockquote ol:last-child {
+    margin-bottom: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #FFF;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #DDD;
+}
+
+table div {
+    page-break-inside: avoid;
+}
+
+th, td {
+    text-align: left;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+    padding: 8px 14px;
+    vertical-align: top;
+    border-top: 1px solid #DDD;
+}
+
+table > caption + thead > tr:first-child > th,
+table > colgroup + thead > tr:first-child > th,
+table > thead:first-child > tr:first-child > th,
+table > caption + thead > tr:first-child > td,
+table > colgroup + thead > tr:first-child > td,
+table > thead:first-child > tr:first-child > td {
+    border-top: 0;
+}
+
+table > tbody + tbody {
+    border-top: 2px solid #DDD;
+}
+
+table table {
+    background-color: #FFF;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+    border: 1px solid #DDD;
+}
+
+table > thead > tr > th,
+table > thead > tr > td {
+    border-bottom-width: 2px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 90%;
+}
+
+table > tbody > tr:nth-of-type(odd) {
+    background-color: #F9F9F9;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: inherit;
+    font-weight: normal;
+    line-height: 1.1;
+    color: #111;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 0;
+    page-break-after: avoid;
+}
+
+h1, h2 {
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 7px;
+    margin-top: 10px;
+    margin-bottom: 12px;
+}
+
+h1 {
+    font-size: 22px;
+}
+
+h2 {
+    font-size: 17px;
+}
+
+h3 {
+    font-size: 15px;
+}
+
+h4 {
+    font-size: 11px;
+}
+
+h5, h6 {
+    font-size: 10px;
+    font-weight: bold;
+    color: #666;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+input[type="checkbox"] {
+    margin-right: 6px;
+    position: relative;
+    bottom: 1px;
+}
+
+ul,
+ol {
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+
+ul li,
+ol li {
+    margin-bottom: 2px;
+}
+
+dl {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin-left: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+    color: #4078C0;
+}
+
+.new-page,
+.page-break,
+.next-page,
+.page-end {
+    page-break-before: always;
+}
+
+#pageHeader,
+#pageHeader a,
+#pageHeader a:visited {
+    color: #777;
+}
+
+#pageHeader span {
+    vertical-align: middle;
+}
+
+#pageFooter {
+    border-top: 1px solid #EEE;
+    padding-top: 5px;
+    color: #777;
+    font-size: 80%;
+}
+#pageFooter a,
+#pageFooter a:visited {
+    color: #777;
+}
+
+/**
+ * Your markdown-themeable-pdf custom styles
+ *
+ * The default file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/templates
+ * The base css file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/css
+ * The current highlight.js css file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/node_modules/highlight.js/styles
+ */
+
+/*
+html, body {
+	color: red;
+}
+*/
+
+/**
+ * GitHub Gist Theme
+ * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro
+ */
+
+.hljs {
+  display: block;
+  background: white;
+  padding: 0.5em;
+  color: #333333;
+  overflow-x: auto;
+}
+
+.hljs-comment,
+.hljs-meta {
+  color: #969896;
+}
+
+.hljs-string,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-strong,
+.hljs-emphasis,
+.hljs-quote {
+  color: #df5000;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-type {
+  color: #a71d5d;
+}
+
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-attribute {
+  color: #0086b3;
+}
+
+.hljs-section,
+.hljs-name {
+  color: #63a35c;
+}
+
+.hljs-tag {
+  color: #333333;
+}
+
+.hljs-title,
+.hljs-attr,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #795da3;
+}
+
+.hljs-addition {
+  color: #55a532;
+  background-color: #eaffea;
+}
+
+.hljs-deletion {
+  color: #bd2c00;
+  background-color: #ffecec;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+pre { white-space: pre-wrap !important; word-break: break-word !important; overflow: hidden !important;}
+</style>
+</head>
+<body>
+<div id="pageContent">
+<h1 id="spring-jpa">Spring JPA</h1>
+<p><img src="coreDataAccessElements.png" alt="coreDataAccessElements"></p>
+<ul>
+<li>EntityManager бывает
+<ol>
+<li>Application-managed - приложение ответственно за создание EM старт и останов транзакций и тп.</li>
+<li>Container-managed - EM управляется контейнером.</li>
+</ol>
+</li>
+<li>В любом случае spring будет сам управлять EM. В случае 1 - как приложение, в случае 2 - как контейнер.
+Основное их различие - в способе конфигурации.</li>
+<li>App-managed EMF требуют наличия persistence,xml в META-INF.</li>
+<li>Независимо от способа создания можно инжектировать прокси EM.</li>
+</ul>
+<pre><code class="hljs github-gist-css java"><span class="hljs-meta">@PersistenceContext</span>
+<span class="hljs-keyword">private</span> EntityManager em;
+<span class="hljs-meta">@PersistenceUnit</span>
+<span class="hljs-keyword">private</span> EntityManagerFactory emf;
+</code></pre>
+<ul>
+<li>Для декларативного управления транзакциями dao-класс аннотируется через</li>
+</ul>
+<pre><code class="hljs github-gist-css java"><span class="hljs-meta">@Transactional</span>
+</code></pre>
+<ul>
+<li>Следующая аннотация включает поддержку транзакций:</li>
+</ul>
+<pre><code class="hljs github-gist-css java"><span class="hljs-meta">@EnableTransactionManagement</span>
+</code></pre>
+<ul>
+<li>Также в конфигурации должен быть определен бин для управления транзакциями:</li>
+</ul>
+<pre><code class="hljs github-gist-css java">JpaTransactionManager
+</code></pre>
+<p><img src="emf.png" alt="emf"></p>
+<h3 id="container-managed-entitymanagerfactory">Container-managed EntityManagerFactory</h3>
+<ul>
+<li>конфигурируется программно, создается LocalContainerEntityManagerBean в который добавляется
+DataSource и JpaVendorAdapter.</li>
+<li>DataSource можно создать или поискать в JNDI:</li>
+</ul>
+<pre><code class="hljs github-gist-css java"><span class="hljs-meta">@Bean</span>
+<span class="hljs-function"><span class="hljs-keyword">public</span> DataSource <span class="hljs-title">dataSource</span><span class="hljs-params">()</span> </span>{
+<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> JndiDataSourceLookup().getDataSource(<span class="hljs-string">"jdbc/VehicleDS"</span>);
+}
+</code></pre>
+<ul>
+<li>JpaVendorAdapter имеет свойство database которое может принимать значения:</li>
+</ul>
+<p><img src="db.png" alt="db"></p>
+<h3 id="">Автоматическое создание репозиториев</h3>
+<pre><code class="hljs github-gist-css java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">SpitterAutoRepository</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">JpaRepository</span>&lt;<span class="hljs-title">Spitter</span>, <span class="hljs-title">Long</span>&gt; </span>{
+}
+</code></pre>
+<ul>
+<li>В рантайме спринг имплементирует 18 хелпер-методов интерфейса JpaRepository.</li>
+<li>Класс сущности и первичного ключа указываются как параметры JpaRepository.</li>
+<li>Чтобы включить авто-имплементацию репозиториев нужно аннотировать конфиг.класс через</li>
+</ul>
+<pre><code class="hljs github-gist-css java"><span class="hljs-meta">@EnableJpaRepositories</span>(basePackages=<span class="hljs-string">"spitter.data"</span>)
+</code></pre>
+<ul>
+<li>
+<p>Спринг может автоимплементировать методы на основе их названий:
+<img src="methods.png" alt="methods"></p>
+<ol>
+<li>всего можно использовать 4 глагола - read=find=get и count.</li>
+<li>Subject обычно не важен тк он уже определен в параметрах класса.</li>
+<li>Предикат следует за словом By и может иметь множество операторов,
+если оператор не указан (как в примере) то предполагается равенство.
+<img src="predicate.png" alt="predicate"></li>
+</ol>
+</li>
+<li>
+<p>Можно добавлять кастомные запросы в интерфейс используя @Query,писать имплементацию метода
+так же не требуется.</p>
+</li>
+</ul>
+<pre><code class="hljs github-gist-css java"><span class="hljs-meta">@Query</span>(<span class="hljs-string">"select s from Spitter s where s.email like '%gmail.com'"</span>)
+<span class="hljs-function">List&lt;Spitter&gt; <span class="hljs-title">findAllGmailSpitters</span><span class="hljs-params">()</span></span>;
+</code></pre>
+<ul>
+<li>Если @Query-аннотации не достаточно то можно создать класс InterfaceNameImpl и spring
+автоматически добавит его методы к авто-генерируемым методам класса.</li>
+</ul>
+<p><img src="spittleDB.png" alt="spittleDB"></p>
+
+</div></body>
+</html>

@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>chapter6.html</title>
+<style>
+* {
+    overflow: visible !important;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    box-decoration-break: clone;
+}
+
+html, body {
+    background: #FFF;
+    font-family: "Segoe UI", Arial, freesans, sans-serif;
+    font-size: 10px;
+    line-height: 1.4;
+    color: #333;
+    word-wrap: break-word;
+	hyphens: auto;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 4px solid #EEE;
+}
+
+code {
+    padding: .1em .4em;
+    display: inline-block;
+    background-color: #f9f2f4;
+    color: #c7254e;
+    border-radius: 3px;
+    border: 0 none;
+    font: 9px Consolas, "Liberation Mono", Menlo, "Courier New", Courier, monospace;
+    hyphens: manual;
+}
+
+pre code {
+    padding: 15px;
+    display: block;
+    background-color: #F9F9F9;
+    color: #555;
+    font-size: 10px;
+    box-shadow: inset -1px -1px 0 rgba(0, 0, 0, .08);
+    word-wrap: normal;
+}
+
+/* replace light background for some hljs themes */
+code.github-css,
+code.github-gist-css,
+code.tomorrow-css,
+code.default-css,
+code.googlecode-css,
+code.ascetic-css,
+code.color-brewer-css,
+code.grayscale-css,
+code.idea-css,
+code.vs-css,
+code.xcode-css {
+    background-color: #F9F9F9 !important;
+}
+
+blockquote {
+    padding: 10px;
+    margin-left: 0;
+    color: #666;
+    border: 0 none;
+    border-left: 4px solid #EEE;
+}
+
+blockquote p:last-child,
+blockquote ul:last-child,
+blockquote ol:last-child {
+    margin-bottom: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #FFF;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #DDD;
+}
+
+table div {
+    page-break-inside: avoid;
+}
+
+th, td {
+    text-align: left;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+    padding: 8px 14px;
+    vertical-align: top;
+    border-top: 1px solid #DDD;
+}
+
+table > caption + thead > tr:first-child > th,
+table > colgroup + thead > tr:first-child > th,
+table > thead:first-child > tr:first-child > th,
+table > caption + thead > tr:first-child > td,
+table > colgroup + thead > tr:first-child > td,
+table > thead:first-child > tr:first-child > td {
+    border-top: 0;
+}
+
+table > tbody + tbody {
+    border-top: 2px solid #DDD;
+}
+
+table table {
+    background-color: #FFF;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+    border: 1px solid #DDD;
+}
+
+table > thead > tr > th,
+table > thead > tr > td {
+    border-bottom-width: 2px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 90%;
+}
+
+table > tbody > tr:nth-of-type(odd) {
+    background-color: #F9F9F9;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: inherit;
+    font-weight: normal;
+    line-height: 1.1;
+    color: #111;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 0;
+    page-break-after: avoid;
+}
+
+h1, h2 {
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 7px;
+    margin-top: 10px;
+    margin-bottom: 12px;
+}
+
+h1 {
+    font-size: 22px;
+}
+
+h2 {
+    font-size: 17px;
+}
+
+h3 {
+    font-size: 15px;
+}
+
+h4 {
+    font-size: 11px;
+}
+
+h5, h6 {
+    font-size: 10px;
+    font-weight: bold;
+    color: #666;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+input[type="checkbox"] {
+    margin-right: 6px;
+    position: relative;
+    bottom: 1px;
+}
+
+ul,
+ol {
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+
+ul li,
+ol li {
+    margin-bottom: 2px;
+}
+
+dl {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin-left: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+    color: #4078C0;
+}
+
+.new-page,
+.page-break,
+.next-page,
+.page-end {
+    page-break-before: always;
+}
+
+#pageHeader,
+#pageHeader a,
+#pageHeader a:visited {
+    color: #777;
+}
+
+#pageHeader span {
+    vertical-align: middle;
+}
+
+#pageFooter {
+    border-top: 1px solid #EEE;
+    padding-top: 5px;
+    color: #777;
+    font-size: 80%;
+}
+#pageFooter a,
+#pageFooter a:visited {
+    color: #777;
+}
+
+/**
+ * Your markdown-themeable-pdf custom styles
+ *
+ * The default file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/templates
+ * The base css file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/css
+ * The current highlight.js css file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/node_modules/highlight.js/styles
+ */
+
+/*
+html, body {
+	color: red;
+}
+*/
+
+/**
+ * GitHub Gist Theme
+ * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro
+ */
+
+.hljs {
+  display: block;
+  background: white;
+  padding: 0.5em;
+  color: #333333;
+  overflow-x: auto;
+}
+
+.hljs-comment,
+.hljs-meta {
+  color: #969896;
+}
+
+.hljs-string,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-strong,
+.hljs-emphasis,
+.hljs-quote {
+  color: #df5000;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-type {
+  color: #a71d5d;
+}
+
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-attribute {
+  color: #0086b3;
+}
+
+.hljs-section,
+.hljs-name {
+  color: #63a35c;
+}
+
+.hljs-tag {
+  color: #333333;
+}
+
+.hljs-title,
+.hljs-attr,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #795da3;
+}
+
+.hljs-addition {
+  color: #55a532;
+  background-color: #eaffea;
+}
+
+.hljs-deletion {
+  color: #bd2c00;
+  background-color: #ffecec;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+pre { white-space: pre-wrap !important; word-break: break-word !important; overflow: hidden !important;}
+</style>
+</head>
+<body>
+<div id="pageContent">
+<h3 id="views">Views</h3>
+<ul>
+<li>По умолчанию InternalResourcesViewResolver возвращает экземпляры
+InternalResourceView, который подходит для визуализации JSP. Если
+требуется в спринг сконфигурировать локаль и выводимые пользователю
+сообщения, то нужно использовать JstlView:</li>
+</ul>
+<p><img src="views.png" alt="views"></p>
+<h3 id="form-binding-tag-library">Form-binding tag library</h3>
+<ul>
+<li>Используется для привязки формы и её элементов к объектам модели,
+подключение:sf = spring forms</li>
+</ul>
+<pre><code class="hljs github-gist-css java">&lt;%@ taglib
+ uri=<span class="hljs-string">"http://www.springframework.org/tags/form"</span>
+ prefix=<span class="hljs-string">"sf"</span> %&gt;
+</code></pre>
+<p><img src="sfTags.png" alt="sfTags"></p>
+<ul>
+<li>sf:errors можно использовать, чтобы показать
+сообщения валидации для всех полей:</li>
+</ul>
+<pre><code class="hljs github-gist-css java">&lt;sf:errors cssClass=<span class="hljs-string">"error"</span> path=<span class="hljs-string">"*"</span> element=<span class="hljs-string">"div"</span>/&gt;
+</code></pre>
+<ul>
+<li>или только для одного поля:</li>
+</ul>
+<pre><code class="hljs github-gist-css java">&lt;sf:errors cssClass=<span class="hljs-string">"error"</span> path=<span class="hljs-string">"firstName"</span>/&gt;
+</code></pre>
+<ul>
+<li>sf:label выводит label для соотв. поля (path), если
+указать cssErrorClass то покажет ошибку валидации:</li>
+</ul>
+<pre><code class="hljs github-gist-css java">&lt;sf:label path="lastName" cssErrorClass="error"&gt;
+Last Name:
+&lt;/sf:label&gt;
+</code></pre>
+<ul>
+<li>ошибки валидации можно определить в аннотациях:</li>
+</ul>
+<pre><code class="hljs github-gist-css java"><span class="hljs-meta">@Size</span>(min=<span class="hljs-number">2</span>, max=<span class="hljs-number">30</span>, message=<span class="hljs-string">"{firstName.size}"</span>)
+</code></pre>
+<ul>
+<li>а сами сообщения в файле
+ValidationMessages.properties</li>
+</ul>
+<h3 id="general-tags-library">General tags library</h3>
+<pre><code class="hljs github-gist-css java">  &lt;%@ taglib
+  uri=<span class="hljs-string">"http://www.springframework.org/tags"</span>
+  prefix=<span class="hljs-string">"s"</span> %&gt;
+</code></pre>
+<ul>
+<li>s:messages позволяет получать текстовки из файлов
+свойств:</li>
+</ul>
+<pre><code class="hljs github-gist-css java">&lt;s:message code=<span class="hljs-string">"spittr.welcome"</span> /&gt;
+</code></pre>
+<ul>
+<li>нужно также сконфигурировать ResourceBundleMessageSource - класс,читающий
+интернационализированные файлы свойств из classpath.</li>
+</ul>
+<p><img src="messages.png" alt="messages"></p>
+<h3 id="apache-tiles">Apache Tiles</h3>
+<ul>
+<li>Нужно сконфигурировать TilesConfigurer - бин,
+загружающий шаблоны и TilesViewResolver - бин,
+загружающий представления.</li>
+</ul>
+
+</div></body>
+</html>

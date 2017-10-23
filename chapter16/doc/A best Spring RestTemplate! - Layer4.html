@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<!--[if IE 8]>
+<html id="ie8" lang="en-US" prefix="og: http://ogp.me/ns#">
+<![endif]-->
+<!--[if !(IE 8)  ]><!-->
+<html prefix="og: http://ogp.me/ns#" lang="en-US"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
+	<title>A best Spring RestTemplate! - Layer4</title>
+	<link rel="pingback" href="https://blog.layer4.fr/xmlrpc.php">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<!--[if lt IE 9]>
+		<script src="https://blog.layer4.fr/wp-content/themes/serene/js/html5.js"></script>
+	<![endif]-->
+
+	
+<!-- This site is optimized with the Yoast SEO plugin v4.4 - https://yoast.com/wordpress/plugins/seo/ -->
+<link rel="canonical" href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A best Spring RestTemplate! - Layer4">
+<meta property="og:description" content="The RestTemplate is the central class for client-side HTTP access. It simplifies communication with HTTP servers, and enforces RESTful principles. It handles HTTP connections, leaving application code to provide URLs (with possible template variables) and extract results. The template uses a ClientHttpRequestFactory for creating HTTP connections. The default ClientHttpRequestFactory is a SimpleClientHttpRequestFactory that uses standard J2SE classes like java.net.HttpURLConnection. And this is not really production ready… (why?) So, the solution is to use the org.springframework.http.client.HttpComponentsClientHttpRequestFactory, which is a ClientHttpRequestFactory delegating the creation of the requests to an HttpClient. The result...read more">
+<meta property="og:url" content="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/">
+<meta property="og:site_name" content="Layer4">
+<meta property="article:tag" content="http">
+<meta property="article:tag" content="http-client">
+<meta property="article:tag" content="httpcomponents">
+<meta property="article:tag" content="microservices">
+<meta property="article:tag" content="rest">
+<meta property="article:tag" content="spring">
+<meta property="article:section" content="Java">
+<meta property="article:published_time" content="2013-02-24T18:38:00+01:00">
+<meta property="article:modified_time" content="2016-11-02T12:36:41+01:00">
+<meta property="og:updated_time" content="2016-11-02T12:36:41+01:00">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:description" content="The RestTemplate is the central class for client-side HTTP access. It simplifies communication with HTTP servers, and enforces RESTful principles. It handles HTTP connections, leaving application code to provide URLs (with possible template variables) and extract results. The template uses a ClientHttpRequestFactory for creating HTTP connections. The default ClientHttpRequestFactory is a SimpleClientHttpRequestFactory that uses standard J2SE classes like java.net.HttpURLConnection. And this is not really production ready… (why?) So, the solution is to use the org.springframework.http.client.HttpComponentsClientHttpRequestFactory, which is a ClientHttpRequestFactory delegating the creation of the requests to an HttpClient. The result...read more">
+<meta name="twitter:title" content="A best Spring RestTemplate! - Layer4">
+<meta name="twitter:creator" content="@treydone">
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="https://blog.layer4.fr/">
+<link rel="dns-prefetch" href="https://s0.wp.com/">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Layer4 » Feed" href="https://blog.layer4.fr/feed/">
+<link rel="alternate" type="application/rss+xml" title="Layer4 » Comments Feed" href="https://blog.layer4.fr/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Layer4 » A best Spring RestTemplate! Comments Feed" href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/feed/">
+		<div style="display: none;" id="fit-vids-style" class="fit-vids-style">­<style>         		.fluid-width-video-wrapper {        		   width: 100%;                     		   position: relative;              		   padding: 0;                      		}                                   													.fluid-width-video-wrapper iframe,  		.fluid-width-video-wrapper object,  		.fluid-width-video-wrapper embed {  		   position: absolute;              		   top: 0;                          		   left: 0;                         		   width: 100%;                     		   height: 100%;                    		}                                   	  </style></div><script src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/analytics.js" async=""></script><script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2.2.1\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/blog.layer4.fr\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.7.3"}};
+			!function(a,b,c){function d(a){var b,c,d,e,f=String.fromCharCode;if(!k||!k.fillText)return!1;switch(k.clearRect(0,0,j.width,j.height),k.textBaseline="top",k.font="600 32px Arial",a){case"flag":return k.fillText(f(55356,56826,55356,56819),0,0),!(j.toDataURL().length<3e3)&&(k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,65039,8205,55356,57096),0,0),b=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55356,57331,55356,57096),0,0),c=j.toDataURL(),b!==c);case"emoji4":return k.fillText(f(55357,56425,55356,57341,8205,55357,56507),0,0),d=j.toDataURL(),k.clearRect(0,0,j.width,j.height),k.fillText(f(55357,56425,55356,57341,55357,56507),0,0),e=j.toDataURL(),d!==e}return!1}function e(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i,j=b.createElement("canvas"),k=j.getContext&&j.getContext("2d");for(i=Array("flag","emoji4"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script defer="defer" type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/wp-emoji-release.js"></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="cookie-notice-front-css" href="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/front.css" type="text/css" media="all">
+<link rel="stylesheet" id="serene-elegant-font-css" href="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/elegant-font.css" type="text/css" media="all">
+<link rel="stylesheet" id="serene-style-css" href="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="serene-fonts-css" href="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/css.css" type="text/css" media="all">
+<link rel="stylesheet" id="social-logos-css" href="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/social-logos.css" type="text/css" media="all">
+<link rel="stylesheet" id="jetpack_css-css" href="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/jetpack.css" type="text/css" media="all">
+<script type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/jquery.js"></script>
+<script type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/jquery-migrate.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var related_posts_js_options = {"post_heading":"h4"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/related-posts.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var cnArgs = {"ajaxurl":"https:\/\/blog.layer4.fr\/wp-admin\/admin-ajax.php","hideEffect":"fade","onScroll":"no","onScrollOffset":"100","cookieName":"cookie_notice_accepted","cookieValue":"TRUE","cookieTime":"9223372036854775807","cookiePath":"\/","cookieDomain":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/front.js"></script>
+<link rel="https://api.w.org/" href="https://blog.layer4.fr/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://blog.layer4.fr/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://blog.layer4.fr/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 4.7.3">
+<link rel="shortlink" href="https://wp.me/p7RHSq-18">
+<link rel="alternate" type="application/json+oembed" href="https://blog.layer4.fr/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fblog.layer4.fr%2F2013%2F02%2F24%2Fa-best-spring-resttemplate%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://blog.layer4.fr/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fblog.layer4.fr%2F2013%2F02%2F24%2Fa-best-spring-resttemplate%2F&amp;format=xml">
+
+<link rel="dns-prefetch" href="https://v0.wordpress.com/">
+<link rel="dns-prefetch" href="https://i0.wp.com/">
+<link rel="dns-prefetch" href="https://i1.wp.com/">
+<link rel="dns-prefetch" href="https://i2.wp.com/">
+<link rel="dns-prefetch" href="https://jetpack.wordpress.com/">
+<link rel="dns-prefetch" href="https://s0.wp.com/">
+<link rel="dns-prefetch" href="https://s1.wp.com/">
+<link rel="dns-prefetch" href="https://s2.wp.com/">
+<link rel="dns-prefetch" href="https://public-api.wordpress.com/">
+<link rel="dns-prefetch" href="https://0.gravatar.com/">
+<link rel="dns-prefetch" href="https://1.gravatar.com/">
+<link rel="dns-prefetch" href="https://2.gravatar.com/">
+<link rel="dns-prefetch" href="https://widgets.wp.com/">
+<style type="text/css">img#wpstats{display:none}</style><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">	<style>
+		.meta-post-date, .mejs-audio .mejs-controls .mejs-time-rail .mejs-time-handle, .footer-widget li:before, #mobile_menu ul li:before, #et_active_menu_item, .comment-reply-link, .form-submit input, .et-tags li { background-color: #fbad18; }
+		.post-content > header p, .mobile_menu_bar { color: #fbad18; }
+		blockquote { border-color: #fbad18; }
+	</style>
+		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #f1f1f1; }
+</style>
+
+<!-- BEGIN GADWP v4.9.6.2 Universal Tracking - https://deconf.com/google-analytics-dashboard-wordpress/ -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-85363261-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+<!-- END GADWP Universal Tracking -->
+
+</head>
+<body class="post-template-default single single-post postid-70 single-format-standard custom-background cookies-not-accepted">
+	<div id="container">
+		<header id="main-header" class="clearfix">
+					<h3 id="logo">
+				<a href="https://blog.layer4.fr/">Layer4</a>
+			</h3>
+					<nav id="top-menu">
+			<ul id="menu-main" class="nav sf-js-enabled"><li id="menu-item-33" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-33"><a href="http://blog.layer4.fr/">Home</a></li>
+<li style="" id="menu-item-31" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-31"><a href="https://blog.layer4.fr/category/data/">Data</a></li>
+<li style="" id="menu-item-34" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-34"><a href="https://blog.layer4.fr/category/devops/">DevOps</a></li>
+<li id="menu-item-35" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-35"><a href="https://blog.layer4.fr/category/nosql/">NoSQL</a></li>
+<li id="menu-item-141" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-141"><a href="https://blog.layer4.fr/category/cloud/">Cloud</a></li>
+<li id="menu-item-161" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-161"><a href="https://blog.layer4.fr/category/java/">Java</a></li>
+</ul>			<span style="left: 171px; width: 73px;" id="et_active_menu_item"></span></nav>
+
+			<ul id="et-social-icons">
+													<li class="et-search-form">
+					<form role="search" method="get" id="searchform" class="searchform" action="https://blog.layer4.fr/">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input name="s" id="s" type="text">
+					<input id="searchsubmit" value="Search" type="submit">
+				</div>
+			</form>				</li>
+			</ul>
+
+			<div id="et_mobile_nav_menu"><a href="#" class="mobile_nav closed"><span>Navigation Menu</span><span class="icon_menu mobile_menu_bar"></span><ul id="mobile_menu" class="et_mobile_menu"><li id="menu-item-33" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-33 et_first_mobile_item"><a href="http://blog.layer4.fr/">Home</a></li>
+<li id="menu-item-31" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-31"><a href="https://blog.layer4.fr/category/data/">Data</a></li>
+<li id="menu-item-34" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-34"><a href="https://blog.layer4.fr/category/devops/">DevOps</a></li>
+<li id="menu-item-35" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-35"><a href="https://blog.layer4.fr/category/nosql/">NoSQL</a></li>
+<li id="menu-item-141" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-141"><a href="https://blog.layer4.fr/category/cloud/">Cloud</a></li>
+<li id="menu-item-161" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-161"><a href="https://blog.layer4.fr/category/java/">Java</a></li>
+</ul></a></div>		</header> <!-- #main-header -->
+<article id="post-70" class="post-70 post type-post status-publish format-standard hentry category-java tag-http tag-http-client tag-httpcomponents tag-microservices tag-rest tag-spring et-no-image et-bg-layout-dark et-white-bg" itemscope="" itemtype="http://schema.org/BlogPosting">
+	<meta itemscope="" itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://google.com/article">
+
+	
+	<div class="post-content clearfix">
+				<h1 class="title entry-title" itemprop="headline">A best Spring RestTemplate!</h1>
+		
+		<p class="meta-info">Posted by <a href="https://blog.layer4.fr/author/treydone/" title="Posts by Vincent DEVILLERS" class="vcard author" rel="author"><span class="fn">Vincent DEVILLERS</span></a> in <a itemprop="about" href="https://blog.layer4.fr/category/java/">Java</a></p> <!-- .meta-info -->
+		<div class="entry-content clearfix" itemprop="articleBody">
+		<p>The RestTemplate is the central class for client-side HTTP access. 
+It simplifies communication with HTTP servers, and enforces RESTful 
+principles. It handles HTTP connections, leaving application code to 
+provide URLs (with possible template variables) and extract results.</p>
+<p>The template uses a ClientHttpRequestFactory for creating HTTP 
+connections. The default ClientHttpRequestFactory is a 
+SimpleClientHttpRequestFactory that uses standard J2SE classes like 
+java.net.HttpURLConnection. <a href="https://blog.layer4.fr/2011/09/httpclient-best-pratices/">And this is not really production ready… (why?)</a></p>
+<p>So, the solution is to use the 
+org.springframework.http.client.HttpComponentsClientHttpRequestFactory, 
+which is a ClientHttpRequestFactory delegating the creation of the 
+requests to an HttpClient.</p>
+<p>The result is:</p>
+<pre><code class="java hljs"><span class="hljs-keyword">import</span> java.util.List;
+
+<span class="hljs-keyword">import</span> javax.inject.Inject;
+
+<span class="hljs-keyword">import</span> org.apache.http.HttpHost;
+<span class="hljs-keyword">import</span> org.apache.http.client.HttpClient;
+<span class="hljs-keyword">import</span> org.apache.http.conn.routing.HttpRoute;
+<span class="hljs-keyword">import</span> org.apache.http.impl.client.DefaultHttpClient;
+<span class="hljs-keyword">import</span> org.apache.http.impl.conn.PoolingClientConnectionManager;
+<span class="hljs-keyword">import</span> org.apache.http.params.CoreConnectionPNames;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;
+<span class="hljs-keyword">import</span> org.springframework.http.client.ClientHttpRequestFactory;
+<span class="hljs-keyword">import</span> org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+<span class="hljs-keyword">import</span> org.springframework.http.converter.HttpMessageConverter;
+<span class="hljs-keyword">import</span> org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+<span class="hljs-keyword">import</span> org.springframework.web.client.RestTemplate;
+
+<span class="hljs-keyword">import</span> com.fasterxml.jackson.databind.ObjectMapper;
+
+<span class="hljs-meta">@Configuration</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HttpConfig</span> </span>{
+
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> DEFAULT_MAX_TOTAL_CONNECTIONS = <span class="hljs-number">100</span>;
+
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> DEFAULT_MAX_CONNECTIONS_PER_ROUTE = <span class="hljs-number">5</span>;
+
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> DEFAULT_READ_TIMEOUT_MILLISECONDS = (<span class="hljs-number">60</span> * <span class="hljs-number">1000</span>);
+
+  <span class="hljs-meta">@Inject</span>
+ <span class="hljs-keyword">private</span> ObjectMapper objectMapper;
+
+  <span class="hljs-meta">@Bean</span>
+ <span class="hljs-function"><span class="hljs-keyword">public</span> ClientHttpRequestFactory <span class="hljs-title">httpRequestFactory</span><span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> HttpComponentsClientHttpRequestFactory(httpClient());
+ }
+
+  <span class="hljs-meta">@Bean</span>
+ <span class="hljs-function"><span class="hljs-keyword">public</span> RestTemplate <span class="hljs-title">restTemplate</span><span class="hljs-params">()</span> </span>{
+  RestTemplate restTemplate = <span class="hljs-keyword">new</span> RestTemplate(httpRequestFactory());
+  List&lt;HttpMessageConverter&lt;?&gt;&gt; converters = restTemplate
+    .getMessageConverters();
+
+   <span class="hljs-keyword">for</span> (HttpMessageConverter&lt;?&gt; converter : converters) {
+   <span class="hljs-keyword">if</span> (converter <span class="hljs-keyword">instanceof</span> MappingJackson2HttpMessageConverter) {
+    MappingJackson2HttpMessageConverter jsonConverter = (MappingJackson2HttpMessageConverter) converter;
+    jsonConverter.setObjectMapper(objectMapper);
+   }
+  }
+
+   <span class="hljs-keyword">return</span> restTemplate;
+ }
+
+  <span class="hljs-meta">@Bean</span>
+ <span class="hljs-function"><span class="hljs-keyword">public</span> HttpClient <span class="hljs-title">httpClient</span><span class="hljs-params">()</span> </span>{
+
+   PoolingClientConnectionManager connectionManager = <span class="hljs-keyword">new</span> PoolingClientConnectionManager();
+  HttpClient defaultHttpClient = <span class="hljs-keyword">new</span> DefaultHttpClient(connectionManager);
+
+   connectionManager.setMaxTotal(DEFAULT_MAX_TOTAL_CONNECTIONS);
+  connectionManager
+    .setDefaultMaxPerRoute(DEFAULT_MAX_CONNECTIONS_PER_ROUTE);
+  connectionManager.setMaxPerRoute(<span class="hljs-keyword">new</span> HttpRoute(<span class="hljs-keyword">new</span> HttpHost(
+    <span class="hljs-string">"facebook.com"</span>)), <span class="hljs-number">20</span>);
+  connectionManager.setMaxPerRoute(<span class="hljs-keyword">new</span> HttpRoute(<span class="hljs-keyword">new</span> HttpHost(
+    <span class="hljs-string">"twitter.com"</span>)), <span class="hljs-number">20</span>);
+  connectionManager.setMaxPerRoute(<span class="hljs-keyword">new</span> HttpRoute(<span class="hljs-keyword">new</span> HttpHost(
+    <span class="hljs-string">"linkedin.com"</span>)), <span class="hljs-number">20</span>);
+  connectionManager.setMaxPerRoute(<span class="hljs-keyword">new</span> HttpRoute(<span class="hljs-keyword">new</span> HttpHost(
+    <span class="hljs-string">"viadeo.com"</span>)), <span class="hljs-number">20</span>);
+
+   defaultHttpClient.getParams().setIntParameter(
+    CoreConnectionPNames.CONNECTION_TIMEOUT,
+    DEFAULT_READ_TIMEOUT_MILLISECONDS);
+  <span class="hljs-keyword">return</span> defaultHttpClient;
+ }
+}
+</code></pre>
+<p><strong>Update (21/10/2013)</strong><br>
+Have a look here for the async version of RestTemplate: <a href="https://blog.layer4.fr/2013/10/a-best-spring-asyncresttemplate/">https://blog.layer4.fr/2013/10/a-best-spring-asyncresttemplate/</a></p>
+<div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Partager&nbsp;:</h3><div class="sd-content"><ul><li class="share-twitter"><a rel="nofollow" data-shared="sharing-twitter-70" class="share-twitter sd-button share-icon no-text" href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/?share=twitter&amp;nb=1" target="_blank" title="Click to share on Twitter"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-facebook"><a rel="nofollow" data-shared="sharing-facebook-70" class="share-facebook sd-button share-icon no-text" href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/?share=facebook&amp;nb=1" target="_blank" title="Click to share on Facebook"><span></span><span class="sharing-screen-reader-text">Click to share on Facebook (Opens in new window)</span></a></li><li class="share-google-plus-1"><a rel="nofollow" data-shared="sharing-google-70" class="share-google-plus-1 sd-button share-icon no-text" href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/?share=google-plus-1&amp;nb=1" target="_blank" title="Click to share on Google+"><span></span><span class="sharing-screen-reader-text">Click to share on Google+ (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div><div class="sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-loaded" id="like-post-wrapper-116234402-70-58d292f604676" data-src="//widgets.wp.com/likes/#blog_id=116234402&amp;post_id=70&amp;origin=blog.layer4.fr&amp;obj_id=116234402-70-58d292f604676" data-name="like-post-frame-116234402-70-58d292f604676"><h3 class="sd-title">Like this:</h3><div class="likes-widget-placeholder post-likes-widget-placeholder" style="height: 55px; display: none;"><span class="button"><span>Like</span></span> <span class="loading">Loading...</span></div><iframe class="post-likes-widget jetpack-likes-widget" name="like-post-frame-116234402-70-58d292f604676" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/a.html" frameborder="0" height="55px" width="100%"></iframe><span class="sd-text-color"></span><a class="sd-link-color"></a></div>
+<div style="display: block;" id="jp-relatedposts" class="jp-relatedposts">
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+<div class="jp-relatedposts-items jp-relatedposts-items-minimal jp-relatedposts-grid "><p class="jp-relatedposts-post jp-relatedposts-post0" data-post-id="60" data-post-format="false"><span class="jp-relatedposts-post-title"><a data-position="0" data-origin="70" rel="nofollow" title="A best Spring AsyncRestTemplate!
+
+I wrote an article on the famous Spring's RestTemplate some months ago (https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/). Since the last version of Spring 4, currently 4.0.0.M3, or the BUILD-SNAPSHOT for the most courageous, you can use a custom RestTemplate in an async way: the AsyncRestTemplate API. Why should I use that? The purpose of…" href="https://blog.layer4.fr/2013/10/21/a-best-spring-asyncresttemplate/" class="jp-relatedposts-post-a">A best Spring AsyncRestTemplate!</a></span><span class="jp-relatedposts-post-date">21 October 2013</span><span class="jp-relatedposts-post-context">In "Java"</span></p><p class="jp-relatedposts-post jp-relatedposts-post1" data-post-id="61" data-post-format="false"><span class="jp-relatedposts-post-title"><a data-position="1" data-origin="70" rel="nofollow" title="Myrrix, the REST-ified Mahout for real-time recommandations
+
+Myrrix is a complete, real-time, scalable clustering and recommender system, evolved from Apache Mahout. The full Myrrix system uses two components: a Computation Layer and one or many Serving Layers. While the Computation Layer computes the large machine learning models needed by the Serving Layer, the Serving Layer is a…" href="https://blog.layer4.fr/2013/10/17/myrrix-the-rest-ified-mahout-for-real-time-recommandations/" class="jp-relatedposts-post-a">Myrrix, the REST-ified Mahout for real-time recommandations</a></span><span class="jp-relatedposts-post-date">17 October 2013</span><span class="jp-relatedposts-post-context">In "Data"</span></p><p class="jp-relatedposts-post jp-relatedposts-post2" data-post-id="59" data-post-format="false"><span class="jp-relatedposts-post-title"><a data-position="2" data-origin="70" rel="nofollow" title="Pooling a Thrift client
+
+Thrift is an interface definition language that is used to define and create services for numerous languages. The Thrift stack relies on protocols (TBinaryProtocol, TCompactProtocol...) and transports (TSocket, TFileTransport...). But, since the transport layer is essentially a wrapper on a socket or a file, Thrift is NOT thread-safe. Like other…" href="https://blog.layer4.fr/2013/11/04/pooling-a-thrift-client/" class="jp-relatedposts-post-a">Pooling a Thrift client</a></span><span class="jp-relatedposts-post-date">4 November 2013</span><span class="jp-relatedposts-post-context">In "Java"</span></p></div></div><ul class="et-tags clearfix"><li><a rel="tag" itemprop="keywords" href="https://blog.layer4.fr/tag/http/">http</a></li><li><a rel="tag" itemprop="keywords" href="https://blog.layer4.fr/tag/http-client/">http-client</a></li><li><a rel="tag" itemprop="keywords" href="https://blog.layer4.fr/tag/httpcomponents/">httpcomponents</a></li><li><a rel="tag" itemprop="keywords" href="https://blog.layer4.fr/tag/microservices/">microservices</a></li><li><a rel="tag" itemprop="keywords" href="https://blog.layer4.fr/tag/rest/">rest</a></li><li><a rel="tag" itemprop="keywords" href="https://blog.layer4.fr/tag/spring/">spring</a></li></ul>
+			Published the <time class="published" datetime="2013-02-24T18:38:00+00:00" itemprop="datePublished"> 24 February 2013 at 18 h 38 min</time>
+			 - Last update
+			<time class="updated" datetime="2016-11-02T12:36:41+00:00" itemprop="dateModified">02 November 2016</time>
+						<div itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+				<meta itemprop="name" content="Vincent DEVILLERS">
+				<meta itemprop="description" content="BigData enthousiast, DevOps, NoSQL addict, compulsive geek.">
+				<meta itemprop="url" content="https://blog.layer4.fr/author/treydone/">			</div>
+			<div itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+				<meta itemprop="name" content="Vincent DEVILLERS">
+				<meta itemprop="url" content="https://blog.layer4.fr/author/treydone/">				<div itemprop="logo" itemscope="" itemtype="http://schema.org/ImageObject">
+					<meta itemprop="width" content="49">
+					<meta itemprop="height" content="54">
+					<meta itemprop="url" content="https://blog.layer4.fr/wp-content/uploads/2016/10/layer-logo-small.png">
+				</div>
+			</div>
+
+					</div>
+	</div> <!-- .post-content -->
+
+		<div class="meta-date">
+		<div class="meta-date-wrap">
+		<span class="meta-post-date published updated"><strong>Feb.</strong>24</span> <a href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/"><div class="meta-comments-count"><span aria-hidden="true" class="icon_comment_alt"></span><meta itemprop="interactionCount" content="13 Usercomments">13</div></a>		</div>
+	</div>
+
+</article><!-- You can start editing here. -->
+
+<section id="comment-wrap">
+			<h1 id="comments" class="page_title">13 Comments</h1>
+
+		
+		<ol class="commentlist clearfix">
+				<li class="comment even thread-even depth-1" id="li-comment-40">
+		<article id="comment-40" class="comment-body clearfix">
+			<div class="comment_avatar">
+				<img style="visibility: hidden; display: none;" alt="" src="" srcset="https://secure.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=150&amp;d=mm&amp;r=g 2x" class="avatar avatar-75 photo" height="75" width="75">			</div> <!-- end .comment_avatar -->
+
+			<div class="comment_postinfo">
+				<span class="fn"><a href="https://www.blogger.com/profile/17467712281220338166" rel="external nofollow" class="url">/^ Pharaoh /^</a></span>				<span class="comment_date">
+					25 March 2013 at 20 h 12 min				</span>
+							</div> <!-- end .comment_postinfo -->
+
+			<div class="comment_area">
+				
+				<div class="comment-content clearfix">
+					<p>Nice article!, may be worth to note..if you have an application 
+that is heavily calling REST calls to the same server..to keep only once
+ instance of the<br>HttpClient(with the MultiThreadedConnectionManager).</p>
+
+					<div class="reply-container"><a rel="nofollow" class="comment-reply-link" href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/?replytocom=40#respond" onclick='return addComment.moveForm( "comment-40", "40", "respond", "70" )' aria-label="Reply to /^ Pharaoh /^">Reply</a></div>				</div> <!-- end comment-content-->
+			</div> <!-- end comment_area-->
+		</article> <!-- end comment-body -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-39">
+		<article id="comment-39" class="comment-body clearfix">
+			<div class="comment_avatar">
+				<img style="visibility: hidden; display: none;" alt="" src="" srcset="https://secure.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=150&amp;d=mm&amp;r=g 2x" class="avatar avatar-75 photo" height="75" width="75">			</div> <!-- end .comment_avatar -->
+
+			<div class="comment_postinfo">
+				<span class="fn"><a href="https://www.blogger.com/profile/05561700892116298184" rel="external nofollow" class="url">Vincent Devillers</a></span>				<span class="comment_date">
+					16 April 2013 at 1 h 03 min				</span>
+							</div> <!-- end .comment_postinfo -->
+
+			<div class="comment_area">
+				
+				<div class="comment-content clearfix">
+					<p>Indeed! You have to favorite an unique instanciation. 
+Instantiating a HttpClient is costly in resources, we must focus on 
+reuse, even singletons, as described in the doc:<br>« Generally it is 
+recommended to have a single instance of HttpClient per communication 
+component or even per application. However, if the application makes use
+ of HttpClient only very infrequently, and keeping an idle instance of 
+HttpClient in memory is not warranted, it is highly recommended to 
+explicitly shut down the multithreaded connection manager prior to 
+disposing the HttpClient instance. This will ensure proper closure of 
+all HTTP connections in the connection pool. »</p>
+<p><a href="https://blog.layer4.fr/2011/09/httpclient-best-pratices.html" rel="nofollow">https://blog.layer4.fr/2011/09/httpclient-best-pratices.html</a></p>
+
+					<div class="reply-container"><a rel="nofollow" class="comment-reply-link" href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/?replytocom=39#respond" onclick='return addComment.moveForm( "comment-39", "39", "respond", "70" )' aria-label="Reply to Vincent Devillers">Reply</a></div>				</div> <!-- end comment-content-->
+			</div> <!-- end comment_area-->
+		</article> <!-- end comment-body -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-36">
+		<article id="comment-36" class="comment-body clearfix">
+			<div class="comment_avatar">
+				<img style="visibility: hidden; display: none;" alt="" src="" srcset="https://secure.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=150&amp;d=mm&amp;r=g 2x" class="avatar avatar-75 photo" height="75" width="75">			</div> <!-- end .comment_avatar -->
+
+			<div class="comment_postinfo">
+				<span class="fn"><a href="https://www.blogger.com/profile/03607156320256672096" rel="external nofollow" class="url">KP</a></span>				<span class="comment_date">
+					29 July 2013 at 12 h 45 min				</span>
+							</div> <!-- end .comment_postinfo -->
+
+			<div class="comment_area">
+				
+				<div class="comment-content clearfix">
+					<p>Hi,</p>
+<p>One question :</p>
+<p>How about using Resttemplates for inter application calls?<br>I have two application A &amp; B – A making calls on B..<br>Can i use RestTemplate in A to access Restful webservices on B?</p>
+
+					<div class="reply-container"><a rel="nofollow" class="comment-reply-link" href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/?replytocom=36#respond" onclick='return addComment.moveForm( "comment-36", "36", "respond", "70" )' aria-label="Reply to KP">Reply</a></div>				</div> <!-- end comment-content-->
+			</div> <!-- end comment_area-->
+		</article> <!-- end comment-body -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-35">
+		<article id="comment-35" class="comment-body clearfix">
+			<div class="comment_avatar">
+				<img style="visibility: hidden; display: none;" alt="" src="" srcset="https://secure.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=150&amp;d=mm&amp;r=g 2x" class="avatar avatar-75 photo" height="75" width="75">			</div> <!-- end .comment_avatar -->
+
+			<div class="comment_postinfo">
+				<span class="fn"><a href="https://www.blogger.com/profile/05561700892116298184" rel="external nofollow" class="url">Vincent Devillers</a></span>				<span class="comment_date">
+					19 August 2013 at 15 h 58 min				</span>
+							</div> <!-- end .comment_postinfo -->
+
+			<div class="comment_area">
+				
+				<div class="comment-content clearfix">
+					<p>Sure! Why not?</p>
+
+					<div class="reply-container"><a rel="nofollow" class="comment-reply-link" href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/?replytocom=35#respond" onclick='return addComment.moveForm( "comment-35", "35", "respond", "70" )' aria-label="Reply to Vincent Devillers">Reply</a></div>				</div> <!-- end comment-content-->
+			</div> <!-- end comment_area-->
+		</article> <!-- end comment-body -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-27">
+		<article id="comment-27" class="comment-body clearfix">
+			<div class="comment_avatar">
+				<img style="visibility: hidden; display: none;" alt="" src="" srcset="https://secure.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=150&amp;d=mm&amp;r=g 2x" class="avatar avatar-75 photo" height="75" width="75">			</div> <!-- end .comment_avatar -->
+
+			<div class="comment_postinfo">
+				<span class="fn"><a href="http://rang01.pip.verisignlabs.com/" rel="external nofollow" class="url">rang01</a></span>				<span class="comment_date">
+					13 November 2013 at 8 h 42 min				</span>
+							</div> <!-- end .comment_postinfo -->
+
+			<div class="comment_area">
+				
+				<div class="comment-content clearfix">
+					<p>Thank you, any idea how to get this working with SSL?</p>
+
+					<div class="reply-container"><a rel="nofollow" class="comment-reply-link" href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/?replytocom=27#respond" onclick='return addComment.moveForm( "comment-27", "27", "respond", "70" )' aria-label="Reply to rang01">Reply</a></div>				</div> <!-- end comment-content-->
+			</div> <!-- end comment_area-->
+		</article> <!-- end comment-body -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-26">
+		<article id="comment-26" class="comment-body clearfix">
+			<div class="comment_avatar">
+				<img style="visibility: hidden; display: none;" alt="" src="" srcset="https://secure.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=150&amp;d=mm&amp;r=g 2x" class="avatar avatar-75 photo" height="75" width="75">			</div> <!-- end .comment_avatar -->
+
+			<div class="comment_postinfo">
+				<span class="fn"><a href="https://www.blogger.com/profile/05561700892116298184" rel="external nofollow" class="url">Vincent Devillers</a></span>				<span class="comment_date">
+					13 November 2013 at 15 h 21 min				</span>
+							</div> <!-- end .comment_postinfo -->
+
+			<div class="comment_area">
+				
+				<div class="comment-content clearfix">
+					<p>Instead of:<br>  PoolingClientConnectionManager connectionManager = new PoolingClientConnectionManager();</p>
+<p>Use:<br>  SchemeRegistry schemeRegistry = new SchemeRegistry();<br>  schemeRegistry.register(new Scheme("http", 80, PlainSocketFactory.getSocketFactory()));<br>  schemeRegistry.register(new Scheme("https", 443, SSLSocketFactory.getSocketFactory()));</p>
+<p>  PoolingClientConnectionManager connectionManager = new PoolingClientConnectionManager(schemeRegistry);</p>
+<p>Enjoy <img style="visibility: hidden; display: none;" src="" alt="😉" class="emoji" draggable="false"></p>
+
+					<div class="reply-container"><a rel="nofollow" class="comment-reply-link" href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/?replytocom=26#respond" onclick='return addComment.moveForm( "comment-26", "26", "respond", "70" )' aria-label="Reply to Vincent Devillers">Reply</a></div>				</div> <!-- end comment-content-->
+			</div> <!-- end comment_area-->
+		</article> <!-- end comment-body -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-24">
+		<article id="comment-24" class="comment-body clearfix">
+			<div class="comment_avatar">
+				<img style="visibility: hidden; display: none;" alt="" src="" srcset="https://secure.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=150&amp;d=mm&amp;r=g 2x" class="avatar avatar-75 photo" height="75" width="75">			</div> <!-- end .comment_avatar -->
+
+			<div class="comment_postinfo">
+				<span class="fn"><a href="https://www.blogger.com/profile/00909347192850689620" rel="external nofollow" class="url">meltyourfat</a></span>				<span class="comment_date">
+					20 February 2014 at 2 h 17 min				</span>
+							</div> <!-- end .comment_postinfo -->
+
+			<div class="comment_area">
+				
+				<div class="comment-content clearfix">
+					<p>Hi Vincent,<br>Thanks for the great article. With the latest 
+Spring provided HttpComponentsClientHttpRequestFactory, it provides the 
+best by default.<br>I have followed your blog and tried making one change and that   setting max per route for one destination URL. It didn't work.<br>Here is what i did<br>The default Max Per Route is 5. However for one route, i wanted a bigger number. so i added the following code<br>connectionManager.setMaxPerRoute(new HttpRoute(new HttpHost("ebm.cheetahmail.com", 443, "https")), 16);</p>
+<p>The logs show that Max per route of 5 is being used and not the new setting. Here is the log details for above route</p>
+<p>[cookieAuthServiceScheduler-1] 02-19-2014 19:06:31 DEBUG PoolingClientConnectionManager: Connection request: [route: {s}-&gt;<a href="https://ebm.cheetahmail.com:443%5D%5Btotal" rel="nofollow">https://ebm.cheetahmail.com:443%5D%5Btotal</a> kept alive: 0; route allocated: 0 of 5; total allocated: 0 of 100]<br>[cookieAuthServiceScheduler-1]
+ 02-19-2014 19:06:31 DEBUG PoolingClientConnectionManager: Connection 
+leased: [id: 0][route: {s}-&gt;<a href="https://ebm.cheetahmail.com:443%5D%5Btotal" rel="nofollow">https://ebm.cheetahmail.com:443%5D%5Btotal</a> kept alive: 0; route allocated: 1 of 5; total allocated: 1 of 100]<br>[cookieAuthServiceScheduler-1] 02-19-2014 19:06:33 DEBUG PoolingClientConnectionManager: Connection [id: 0][route: {s}-&gt;<a href="https://ebm.cheetahmail.com:443%5D" rel="nofollow">https://ebm.cheetahmail.com:443%5D</a> can be kept alive for 5000 MILLISECONDS<br>[cookieAuthServiceScheduler-1]
+ 02-19-2014 19:06:33 DEBUG PoolingClientConnectionManager: Connection 
+released: [id: 0][route: {s}-&gt;<a href="https://ebm.cheetahmail.com:443%5D%5Btotal" rel="nofollow">https://ebm.cheetahmail.com:443%5D%5Btotal</a> kept alive: 1; route allocated: 1 of 5; total allocated: 1 of 100]</p>
+<p>Do you know why?<br>I am using following versions<br>Spring 3.2.5.RELEASE<br>org.apache.httpcomponents httpclient 4.2<br>Thanks<br>Sri</p>
+
+					<div class="reply-container"><a rel="nofollow" class="comment-reply-link" href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/?replytocom=24#respond" onclick='return addComment.moveForm( "comment-24", "24", "respond", "70" )' aria-label="Reply to meltyourfat">Reply</a></div>				</div> <!-- end comment-content-->
+			</div> <!-- end comment_area-->
+		</article> <!-- end comment-body -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-21">
+		<article id="comment-21" class="comment-body clearfix">
+			<div class="comment_avatar">
+				<img style="visibility: hidden; display: none;" alt="" src="" srcset="https://secure.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=150&amp;d=mm&amp;r=g 2x" class="avatar avatar-75 photo" height="75" width="75">			</div> <!-- end .comment_avatar -->
+
+			<div class="comment_postinfo">
+				<span class="fn"><a href="https://www.blogger.com/profile/14394345414804945905" rel="external nofollow" class="url">alf sender</a></span>				<span class="comment_date">
+					4 June 2014 at 11 h 30 min				</span>
+							</div> <!-- end .comment_postinfo -->
+
+			<div class="comment_area">
+				
+				<div class="comment-content clearfix">
+					<p>Hi,</p>
+<p>I am using RestTemplate to get data from server.. server is https, 
+and I have imported required certificates in truststore. I want to make 
+use of these truststore and make REST call using RestTemplate, can you 
+tell me hoow can i achieve this ?</p>
+<p>Regards.</p>
+
+					<div class="reply-container"><a rel="nofollow" class="comment-reply-link" href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/?replytocom=21#respond" onclick='return addComment.moveForm( "comment-21", "21", "respond", "70" )' aria-label="Reply to alf sender">Reply</a></div>				</div> <!-- end comment-content-->
+			</div> <!-- end comment_area-->
+		</article> <!-- end comment-body -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-14">
+		<article id="comment-14" class="comment-body clearfix">
+			<div class="comment_avatar">
+				<img style="visibility: hidden; display: none;" alt="" src="" srcset="https://secure.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=150&amp;d=mm&amp;r=g 2x" class="avatar avatar-75 photo" height="75" width="75">			</div> <!-- end .comment_avatar -->
+
+			<div class="comment_postinfo">
+				<span class="fn"><a href="https://www.blogger.com/profile/02250370671633972186" rel="external nofollow" class="url">Mark Thomas</a></span>				<span class="comment_date">
+					25 August 2015 at 11 h 30 min				</span>
+							</div> <!-- end .comment_postinfo -->
+
+			<div class="comment_area">
+				
+				<div class="comment-content clearfix">
+					<p>Can you use PoolingClientConnectionManager if your application 
+is using Controllers and deployed to an application server (Tomcat). 
+It's not clear from the documentation:</p>
+<p>"This connection manager implementation should be used inside an EJB container."</p>
+
+					<div class="reply-container"><a rel="nofollow" class="comment-reply-link" href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/?replytocom=14#respond" onclick='return addComment.moveForm( "comment-14", "14", "respond", "70" )' aria-label="Reply to Mark Thomas">Reply</a></div>				</div> <!-- end comment-content-->
+			</div> <!-- end comment_area-->
+		</article> <!-- end comment-body -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-10">
+		<article id="comment-10" class="comment-body clearfix">
+			<div class="comment_avatar">
+				<img style="visibility: hidden; display: none;" alt="" src="" srcset="https://secure.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=150&amp;d=mm&amp;r=g 2x" class="avatar avatar-75 photo" height="75" width="75">			</div> <!-- end .comment_avatar -->
+
+			<div class="comment_postinfo">
+				<span class="fn"><a href="https://www.blogger.com/profile/17427121181986149219" rel="external nofollow" class="url">annie</a></span>				<span class="comment_date">
+					1 May 2016 at 8 h 30 min				</span>
+							</div> <!-- end .comment_postinfo -->
+
+			<div class="comment_area">
+				
+				<div class="comment-content clearfix">
+					<p>Hi, could you let me know how to do oauth with spring rest 
+template -RestTemplate. Basically a alternative to   OAuthConsumer 
+consumer = new CommonsHttpOAuthConsumer(consumerKey,.consumerSecret).</p>
+
+					<div class="reply-container"><a rel="nofollow" class="comment-reply-link" href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/?replytocom=10#respond" onclick='return addComment.moveForm( "comment-10", "10", "respond", "70" )' aria-label="Reply to annie">Reply</a></div>				</div> <!-- end comment-content-->
+			</div> <!-- end comment_area-->
+		</article> <!-- end comment-body -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1" id="li-comment-9">
+		<article id="comment-9" class="comment-body clearfix">
+			<div class="comment_avatar">
+				<img style="visibility: hidden; display: none;" alt="" src="" srcset="https://secure.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=150&amp;d=mm&amp;r=g 2x" class="avatar avatar-75 photo" height="75" width="75">			</div> <!-- end .comment_avatar -->
+
+			<div class="comment_postinfo">
+				<span class="fn"><a href="https://www.blogger.com/profile/17427121181986149219" rel="external nofollow" class="url">annie</a></span>				<span class="comment_date">
+					1 May 2016 at 8 h 31 min				</span>
+							</div> <!-- end .comment_postinfo -->
+
+			<div class="comment_area">
+				
+				<div class="comment-content clearfix">
+					<p>Hi, could you let me know how to do oauth with spring rest 
+template -RestTemplate. Basically a alternative to   OAuthConsumer 
+consumer = new CommonsHttpOAuthConsumer(consumerKey,.consumerSecret).</p>
+
+					<div class="reply-container"><a rel="nofollow" class="comment-reply-link" href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/?replytocom=9#respond" onclick='return addComment.moveForm( "comment-9", "9", "respond", "70" )' aria-label="Reply to annie">Reply</a></div>				</div> <!-- end comment-content-->
+			</div> <!-- end comment_area-->
+		</article> <!-- end comment-body -->
+</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-8">
+		<article id="comment-8" class="comment-body clearfix">
+			<div class="comment_avatar">
+				<img style="visibility: hidden; display: none;" alt="" src="" srcset="https://secure.gravatar.com/avatar/41dc3e007986c35dc46763689fa93174?s=150&amp;d=mm&amp;r=g 2x" class="avatar avatar-75 photo" height="75" width="75">			</div> <!-- end .comment_avatar -->
+
+			<div class="comment_postinfo">
+				<span class="fn"><a href="https://www.blogger.com/profile/09814949859728385224" rel="external nofollow" class="url">Kabira Speaking</a></span>				<span class="comment_date">
+					13 May 2016 at 3 h 33 min				</span>
+							</div> <!-- end .comment_postinfo -->
+
+			<div class="comment_area">
+				
+				<div class="comment-content clearfix">
+					<p>Thanks for the article! I'm trying to follow and trying to setup
+ a connection factory. However, I get ClassNotFoundException for 
+PoolingHttpClientConnectionManager. I'm afraid it has something to do 
+with Websphere. I'm using Websphere 8.5 with Spring 4.0.3 and httpClient
+ 4.5.2 version.</p>
+
+					<div class="reply-container"><a rel="nofollow" class="comment-reply-link" href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/?replytocom=8#respond" onclick='return addComment.moveForm( "comment-8", "8", "respond", "70" )' aria-label="Reply to Kabira Speaking">Reply</a></div>				</div> <!-- end comment-content-->
+			</div> <!-- end comment_area-->
+		</article> <!-- end comment-body -->
+</li><!-- #comment-## -->
+	<li class="pingback even thread-even depth-1" id="li-comment-41">
+		<article id="comment-41" class="comment-body clearfix">
+			<div class="comment_avatar">
+							</div> <!-- end .comment_avatar -->
+
+			<div class="comment_postinfo">
+				<span class="fn"><a href="https://blog.layer4.fr/2013/10/21/a-best-spring-asyncresttemplate/" rel="external nofollow" class="url">A best Spring AsyncRestTemplate! - Layer4</a></span>				<span class="comment_date">
+					2 November 2016 at 12 h 29 min				</span>
+							</div> <!-- end .comment_postinfo -->
+
+			<div class="comment_area">
+				
+				<div class="comment-content clearfix">
+					<p>[…] wrote an article on the famous Spring’s RestTemplate some months ago (<a href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/" rel="nofollow">https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/</a>). Since the last version of Spring 4, currently 4.0.0.M3, or the BUILD-SNAPSHOT for the most […]</p>
+
+					<div class="reply-container"><a rel="nofollow" class="comment-reply-link" href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/?replytocom=41#respond" onclick='return addComment.moveForm( "comment-41", "41", "respond", "70" )' aria-label="Reply to A best Spring AsyncRestTemplate! - Layer4">Reply</a></div>				</div> <!-- end comment-content-->
+			</div> <!-- end comment_area-->
+		</article> <!-- end comment-body -->
+</li><!-- #comment-## -->
+		</ol>
+
+					
+		<div id="respond" class="comment-respond">
+			<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://blog.layer4.fr/2013/02/24/a-best-spring-resttemplate/#respond" style="display:none;">Cancel reply</a></small></h3>
+			<form id="commentform" class="comment-form">
+				<iframe src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/a_002.html" allowtransparency="false" style="width: 100%; height: 55px; border: 0px none;" scrolling="no" name="jetpack_remote_comment" id="jetpack_remote_comment" frameborder="0"></iframe>
+			<input value="1490195211423" name="ak_js" id="ak_js" type="hidden"></form>
+		</div>
+
+		
+		<input name="comment_parent" id="comment_parent" value="" type="hidden">
+
+			
+</section>
+		
+<footer id="main-footer">
+			
+<div id="footer-widgets" class="clearfix">
+<div class="footer-widget">		<div id="recent-posts-2" class="f_widget widget_recent_entries">		<h4 class="widgettitle">Recent Posts</h4>		<ul>
+					<li>
+				<a href="https://blog.layer4.fr/2017/02/23/testing-bigdata-hadoop/">Testing BigData projects</a>
+						</li>
+					<li>
+				<a href="https://blog.layer4.fr/2017/02/15/java-python-jpy/">Fitting Java and Python with JPY</a>
+						</li>
+					<li>
+				<a href="https://blog.layer4.fr/2017/01/18/solr-manage-time-based-collections/">Solr: manage time-based collections</a>
+						</li>
+					<li>
+				<a href="https://blog.layer4.fr/2016/12/23/hbase-fun-in-the-shell/">HBase: having fun with the shell</a>
+						</li>
+					<li>
+				<a href="https://blog.layer4.fr/2016/12/06/knox-production-pitfalls-and-common-mistakes/">Knox in production: avoid pitfalls and common mistakes</a>
+						</li>
+				</ul>
+		</div> <!--.f_widget -->		</div> <!-- end .footer-widget --><div class="footer-widget"><div id="recent-comments-6" class="f_widget widget_recent_comments"><h4 class="widgettitle">Recent Comments</h4><ul id="recentcomments"><li class="recentcomments"><span class="comment-author-link"><a href="https://blog.layer4.fr/2016/12/23/hbase-fun-in-the-shell/" rel="external nofollow" class="url">HBase: having fun with the shell - Layer4</a></span> on <a href="https://blog.layer4.fr/2016/11/19/parquet-files-hadoop/#comment-48">Working with Parquet files</a></li><li class="recentcomments"><span class="comment-author-link">Thib</span> on <a href="https://blog.layer4.fr/2016/12/06/knox-production-pitfalls-and-common-mistakes/#comment-47">Knox in production: avoid pitfalls and common mistakes</a></li><li class="recentcomments"><span class="comment-author-link">Vincent DEVILLERS</span> on <a href="https://blog.layer4.fr/2016/12/06/knox-production-pitfalls-and-common-mistakes/#comment-46">Knox in production: avoid pitfalls and common mistakes</a></li><li class="recentcomments"><span class="comment-author-link">Sumit Gupta</span> on <a href="https://blog.layer4.fr/2016/12/06/knox-production-pitfalls-and-common-mistakes/#comment-45">Knox in production: avoid pitfalls and common mistakes</a></li><li class="recentcomments"><span class="comment-author-link"><a href="https://blog.layer4.fr/2016/12/06/knox-production-pitfalls-and-common-mistakes/" rel="external nofollow" class="url">Knox in production: avoid pitfalls and common mistakes - Layer4</a></span> on <a href="https://blog.layer4.fr/2016/11/16/hbase-rest-api-knox-java/#comment-44">Using HBase REST API with the Knox Java client</a></li></ul></div> <!--.f_widget --></div> <!-- end .footer-widget --><div class="footer-widget last"><div id="categories-4" class="f_widget widget_categories"><h4 class="widgettitle">Categories</h4>		<ul>
+	<li class="cat-item cat-item-111"><a href="https://blog.layer4.fr/category/cloud/">Cloud</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="https://blog.layer4.fr/category/data/">Data</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="https://blog.layer4.fr/category/devops/">DevOps</a>
+</li>
+	<li class="cat-item cat-item-18"><a href="https://blog.layer4.fr/category/java/">Java</a>
+</li>
+	<li class="cat-item cat-item-9"><a href="https://blog.layer4.fr/category/nosql/">NoSQL</a>
+</li>
+		</ul>
+</div> <!--.f_widget --></div> <!-- end .footer-widget --></div> <!-- #footer-widgets -->			<!--<p id="footer-info">
+				<a href="http://wordpress.org/" rel="generator">Proudly powered by WordPress</a>
+				Theme: Serene by <a href="http://www.elegantthemes.com/" rel="designer">Elegant Themes</a>.			</p>
+		</footer> -->
+
+	</footer></div> <!-- #container -->
+
+		<div style="display:none">
+	<div class="grofile-hash-map-41dc3e007986c35dc46763689fa93174">
+	</div>
+	</div>
+
+	<script type="text/javascript">
+		window.WPCOM_sharing_counts = {"https:\/\/blog.layer4.fr\/2013\/02\/24\/a-best-spring-resttemplate\/":70};
+	</script>
+<script type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/form.js"></script>
+<link rel="stylesheet" id="hljstheme-css" href="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/agate.css" type="text/css" media="all">
+<script type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/photon.js"></script>
+<script type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/devicepx-jetpack.js"></script>
+<script type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/comment-reply.js"></script>
+<script type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/superfish.js"></script>
+<script type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/jquery_003.js"></script>
+<script type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/jquery_005.js"></script>
+<script type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/custom.js"></script>
+<script type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/wp-embed.js"></script>
+<script type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/highlight.js"></script>
+<script type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/postmessage.js"></script>
+<script type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/jquery_004.js"></script>
+<script type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/jquery_002.js"></script>
+<script type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/queuehandler.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var sharing_js_options = {"lang":"en","counts":"1"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/sharing.js"></script>
+<script type="text/javascript">
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-twitter', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-facebook', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+var windowOpen;
+			jQuery( document.body ).on( 'click', 'a.share-google-plus-1', function() {
+				// If there's another sharing window open, close it.
+				if ( 'undefined' !== typeof windowOpen ) {
+					windowOpen.close();
+				}
+				windowOpen = window.open( jQuery( this ).attr( 'href' ), 'wpcomgoogle-plus-1', 'menubar=1,resizable=1,width=480,height=550' );
+				return false;
+			});
+</script>
+    <style>pre.hljs {padding: 5px;}
+pre.hljs code {}</style>
+    <script type="text/javascript">
+    (function($, window) {
+        var init_fn_flag = false;
+        var init_fn = (function() {
+            if (init_fn_flag)
+                return;
+            init_fn_flag = true;
+             hljs.configure({"tabReplace":"    "});
+            $('pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+        });
+        $(document).ready(init_fn);
+        $(window).on("load", init_fn);
+    })(jQuery, window);
+    </script>
+		<iframe src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/master.html" scrolling="no" id="likes-master" name="likes-master" style="display:none;"></iframe>
+		<div id="likes-other-gravatars"><div class="likes-text"><span>%d</span> bloggers like this:</div><ul class="wpl-avatars sd-like-gravatars"></ul></div>
+		
+		<!--[if IE]>
+		<script type="text/javascript">
+		if ( 0 === window.location.hash.indexOf( '#comment-' ) ) {
+			// window.location.reload() doesn't respect the Hash in IE
+			window.location.hash = window.location.hash;
+		}
+		</script>
+		<![endif]-->
+		<script type="text/javascript">
+			var comm_par_el = document.getElementById( 'comment_parent' ),
+			    comm_par = (comm_par_el && comm_par_el.value) ? comm_par_el.value : '',
+			    frame = document.getElementById( 'jetpack_remote_comment' ),
+			    tellFrameNewParent;
+
+			tellFrameNewParent = function() {
+				if ( comm_par ) {
+					frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=116234402&postid=70&comment_registration=0&require_name_email=1&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=mystery&greeting=Leave+a+Reply&greeting_reply=Leave+a+Reply+to+%25s&color_scheme=light&lang=en_US&jetpack_version=4.6&sig=e214b82f32903b2050aeff32181d5a890585f7ee#parent=https%3A%2F%2Fblog.layer4.fr%2F2013%2F02%2F24%2Fa-best-spring-resttemplate%2F" + '&replytocom=' + parseInt( comm_par, 10 ).toString();
+				} else {
+					frame.src = "https://jetpack.wordpress.com/jetpack-comment/?blogid=116234402&postid=70&comment_registration=0&require_name_email=1&stc_enabled=1&stb_enabled=1&show_avatars=1&avatar_default=mystery&greeting=Leave+a+Reply&greeting_reply=Leave+a+Reply+to+%25s&color_scheme=light&lang=en_US&jetpack_version=4.6&sig=e214b82f32903b2050aeff32181d5a890585f7ee#parent=https%3A%2F%2Fblog.layer4.fr%2F2013%2F02%2F24%2Fa-best-spring-resttemplate%2F";
+				}
+			};
+
+	
+			if ( 'undefined' !== typeof addComment ) {
+				addComment._Jetpack_moveForm = addComment.moveForm;
+
+				addComment.moveForm = function( commId, parentId, respondId, postId ) {
+					var returnValue = addComment._Jetpack_moveForm( commId, parentId, respondId, postId ), cancelClick, cancel;
+
+					if ( false === returnValue ) {
+						cancel = document.getElementById( 'cancel-comment-reply-link' );
+						cancelClick = cancel.onclick;
+						cancel.onclick = function() {
+							var cancelReturn = cancelClick.call( this );
+							if ( false !== cancelReturn ) {
+								return cancelReturn;
+							}
+
+							if ( !comm_par ) {
+								return cancelReturn;
+							}
+
+							comm_par = 0;
+
+							tellFrameNewParent();
+
+							return cancelReturn;
+						};
+					}
+
+					if ( comm_par == parentId ) {
+						return returnValue;
+					}
+
+					comm_par = parentId;
+
+					tellFrameNewParent();
+
+					return returnValue;
+				};
+			}
+
+	
+			if ( window.postMessage ) {
+				if ( document.addEventListener ) {
+					window.addEventListener( 'message', function( event ) {
+						if ( "https:\/\/jetpack.wordpress.com" !== event.origin ) {
+							return;
+						}
+
+						jQuery( frame ).height( event.data );
+					} );
+				} else if ( document.attachEvent ) {
+					window.attachEvent( 'message', function( event ) {
+						if ( "https:\/\/jetpack.wordpress.com" !== event.origin ) {
+							return;
+						}
+
+						jQuery( frame ).height( event.data );
+					} );
+				}
+			}
+		</script>
+
+	<script type="text/javascript" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/e-201712.js" async="" defer="defer"></script>
+<script type="text/javascript">
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:4.6',blog:'116234402',post:'70',tz:'1',srv:'blog.layer4.fr'} ]);
+	_stq.push([ 'clickTrackerInit', '116234402', '70' ]);
+</script>
+
+			<div id="cookie-notice" role="banner" class="cn-bottom bootstrap" style="color: rgb(255, 255, 255); background-color: rgb(0, 0, 0); display: block;"><div class="cookie-notice-container"><span id="cn-notice-text">We
+ use cookies to ensure that we give you the best experience on our 
+website. If you continue to use this site we will assume that you are 
+happy with it.</span><a href="#" id="cn-accept-cookie" data-cookie-set="accept" class="cn-set-cookie button bootstrap">Ok</a>
+				</div>
+			</div>
+
+
+<img id="wpstats" alt=":)" src="A%20best%20Spring%20RestTemplate%21%20-%20Layer4_files/g.gif" height="5" width="6"></body></html>
+<!-- Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Object Caching 2144/2247 objects using memcached
+Page Caching using memcached (SSL caching disabled)
+Database Caching 6/13 queries in 0.008 seconds using memcached
+
+ Served from: localhost @ 2017-03-22 16:06:30 by W3 Total Cache -->

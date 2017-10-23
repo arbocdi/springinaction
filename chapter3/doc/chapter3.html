@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>chapter3.html</title>
+<style>
+* {
+    overflow: visible !important;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    box-decoration-break: clone;
+}
+
+html, body {
+    background: #FFF;
+    font-family: "Segoe UI", Arial, freesans, sans-serif;
+    font-size: 10px;
+    line-height: 1.4;
+    color: #333;
+    word-wrap: break-word;
+	hyphens: auto;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 4px solid #EEE;
+}
+
+code {
+    padding: .1em .4em;
+    display: inline-block;
+    background-color: #f9f2f4;
+    color: #c7254e;
+    border-radius: 3px;
+    border: 0 none;
+    font: 9px Consolas, "Liberation Mono", Menlo, "Courier New", Courier, monospace;
+    hyphens: manual;
+}
+
+pre code {
+    padding: 15px;
+    display: block;
+    background-color: #F9F9F9;
+    color: #555;
+    font-size: 10px;
+    box-shadow: inset -1px -1px 0 rgba(0, 0, 0, .08);
+    word-wrap: normal;
+}
+
+/* replace light background for some hljs themes */
+code.github-css,
+code.github-gist-css,
+code.tomorrow-css,
+code.default-css,
+code.googlecode-css,
+code.ascetic-css,
+code.color-brewer-css,
+code.grayscale-css,
+code.idea-css,
+code.vs-css,
+code.xcode-css {
+    background-color: #F9F9F9 !important;
+}
+
+blockquote {
+    padding: 10px;
+    margin-left: 0;
+    color: #666;
+    border: 0 none;
+    border-left: 4px solid #EEE;
+}
+
+blockquote p:last-child,
+blockquote ul:last-child,
+blockquote ol:last-child {
+    margin-bottom: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    background-color: #FFF;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #DDD;
+}
+
+table div {
+    page-break-inside: avoid;
+}
+
+th, td {
+    text-align: left;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+    padding: 8px 14px;
+    vertical-align: top;
+    border-top: 1px solid #DDD;
+}
+
+table > caption + thead > tr:first-child > th,
+table > colgroup + thead > tr:first-child > th,
+table > thead:first-child > tr:first-child > th,
+table > caption + thead > tr:first-child > td,
+table > colgroup + thead > tr:first-child > td,
+table > thead:first-child > tr:first-child > td {
+    border-top: 0;
+}
+
+table > tbody + tbody {
+    border-top: 2px solid #DDD;
+}
+
+table table {
+    background-color: #FFF;
+}
+
+table > thead > tr > th,
+table > tbody > tr > th,
+table > tfoot > tr > th,
+table > thead > tr > td,
+table > tbody > tr > td,
+table > tfoot > tr > td {
+    border: 1px solid #DDD;
+}
+
+table > thead > tr > th,
+table > thead > tr > td {
+    border-bottom-width: 2px;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 90%;
+}
+
+table > tbody > tr:nth-of-type(odd) {
+    background-color: #F9F9F9;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: inherit;
+    font-weight: normal;
+    line-height: 1.1;
+    color: #111;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding: 0;
+    page-break-after: avoid;
+}
+
+h1, h2 {
+    border-bottom: 1px solid #EEE;
+    padding-bottom: 7px;
+    margin-top: 10px;
+    margin-bottom: 12px;
+}
+
+h1 {
+    font-size: 22px;
+}
+
+h2 {
+    font-size: 17px;
+}
+
+h3 {
+    font-size: 15px;
+}
+
+h4 {
+    font-size: 11px;
+}
+
+h5, h6 {
+    font-size: 10px;
+    font-weight: bold;
+    color: #666;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+input[type="checkbox"] {
+    margin-right: 6px;
+    position: relative;
+    bottom: 1px;
+}
+
+ul,
+ol {
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+
+ul li,
+ol li {
+    margin-bottom: 2px;
+}
+
+dl {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin-left: 0;
+}
+
+a,
+a:visited {
+    text-decoration: none;
+    color: #4078C0;
+}
+
+.new-page,
+.page-break,
+.next-page,
+.page-end {
+    page-break-before: always;
+}
+
+#pageHeader,
+#pageHeader a,
+#pageHeader a:visited {
+    color: #777;
+}
+
+#pageHeader span {
+    vertical-align: middle;
+}
+
+#pageFooter {
+    border-top: 1px solid #EEE;
+    padding-top: 5px;
+    color: #777;
+    font-size: 80%;
+}
+#pageFooter a,
+#pageFooter a:visited {
+    color: #777;
+}
+
+/**
+ * Your markdown-themeable-pdf custom styles
+ *
+ * The default file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/templates
+ * The base css file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/css
+ * The current highlight.js css file can be found in the folder ~/.atom/packages/markdown-themeable-pdf/node_modules/highlight.js/styles
+ */
+
+/*
+html, body {
+	color: red;
+}
+*/
+
+/**
+ * GitHub Gist Theme
+ * Author : Louis Barranqueiro - https://github.com/LouisBarranqueiro
+ */
+
+.hljs {
+  display: block;
+  background: white;
+  padding: 0.5em;
+  color: #333333;
+  overflow-x: auto;
+}
+
+.hljs-comment,
+.hljs-meta {
+  color: #969896;
+}
+
+.hljs-string,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-strong,
+.hljs-emphasis,
+.hljs-quote {
+  color: #df5000;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-type {
+  color: #a71d5d;
+}
+
+.hljs-literal,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-attribute {
+  color: #0086b3;
+}
+
+.hljs-section,
+.hljs-name {
+  color: #63a35c;
+}
+
+.hljs-tag {
+  color: #333333;
+}
+
+.hljs-title,
+.hljs-attr,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: #795da3;
+}
+
+.hljs-addition {
+  color: #55a532;
+  background-color: #eaffea;
+}
+
+.hljs-deletion {
+  color: #bd2c00;
+  background-color: #ffecec;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+pre { white-space: pre-wrap !important; word-break: break-word !important; overflow: hidden !important;}
+</style>
+</head>
+<body>
+<div id="pageContent">
+<h3 id="profiles">Profiles</h3>
+<ul>
+<li>Profile - это набор бинов.</li>
+<li>Каждый профиль имеет имя, при активации профиля
+создаются его бины.</li>
+<li>В одну и ту же точку внедрения могут быть инжектированы
+различные бины, в зависимости от активного профиля.</li>
+<li>@Profile(&quot;имя&quot;) - аннотация определяющая принадлежность бина
+к именованному профилю.</li>
+<li>xml-аналог:</li>
+</ul>
+<pre><code class="hljs github-gist-css xml"><span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">profile</span>=<span class="hljs-string">"имя"</span>/&gt;</span>
+можно определить атрибут profile на корневом элементе beans,
+а можно использовать вложенные элементы beans
+</code></pre>
+<ul>
+<li>Выбор активного профиля определяется свойствами:</li>
+</ul>
+<pre><code class="hljs github-gist-css java"><span class="hljs-comment">//активные профили, профили по умолчанию выключаются</span>
+spring.profiles.active=profile1,profile2
+<span class="hljs-comment">//активные профили по умолчанию</span>
+spring.profiles.<span class="hljs-keyword">default</span>=profile3,profile4
+</code></pre>
+<ul>
+<li>Задавать эти свойства можно несколькими методами:
+<ol>
+<li>Как переменные окуржения</li>
+<li>Как переменные jvm</li>
+<li>Как параметры сервлета</li>
+<li>@ActiveProfiles в тестах</li>
+</ol>
+</li>
+</ul>
+<h3 id="">Создание бинов по условию</h3>
+<ul>
+<li>Аннотация @Conditional(класс-наследник интерфейса Condition) позволяет
+создавать или не создавать бин, в зависимости от условия, оперделяемого
+в наследнике Condition.
+<img src="conditional.png" alt="conditional"></li>
+</ul>
+<h3 id="-2">Выбор реализации бина</h3>
+<ul>
+<li>@Primary - этой аннотацией снабжается реализация по умолчанию. Если
+есть много реализаций бина, то @Primary инжектируется в отсутствии
+дополнительной конфигурации.</li>
+</ul>
+<pre><code class="hljs github-gist-css xml">аналог в xml -  аттрибут primary
+</code></pre>
+<ul>
+<li>@Qualifier(&quot;id бина&quot;) - инжектировать бин по его имени,
+Можно аннотировать сам бин и/или место инжекции бина.</li>
+<li>Можно создать кастомную аннотацию-квалификатор и аннотировать
+ей бин и место его внедрения.
+<img src="dessert.png" alt="dessert"></li>
+</ul>
+<h3 id="-3">Область видимости бина</h3>
+<ul>
+<li>Спринг имеет следующие области видимости бина:
+<ol>
+<li>Singleton — One instance of the bean is created for the entire application.
+Область видимости по умолчанию.</li>
+<li>Prototype — One instance of the bean is created every time the bean is injected
+into or retrieved from the Spring application context.</li>
+</ol>
+</li>
+</ul>
+<pre><code class="hljs github-gist-css java"><span class="hljs-meta">@Scope</span>(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+</code></pre>
+<pre><code class="hljs github-gist-css xml"><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"notepad"</span>
+<span class="hljs-attr">class</span>=<span class="hljs-string">"com.myapp.Notepad"</span>
+<span class="hljs-attr">scope</span>=<span class="hljs-string">"prototype"</span> /&gt;</span>
+</code></pre>
+<ol start="3">
+<li>Session—In a web application, one instance of the bean is created for each session.</li>
+</ol>
+<pre><code class="hljs github-gist-css java"><span class="hljs-meta">@Scope</span>(
+  value=WebApplicationContext.SCOPE_SESSION,
+  proxyMode=ScopedProxyMode.INTERFACES)
+</code></pre>
+<p>Аттрибут proxyMode определяет какого типа прокси нужно создавать (можно инжектировать
+Session bean в Singleton и тогда без прокси не обойтись).proxyMode бывает:
+1. INTERFACES если бин инжектируется по интрефейсу, то создается реализация этого
+интерфейса, которая проксирует вызовы до
+экземпляра бина.
+2. TARGET_CLASS если бин инжектируется без
+интерфейса и проски нужно создать для самого
+класса бина.</p>
+<ol start="4">
+<li>Request—In a web application, one instance of the bean is created for each
+request.</li>
+</ol>
+<h3 id="environment">Environment</h3>
+<ul>
+<li>
+<p>Environment - это класс, позволяющий :</p>
+<ol>
+<li>получать информацию об активных\дефолтовых профилях</li>
+<li>получать значения параметров из файла свойств.</li>
+</ol>
+<p><img src="environment.png" alt="invironment"></p>
+</li>
+<li>
+<p>Значения свойств из environment доступны в spring
+при помощи ${имя-свойства}. Чтобы использовать, нужно:</p>
+<ol>
+<li>Добавить в программную конфигурацию бин
+PropertySorcesPlaceholderConfigurer
+или в xml</li>
+</ol>
+<pre><code class="hljs github-gist-css xml">  <span class="hljs-tag">&lt;<span class="hljs-name">context:property-placeholder</span>/&gt;</span>
+</code></pre>
+<ol start="2">
+<li>Аннотировать параметры конструктора\метода
+через @Value(${имя.свойства}) или в xml</li>
+</ol>
+<pre><code class="hljs github-gist-css xml">  value="${имя.свойства}"
+</code></pre>
+</li>
+</ul>
+<h3 id="spel">SpEL</h3>
+<ul>
+<li>SpEL - Spring Expression Language</li>
+</ul>
+<pre><code>#{...}
+</code></pre>
+<ul>
+<li>Константы:</li>
+</ul>
+<pre><code class="hljs github-gist-css java">#{true} boolean
+#{false} boolean
+#{'string'}
+#{123} integer
+#{1.3}  float
+</code></pre>
+<ul>
+<li>Переменные окружения</li>
+</ul>
+<pre><code class="hljs github-gist-css java">#{systemProperties['property.name']}
+</code></pre>
+<ul>
+<li>Оператор T() дает доступ к статическим методам и свойствам
+указанного класса.</li>
+</ul>
+<pre><code class="hljs github-gist-css java">#{T(System).currentTimeMillis()} - текущее время.
+#{T(java.lang.Math).PI} - значение пи
+</code></pre>
+<ul>
+<li>Бины, их свойства и методы</li>
+</ul>
+<pre><code class="hljs github-gist-css java">#{sgtPeppers.artist} - доступ к свойству
+#{bean.method()} - доступ к методу
+#{bean.name()?.toUpperCase()} - вернуть имя в верхнем регистре,
+?. - не вызывать метод toUpperCase(), если name() вернул null
+</code></pre>
+<h4 id="-4">Операторы</h4>
+<p><img src="operators.png" alt="operators"></p>
+<ul>
+<li>Результат теста на регулярное выражение возвращает true\false:</li>
+</ul>
+<pre><code class="hljs github-gist-css java">#{user.name matches '\\w+'}
+</code></pre>
+<ul>
+<li>Работа с коллекциями:</li>
+</ul>
+<pre><code class="hljs github-gist-css java">#{jukebox.songs[4].title} //вернуть заголовок 5-ой песни
+#{'This is a test'[3]} //выбрать 4-ый символ -&gt; s
+#{jukebox.songs.?[artist eq 'Aerosmith']} // .?[] выбрать подмножество
+//по условию в скобках, в данном случае выбираются все песни исполнителя
+//Aerosmith
+//.^[] вернуть первый подходящий объект
+//.$[] вернуть последний подходящий объект
+</code></pre>
+<ul>
+<li>Projection operator .![]</li>
+</ul>
+<pre><code class="hljs github-gist-css java">#{jukebox.songs.![title]} //вернуть коллекцию из заголовков песен
+</code></pre>
+
+</div></body>
+</html>

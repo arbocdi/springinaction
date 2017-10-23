@@ -1,0 +1,40 @@
+apply plugin: 'war'
+//apply plugin: 'jetty'
+apply plugin: 'org.akhikhl.gretty'
+def tilesVersion = "3.0.1"
+gretty {
+    port = 9090
+    contextPath = 'spitter'
+    servletContainer = 'jetty9' //tomcat7 or tomcat8
+}
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.akhikhl.gretty:gretty:1.4.0"
+    }
+}
+dependencies {
+    compile group: 'org.springframework',name:'spring-webmvc',version:'4.3.1.RELEASE'
+    compile 'javax.servlet:jstl:1.2'
+    providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+    providedCompile 'javax.servlet.jsp:jsp-api:2.1'
+    providedCompile 'javax.el:javax.el-api:2.2.4' 
+    compile group: 'org.hibernate', name: 'hibernate-validator', version: '5.2.1.Final'
+    compile ("org.apache.tiles:tiles-core:$tilesVersion") {
+        exclude group: 'org.slf4j'
+    }
+    compile ("org.apache.tiles:tiles-jsp:$tilesVersion") {
+        exclude group: 'org.slf4j'
+    }
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-core
+    compile group: 'org.springframework.security', name: 'spring-security-core', version: '4.2.1.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-config
+    compile group: 'org.springframework.security', name: 'spring-security-config', version: '4.2.1.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework.security/spring-security-web
+    compile group: 'org.springframework.security', name: 'spring-security-web', version: '4.2.1.RELEASE'
+
+}
