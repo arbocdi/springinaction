@@ -18,6 +18,11 @@ private EntityManagerFactory emf;
 @Transactional
 ```
 * Следующая аннотация включает поддержку транзакций:
+ @EnableTransactionManagement имеет 2 режима (mode):
+  1. AdviceMode.PROXY(по умолчанию) - используется создание java-прокси для реализации транзакций
+     только публичные методы будут транзакционными, вызов метода из того же класса не перхватывается.
+  2. AdviceMode.ASPECTJ - используются spring-аспекты для транзакционности, любые методы перехватываются,
+     вызовы методов из того же класса перехватываются.
 ```java
 @EnableTransactionManagement
 ```
@@ -69,3 +74,39 @@ List<Spitter> findAllGmailSpitters();
 автоматически добавит его методы к авто-генерируемым методам класса.
 
 ![spittleDB](spittleDB.png)
+
+### Транзакции
+* @Transactional позволяет указать свойста транзакции:
+  1. Propagation = Required
+  2. Isolation = уровень изоляции транзакции = isolation БД по умолчанию
+  3. Транзакция может читать и писать
+  4. Таймаут = таймаут в БД
+  5. RuntimeException и наследники откатывают транзакцию, checked exceptions - не откатывают.
+  6. value= "transactionManager" - имя бина или его квалификатор PlatformTransactionManager,
+  то можно использовать несколько менеджеров транзакций в одном приложении.
+* Все методы авто репозиториев аннотируются через @Transactional.
+
+* Вызов метода из того же класса не приводит к созданию новой транзакции.
+* Транзакции интегрируются автоматом с JdbcTemplate.
+* @Transactional аннотируется весь класс либо публичные его методы - и только
+публичные методы класса могут быть транзакционными.
+* имя транзакции = полноеИмяКласса.названиеМетода.
+* DataSourceTransactionManager - используется для JDBC - операций.
+
+![tr_types](tr_types.png)
+![tr_managers](tr_managers.png)
+* PlatformTransactionManager имеет следующие методы:
+![ptm_methods](ptm_methods.png)
+* TransactionTemplate - это класс для ручного управления транзакциями он автоматически
+сохраняет или отменяет транзакцию (при выбросе исключения). Работает с интерфейсами
+TransactionCallback<T> и TransactionCallbackWithoutResult. Откат транзакии осуществляется
+при выбросе RuntimeException. (см JDBCSpittleRepository)
+* Проблемы конкуррентных транзакций
+![concurrent_problems](concurrent_problems.png)
+* Уровни изоляции транзацкий
+![isolation_levels](isolation_levels.png)
+* Уровни изоляции и прочие аттрибуты транзакции выставляются в DefaultTransactionDefinition или в @Transactional
+### Более одной бд
+* для каждой бд создаем свой LocalContainerEntityManagerFactoryBean и указываем ему PUname.
+* EntityManager инжектируется по имени PU(PersistenceUnit):@PersistenceContext(unitName = "PUname")
+* TransactionManager аннотируется квалификатором и используется как @Transactional(transactionManager = "qualifier"). Можно так же использовать имя PlatformTransactionManager-бина.

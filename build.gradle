@@ -48,5 +48,8 @@ subprojects{
         into "$buildDir/libs"
         from configurations.runtime
     }
+    test {
+        testLogging.showStandardStreams = true
+    }
 
 }

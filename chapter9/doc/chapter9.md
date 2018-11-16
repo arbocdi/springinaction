@@ -1,6 +1,7 @@
 # Web secutiry
 ![securityModules](securityModules.png)
 *  Для веб-приложения нужно добавить в CP: core,configuration,web.
+* Principal - главный, основной - это некая сущность - пользователь, сервис, устройство.
 * Web-безопасность в спринг реализована
 как набор web-фильтров. DelagatingFilterProxy направляет
 все запросы в специальный бин (id = springSecurityFilterChain), в качестве которого обычно

@@ -16,11 +16,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(classes = EnvConfig.class)
 public class EnvConfigTest {
     @Autowired
-    @Qualifier("iceCream")
+    //@Qualifier("iceCream")
     private IceCream iceCream;
+    @Autowired
+    private PropertiesBean propertiesBean;
     
     @Test
     public void iceCreamPriceTest(){
         Assert.assertEquals(20, iceCream.getPrice());
+    }
+    @Test
+    public void testPropertiesBean(){
+        System.out.println(propertiesBean);
     }
 }

@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                  //имеют один и тот же логин и пароль
                 .and()
                 .authorizeRequests()
-                .regexMatchers("/spitters/me").access("hasRole('ROLE_ADMIN')")
+                .regexMatchers("/spitters/me").hasRole("ROLE_ADMIN")
                 .regexMatchers("/spittles").access("isAuthenticated()")
                 .anyRequest().permitAll()
                 ;

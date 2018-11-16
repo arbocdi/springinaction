@@ -1,0 +1,1 @@
+/**/__twttr.setFollowersCountAndFollowing([{"following":false,"id":"227260421","screen_name":"baeldung","name":"Eugen (Baeldung)","protected":false,"followers_count":11237,"formatted_followers_count":"11.2K followers","age_gated":false}]);

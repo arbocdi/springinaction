@@ -445,6 +445,60 @@ DataSource и JpaVendorAdapter.</li>
 автоматически добавит его методы к авто-генерируемым методам класса.</li>
 </ul>
 <p><img src="spittleDB.png" alt="spittleDB"></p>
+<h3 id="-2">Транзакции</h3>
+<ul>
+<li>
+<p>@Transactional позволяет указать свойста транзакции:</p>
+<ol>
+<li>Propagation = Required</li>
+<li>Isolation = уровень изоляции транзакции = isolation БД по умолчанию</li>
+<li>Транзакция может читать и писать</li>
+<li>Таймаут = таймаут в БД</li>
+<li>RuntimeException и наследники откатывают транзакцию, checked exceptions - не откатывают.</li>
+<li>value= &quot;transactionManager&quot; - имя бина или его квалификатор PlatformTransactionManager,
+то можно использовать несколько менеджеров транзакций в одном приложении.</li>
+</ol>
+</li>
+<li>
+<p>Все методы авто репозиториев аннотируются через @Transactional.</p>
+</li>
+<li>
+<p>Вызов метода из того же класса не приводит к созданию новой транзакции.</p>
+</li>
+<li>
+<p>Транзакции интегрируются автоматом с JdbcTemplate.</p>
+</li>
+<li>
+<p>@Transactional аннотируется весь класс либо публичные его методы - и только
+публичные методы класса могут быть транзакционными.</p>
+</li>
+<li>
+<p>имя транзакции = полноеИмяКласса.названиеМетода.</p>
+</li>
+<li>
+<p>DataSourceTransactionManager - используется для JDBC - операций.</p>
+</li>
+</ul>
+<p><img src="tr_types.png" alt="tr_types">
+<img src="tr_managers.png" alt="tr_managers"></p>
+<ul>
+<li>PlatformTransactionManager имеет следующие методы:
+<img src="ptm_methods.png" alt="ptm_methods"></li>
+<li>TransactionTemplate - это класс для ручного управления транзакциями он автоматически
+сохраняет или отменяет транзакцию (при выбросе исключения). Работает с интерфейсами
+TransactionCallback<T> и TransactionCallbackWithoutResult. Откат транзакии осуществляется
+при выбросе RuntimeException. (см JDBCSpittleRepository)</li>
+<li>Проблемы конкуррентных транзакций
+<img src="concurrent_problems.png" alt="concurrent_problems"></li>
+<li>Уровни изоляции транзацкий
+<img src="isolation_levels.png" alt="isolation_levels"></li>
+</ul>
+<h3 id="-3">Более одной бд</h3>
+<ul>
+<li>для каждой бд создаем свой LocalContainerEntityManagerFactoryBean и указываем ему PUname.</li>
+<li>EntityManager инжектируется по имени PU(PersistenceUnit):@PersistenceContext(unitName = &quot;PUname&quot;)</li>
+<li>TransactionManager аннотируется квалификатором и используется как @Transactional(transactionManager = &quot;qualifier&quot;). Можно так же использовать имя PlatformTransactionManager-бина.</li>
+</ul>
 
 </div></body>
 </html>

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 import spitter.data.Spitter;
-import spitter.data.SpitterRepository;
+import spitter.data.repos.SpitterRepository;
 
 /**
  * Регистрация пользователей

@@ -38,8 +38,16 @@ spring.profiles.default=profile3,profile4
 ```xml
 аналог в xml -  аттрибут primary
 ```
-* @Qualifier("id бина") - инжектировать бин по его имени,
-Можно аннотировать сам бин и/или место инжекции бина.
+* @Qualifier("id бина") - инжектировать бин по его имени или id,
+Можно аннотировать сам бин и/или место инжекции бина. Имя бина и его id практически
+одно и то же, имя и id должны быть уникальны. Если @Qualifier используется в и инжекции
+через конструктор, то квалификатором нужно аннотировать инжектируемый параметр:
+```java
+@Autowired
+public SomeClass(@Qualifier("someDependency")SomeDependency dep){
+  ...
+}
+```
 * Можно создать кастомную аннотацию-квалификатор и аннотировать
 ей бин и место его внедрения.
 ![dessert](dessert.png)
@@ -52,6 +60,8 @@ spring.profiles.default=profile3,profile4
 into or retrieved from the Spring application context.
 ```java
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+//можно задавать область видимости строкой
+@Scope("prototype")
 ```
 ```xml
 <bean id="notepad"
@@ -84,17 +94,49 @@ request.
 * Значения свойств из environment доступны в spring
  при помощи ${имя-свойства}. Чтобы использовать, нужно:
     1. Добавить в программную конфигурацию бин
-    PropertySorcesPlaceholderConfigurer
+    PropertySourcesPlaceholderConfigurer (спринг >=4.3 работает и без него)
     или в xml
     ```xml
       <context:property-placeholder/>
     ```
-    2. Аннотировать параметры конструктора\метода
-    через @Value(${имя.свойства}) или в xml
+    2. Аннотировать параметры конструктора\метода или поле
+    через @Value("${имя.свойства}") или в xml
     ```xml
       value="${имя.свойства}"
     ```
+* Можно инжектрировать все свойста из файла свойств как Map<String,String>:
+```Java
+    //создаем в конфигах новый бин
+    @Bean(name = "mapper")
+    public PropertiesFactoryBean mapper() {
+        PropertiesFactoryBean bean = new PropertiesFactoryBean();
+        bean.setLocation(new ClassPathResource("dessert.properties"));
+        return bean;
+    }
+    //инжектируем все свойства как Map
+    @Value("#{mapper}")
+    @Getter
+    private Map<String,String>properties;
+```
+* инжекция свойств из файла свойств
+```xml
+<!-- acessing properties file -->
+   <context:property-placeholder location="classpath:sport.properties"/>
+   <bean id="myFortuneService" class="com.luv2code.springdemo.HappyFortuneService">
+   <bean id="myCricketCoach" class="com.luv2code.springdemo.CricketCoach">
+           <!-- setter injection -->
+           <property name="fortuneService" ref="myFortuneService"/>
+           <!-- injecting literal values, referencing properties from sports.properties -->
+           <property name="emailAddress" value="${foo.email}"/>
+           <property name="team" value="${foo.team}"/>
 
+       </bean>
+```
+sport.properties:
+```properties
+foo.email=arbocdi@gmail.com
+foo.team=Royal Challengers
+```
 ### SpEL
 
 * SpEL - Spring Expression Language

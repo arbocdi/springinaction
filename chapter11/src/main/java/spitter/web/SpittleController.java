@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import spitter.data.Spittle;
-import spitter.data.SpittleAutoRepository;
-import spitter.data.SpittleRepository;
+import spitter.data.repos.SpittleAutoRepository;
+import spitter.data.repos.SpittleRepository;
 
 /**
  * Показывает одно событие либо набор событий.
@@ -23,8 +23,8 @@ import spitter.data.SpittleRepository;
 public class SpittleController {
     
     @Autowired
-    @Qualifier("auto")
-    private SpittleAutoRepository repository;
+    @Qualifier("jdbcRepo")
+    private SpittleRepository repository;
 
 
     @RequestMapping(path = "/spittles", method = RequestMethod.GET)
@@ -56,8 +56,8 @@ public class SpittleController {
        
         Spittle spittle = new Spittle();
         spittle.setMessage(request.getParameter("message"));
-        repository.save(spittle);
-        model.addAttribute("spittleList", this.repository.findAll());
+        repository.saveSpittle(spittle);
+        model.addAttribute("spittleList", this.repository.findSpittles(100));
         return "spittles";
     }
     

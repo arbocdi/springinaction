@@ -1,5 +1,7 @@
 package spitter.config;
 
+import spitter.data.RootConfig;
+import spitter.web.WebConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
