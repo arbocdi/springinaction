@@ -114,7 +114,7 @@ request.
         return bean;
     }
     //инжектируем все свойства как Map
-    @Value("#{mapper}")
+    @Value("#{mapper}")//инжекция бина по его имени, используя SpringEL
     @Getter
     private Map<String,String>properties;
 ```

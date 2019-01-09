@@ -1,106 +1,178 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <meta charset="utf-8" />
-      <title>chapter5</title>
-      <style>.markdown-preview:not([data-use-github-style]) { padding: 2em; font-size: 1.2em; color: rgb(56, 58, 66); background-color: rgb(250, 250, 250); overflow: auto; }
-.markdown-preview:not([data-use-github-style]) > :first-child { margin-top: 0px; }
-.markdown-preview:not([data-use-github-style]) h1, .markdown-preview:not([data-use-github-style]) h2, .markdown-preview:not([data-use-github-style]) h3, .markdown-preview:not([data-use-github-style]) h4, .markdown-preview:not([data-use-github-style]) h5, .markdown-preview:not([data-use-github-style]) h6 { line-height: 1.2; margin-top: 1.5em; margin-bottom: 0.5em; color: rgb(0, 0, 0); }
-.markdown-preview:not([data-use-github-style]) h1 { font-size: 2.4em; font-weight: 300; }
-.markdown-preview:not([data-use-github-style]) h2 { font-size: 1.8em; font-weight: 400; }
-.markdown-preview:not([data-use-github-style]) h3 { font-size: 1.5em; font-weight: 500; }
-.markdown-preview:not([data-use-github-style]) h4 { font-size: 1.2em; font-weight: 600; }
-.markdown-preview:not([data-use-github-style]) h5 { font-size: 1.1em; font-weight: 600; }
-.markdown-preview:not([data-use-github-style]) h6 { font-size: 1em; font-weight: 600; }
-.markdown-preview:not([data-use-github-style]) strong { color: rgb(0, 0, 0); }
-.markdown-preview:not([data-use-github-style]) del { color: rgb(94, 97, 110); }
-.markdown-preview:not([data-use-github-style]) a, .markdown-preview:not([data-use-github-style]) a code { color: rgb(82, 111, 255); }
-.markdown-preview:not([data-use-github-style]) img { max-width: 100%; }
-.markdown-preview:not([data-use-github-style]) > p { margin-top: 0px; margin-bottom: 1.5em; }
-.markdown-preview:not([data-use-github-style]) > ul, .markdown-preview:not([data-use-github-style]) > ol { margin-bottom: 1.5em; }
-.markdown-preview:not([data-use-github-style]) blockquote { margin: 1.5em 0px; font-size: inherit; color: rgb(94, 97, 110); border-color: rgb(209, 209, 210); border-width: 4px; }
-.markdown-preview:not([data-use-github-style]) hr { margin: 3em 0px; border-top: 2px dashed rgb(209, 209, 210); background: none; }
-.markdown-preview:not([data-use-github-style]) table { margin: 1.5em 0px; }
-.markdown-preview:not([data-use-github-style]) th { color: rgb(0, 0, 0); }
-.markdown-preview:not([data-use-github-style]) th, .markdown-preview:not([data-use-github-style]) td { padding: 0.66em 1em; border: 1px solid rgb(209, 209, 210); }
-.markdown-preview:not([data-use-github-style]) code { color: rgb(0, 0, 0); background-color: rgb(234, 234, 235); }
-.markdown-preview:not([data-use-github-style]) pre.editor-colors { margin: 1.5em 0px; padding: 1em; font-size: 0.92em; border-radius: 3px; background-color: rgb(240, 240, 240); }
-.markdown-preview:not([data-use-github-style]) kbd { color: rgb(0, 0, 0); border-width: 1px 1px 2px; border-style: solid; border-color: rgb(209, 209, 210) rgb(209, 209, 210) rgb(193, 193, 194); border-image: initial; background-color: rgb(234, 234, 235); }
-.markdown-preview[data-use-github-style] { font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif; line-height: 1.6; word-wrap: break-word; padding: 30px; font-size: 16px; color: rgb(51, 51, 51); background-color: rgb(255, 255, 255); overflow: scroll; }
-.markdown-preview[data-use-github-style] > :first-child { margin-top: 0px !important; }
-.markdown-preview[data-use-github-style] > :last-child { margin-bottom: 0px !important; }
-.markdown-preview[data-use-github-style] a:not([href]) { color: inherit; text-decoration: none; }
-.markdown-preview[data-use-github-style] .absent { color: rgb(204, 0, 0); }
-.markdown-preview[data-use-github-style] .anchor { position: absolute; top: 0px; left: 0px; display: block; padding-right: 6px; padding-left: 30px; margin-left: -30px; }
-.markdown-preview[data-use-github-style] .anchor:focus { outline: none; }
-.markdown-preview[data-use-github-style] h1, .markdown-preview[data-use-github-style] h2, .markdown-preview[data-use-github-style] h3, .markdown-preview[data-use-github-style] h4, .markdown-preview[data-use-github-style] h5, .markdown-preview[data-use-github-style] h6 { position: relative; margin-top: 1em; margin-bottom: 16px; font-weight: bold; line-height: 1.4; }
-.markdown-preview[data-use-github-style] h1 .octicon-link, .markdown-preview[data-use-github-style] h2 .octicon-link, .markdown-preview[data-use-github-style] h3 .octicon-link, .markdown-preview[data-use-github-style] h4 .octicon-link, .markdown-preview[data-use-github-style] h5 .octicon-link, .markdown-preview[data-use-github-style] h6 .octicon-link { display: none; color: rgb(0, 0, 0); vertical-align: middle; }
-.markdown-preview[data-use-github-style] h1:hover .anchor, .markdown-preview[data-use-github-style] h2:hover .anchor, .markdown-preview[data-use-github-style] h3:hover .anchor, .markdown-preview[data-use-github-style] h4:hover .anchor, .markdown-preview[data-use-github-style] h5:hover .anchor, .markdown-preview[data-use-github-style] h6:hover .anchor { padding-left: 8px; margin-left: -30px; text-decoration: none; }
-.markdown-preview[data-use-github-style] h1:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h2:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h3:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h4:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h5:hover .anchor .octicon-link, .markdown-preview[data-use-github-style] h6:hover .anchor .octicon-link { display: inline-block; }
-.markdown-preview[data-use-github-style] h1 tt, .markdown-preview[data-use-github-style] h2 tt, .markdown-preview[data-use-github-style] h3 tt, .markdown-preview[data-use-github-style] h4 tt, .markdown-preview[data-use-github-style] h5 tt, .markdown-preview[data-use-github-style] h6 tt, .markdown-preview[data-use-github-style] h1 code, .markdown-preview[data-use-github-style] h2 code, .markdown-preview[data-use-github-style] h3 code, .markdown-preview[data-use-github-style] h4 code, .markdown-preview[data-use-github-style] h5 code, .markdown-preview[data-use-github-style] h6 code { font-size: inherit; }
-.markdown-preview[data-use-github-style] h1 { padding-bottom: 0.3em; font-size: 2.25em; line-height: 1.2; border-bottom: 1px solid rgb(238, 238, 238); }
-.markdown-preview[data-use-github-style] h1 .anchor { line-height: 1; }
-.markdown-preview[data-use-github-style] h2 { padding-bottom: 0.3em; font-size: 1.75em; line-height: 1.225; border-bottom: 1px solid rgb(238, 238, 238); }
-.markdown-preview[data-use-github-style] h2 .anchor { line-height: 1; }
-.markdown-preview[data-use-github-style] h3 { font-size: 1.5em; line-height: 1.43; }
-.markdown-preview[data-use-github-style] h3 .anchor { line-height: 1.2; }
-.markdown-preview[data-use-github-style] h4 { font-size: 1.25em; }
-.markdown-preview[data-use-github-style] h4 .anchor { line-height: 1.2; }
-.markdown-preview[data-use-github-style] h5 { font-size: 1em; }
-.markdown-preview[data-use-github-style] h5 .anchor { line-height: 1.1; }
-.markdown-preview[data-use-github-style] h6 { font-size: 1em; color: rgb(119, 119, 119); }
-.markdown-preview[data-use-github-style] h6 .anchor { line-height: 1.1; }
-.markdown-preview[data-use-github-style] p, .markdown-preview[data-use-github-style] blockquote, .markdown-preview[data-use-github-style] ul, .markdown-preview[data-use-github-style] ol, .markdown-preview[data-use-github-style] dl, .markdown-preview[data-use-github-style] table, .markdown-preview[data-use-github-style] pre { margin-top: 0px; margin-bottom: 16px; }
-.markdown-preview[data-use-github-style] hr { height: 4px; padding: 0px; margin: 16px 0px; background-color: rgb(231, 231, 231); border: 0px none; }
-.markdown-preview[data-use-github-style] ul, .markdown-preview[data-use-github-style] ol { padding-left: 2em; }
-.markdown-preview[data-use-github-style] ul.no-list, .markdown-preview[data-use-github-style] ol.no-list { padding: 0px; list-style-type: none; }
-.markdown-preview[data-use-github-style] ul ul, .markdown-preview[data-use-github-style] ul ol, .markdown-preview[data-use-github-style] ol ol, .markdown-preview[data-use-github-style] ol ul { margin-top: 0px; margin-bottom: 0px; }
-.markdown-preview[data-use-github-style] li > p { margin-top: 16px; }
-.markdown-preview[data-use-github-style] dl { padding: 0px; }
-.markdown-preview[data-use-github-style] dl dt { padding: 0px; margin-top: 16px; font-size: 1em; font-style: italic; font-weight: bold; }
-.markdown-preview[data-use-github-style] dl dd { padding: 0px 16px; margin-bottom: 16px; }
-.markdown-preview[data-use-github-style] blockquote { padding: 0px 15px; color: rgb(119, 119, 119); border-left: 4px solid rgb(221, 221, 221); }
-.markdown-preview[data-use-github-style] blockquote > :first-child { margin-top: 0px; }
-.markdown-preview[data-use-github-style] blockquote > :last-child { margin-bottom: 0px; }
-.markdown-preview[data-use-github-style] table { display: block; width: 100%; overflow: auto; word-break: keep-all; }
-.markdown-preview[data-use-github-style] table th { font-weight: bold; }
-.markdown-preview[data-use-github-style] table th, .markdown-preview[data-use-github-style] table td { padding: 6px 13px; border: 1px solid rgb(221, 221, 221); }
-.markdown-preview[data-use-github-style] table tr { background-color: rgb(255, 255, 255); border-top: 1px solid rgb(204, 204, 204); }
-.markdown-preview[data-use-github-style] table tr:nth-child(2n) { background-color: rgb(248, 248, 248); }
-.markdown-preview[data-use-github-style] img { max-width: 100%; box-sizing: border-box; }
-.markdown-preview[data-use-github-style] .emoji { max-width: none; }
-.markdown-preview[data-use-github-style] span.frame { display: block; overflow: hidden; }
-.markdown-preview[data-use-github-style] span.frame > span { display: block; float: left; width: auto; padding: 7px; margin: 13px 0px 0px; overflow: hidden; border: 1px solid rgb(221, 221, 221); }
-.markdown-preview[data-use-github-style] span.frame span img { display: block; float: left; }
-.markdown-preview[data-use-github-style] span.frame span span { display: block; padding: 5px 0px 0px; clear: both; color: rgb(51, 51, 51); }
-.markdown-preview[data-use-github-style] span.align-center { display: block; overflow: hidden; clear: both; }
-.markdown-preview[data-use-github-style] span.align-center > span { display: block; margin: 13px auto 0px; overflow: hidden; text-align: center; }
-.markdown-preview[data-use-github-style] span.align-center span img { margin: 0px auto; text-align: center; }
-.markdown-preview[data-use-github-style] span.align-right { display: block; overflow: hidden; clear: both; }
-.markdown-preview[data-use-github-style] span.align-right > span { display: block; margin: 13px 0px 0px; overflow: hidden; text-align: right; }
-.markdown-preview[data-use-github-style] span.align-right span img { margin: 0px; text-align: right; }
-.markdown-preview[data-use-github-style] span.float-left { display: block; float: left; margin-right: 13px; overflow: hidden; }
-.markdown-preview[data-use-github-style] span.float-left span { margin: 13px 0px 0px; }
-.markdown-preview[data-use-github-style] span.float-right { display: block; float: right; margin-left: 13px; overflow: hidden; }
-.markdown-preview[data-use-github-style] span.float-right > span { display: block; margin: 13px auto 0px; overflow: hidden; text-align: right; }
-.markdown-preview[data-use-github-style] code, .markdown-preview[data-use-github-style] tt { padding: 0.2em 0px; margin: 0px; font-size: 85%; background-color: rgba(0, 0, 0, 0.04); border-radius: 3px; }
-.markdown-preview[data-use-github-style] code::before, .markdown-preview[data-use-github-style] tt::before, .markdown-preview[data-use-github-style] code::after, .markdown-preview[data-use-github-style] tt::after { letter-spacing: -0.2em; content: " "; }
-.markdown-preview[data-use-github-style] code br, .markdown-preview[data-use-github-style] tt br { display: none; }
-.markdown-preview[data-use-github-style] del code { text-decoration: inherit; }
-.markdown-preview[data-use-github-style] pre > code { padding: 0px; margin: 0px; font-size: 100%; word-break: normal; white-space: pre; background: transparent; border: 0px; }
-.markdown-preview[data-use-github-style] .highlight { margin-bottom: 16px; }
-.markdown-preview[data-use-github-style] .highlight pre, .markdown-preview[data-use-github-style] pre { padding: 16px; overflow: auto; font-size: 85%; line-height: 1.45; background-color: rgb(247, 247, 247); border-radius: 3px; }
-.markdown-preview[data-use-github-style] .highlight pre { margin-bottom: 0px; word-break: normal; }
-.markdown-preview[data-use-github-style] pre { word-wrap: normal; }
-.markdown-preview[data-use-github-style] pre code, .markdown-preview[data-use-github-style] pre tt { display: inline; max-width: initial; padding: 0px; margin: 0px; overflow: initial; line-height: inherit; word-wrap: normal; background-color: transparent; border: 0px; }
-.markdown-preview[data-use-github-style] pre code::before, .markdown-preview[data-use-github-style] pre tt::before, .markdown-preview[data-use-github-style] pre code::after, .markdown-preview[data-use-github-style] pre tt::after { content: normal; }
-.markdown-preview[data-use-github-style] kbd { display: inline-block; padding: 3px 5px; font-size: 11px; line-height: 10px; color: rgb(85, 85, 85); vertical-align: middle; background-color: rgb(252, 252, 252); border-width: 1px; border-style: solid; border-color: rgb(204, 204, 204) rgb(204, 204, 204) rgb(187, 187, 187); border-image: initial; border-radius: 3px; box-shadow: rgb(187, 187, 187) 0px -1px 0px inset; }
-.markdown-preview[data-use-github-style] a { color: rgb(51, 122, 183); }
-.markdown-preview[data-use-github-style] code { color: inherit; }
-.markdown-preview[data-use-github-style] pre.editor-colors { padding: 0.8em 1em; margin-bottom: 1em; font-size: 0.85em; border-radius: 4px; overflow: auto; }
-.scrollbars-visible-always .markdown-preview pre.editor-colors .vertical-scrollbar, .scrollbars-visible-always .markdown-preview pre.editor-colors .horizontal-scrollbar { visibility: hidden; }
-.scrollbars-visible-always .markdown-preview pre.editor-colors:hover .vertical-scrollbar, .scrollbars-visible-always .markdown-preview pre.editor-colors:hover .horizontal-scrollbar { visibility: visible; }
-.markdown-preview .task-list-item-checkbox { position: absolute; margin: 0.25em 0px 0px -1.4em; }
+    <meta charset="utf-8" />
+    <title>chapter5</title>
+    <style>.emoji {
+  max-width: 1em !important;
+}
+del {
+  text-decoration: none;
+  position: relative;
+}
+del::after {
+  border-bottom: 1px solid black;
+  content: '';
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 50%;
+}
+ul.contains-task-list li.task-list-item {
+  position: relative;
+  list-style-type: none;
+}
+ul.contains-task-list li.task-list-item input.task-list-item-checkbox {
+  position: absolute;
+  transform: translateX(-100%);
+  width: 30px;
+}
+span.critic.comment {
+  position: relative;
+}
+span.critic.comment::before {
+  content: '\1f4ac';
+  position: initial;
+}
+span.critic.comment > span {
+  display: none;
+}
+span.critic.comment:hover > span {
+  display: initial;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  border: 1px solid;
+  border-radius: 5px;
+  max-height: 4em;
+  overflow: auto;
+}
+span.critic.comment:focus > span {
+  display: initial;
+  text-decoration: underline;
+  position: initial;
+  top: auto;
+  left: auto;
+  border: initial;
+  border-radius: initial;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: transparent;
+}
+
+body {
+  padding: 2em;
+  font-size: 1.2em;
+  color: #383a42;
+  background-color: #fafafa;
+  overflow: auto;
+}
+body > :first-child,
+body > div.update-preview > :first-child {
+  margin-top: 0;
+}
+body > p,
+body > div.update-preview > p {
+  margin-top: 0;
+  margin-bottom: 1.5em;
+}
+body > ul,
+body > div.update-preview > ul,
+body > ol,
+body > div.update-preview > ol {
+  margin-bottom: 1.5em;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  color: #000000;
+}
+h1 {
+  font-size: 2.4em;
+  font-weight: 300;
+}
+h2 {
+  font-size: 1.8em;
+  font-weight: 400;
+}
+h3 {
+  font-size: 1.5em;
+  font-weight: 500;
+}
+h4 {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+h5 {
+  font-size: 1.1em;
+  font-weight: 600;
+}
+h6 {
+  font-size: 1em;
+  font-weight: 600;
+}
+strong {
+  color: #000000;
+}
+del {
+  color: #5e616e;
+}
+a,
+a code {
+  color: #526fff;
+}
+img {
+  max-width: 100%;
+}
+blockquote {
+  margin: 1.5em 0;
+  font-size: inherit;
+  color: #5e616e;
+  border-color: #d1d1d2;
+  border-width: 4px;
+}
+hr {
+  margin: 3em 0;
+  border-top: 2px dashed #d1d1d2;
+  background: none;
+}
+table {
+  margin: 1.5em 0;
+}
+th {
+  color: #000000;
+}
+th,
+td {
+  padding: 0.66em 1em;
+  border: 1px solid #d1d1d2;
+}
+code {
+  color: #000000;
+  background-color: #eaeaeb;
+}
+pre.editor-colors {
+  margin: 1.5em 0;
+  padding: 1em;
+  font-size: 0.92em;
+  border-radius: 3px;
+  background-color: #f0f0f0;
+}
+kbd {
+  color: #000000;
+  border: 1px solid #d1d1d2;
+  border-bottom: 2px solid #c1c1c2;
+  background-color: #eaeaeb;
+}
+
 .bracket-matcher .region {
   border-bottom: 1px dotted lime;
   position: absolute;
@@ -507,6 +579,12 @@ pre.editor-colors .fold-marker:after {
 .syntax--source.syntax--js .syntax--keyword.syntax--operator.syntax--void {
   color: #a626a4;
 }
+.syntax--source.syntax--ts .syntax--keyword.syntax--operator {
+  color: #0184bc;
+}
+.syntax--source.syntax--flow .syntax--keyword.syntax--operator {
+  color: #0184bc;
+}
 .syntax--source.syntax--json .syntax--meta.syntax--structure.syntax--dictionary.syntax--json > .syntax--string.syntax--quoted.syntax--json {
   color: #e45649;
 }
@@ -572,10 +650,35 @@ pre.editor-colors .fold-marker:after {
 .syntax--source.syntax--python .syntax--variable.syntax--parameter {
   color: #986801;
 }
+
+/*
+ * Your Stylesheet
+ *
+ * This stylesheet is loaded when Atom starts up and is reloaded automatically
+ * when it is changed and saved.
+ *
+ * Add your own CSS or Less to fully customize Atom.
+ * If you are unfamiliar with Less, you can read more about it here:
+ * http://lesscss.org
+ */
+/*
+ * Examples
+ * (To see them, uncomment and save)
+ */
+div.update-preview {
+  font-size: 16px;
+  font-family: sans-serif;
+}
+body {
+  font-family: sans-serif;
+  font-size: 16px;
+}
 </style>
+
   </head>
-  <body class='markdown-preview' data-use-github-style><h3 id="spring-mvc">Spring MVC</h3>
-<p><img alt="requestPath" src="/data/DocNew/spring/chapter5/doc/requestPath.png"></p>
+  <body>
+    <h3>Spring MVC</h3>
+<p><img src="requestPath.png" alt="requestPath"></p>
 <ol>
 <li>DispatcherServlet - это единая точка входа в спринг
 приложение. В него попадают все запросы клиентов.</li>
@@ -593,13 +696,13 @@ HandlerMapping чтобы определить какой Controller  долже
 <li>Выбранный view использует модель чтобы сформировать
 html-ответ клиенту 7.</li>
 </ol>
-<h3 id="configure-dispatcherservlet">Configure DispatcherServlet</h3>
+<h3>Configure DispatcherServlet</h3>
 <ul>
 <li>ContextLoaderListener создает ApplicationContext,
 доступный всем DispatcherServletам (если их несколько),
 DispatcherServlet создает вложенный AppCtx, содержащий
 контроллеры, ViewResolvers и прочее (веб бины).
-<img alt="dispatcherConfig" src="/data/DocNew/spring/chapter5/doc/dispatcherConfig.png"></li>
+<img src="dispatcherConfig.png" alt="dispatcherConfig"></li>
 <li>Spittr - это веб приложение типа твиттера, spitters -
 это пользователи приложения, а spittlets - это краткие
 обновления статусов пользователей.</li>
@@ -611,34 +714,65 @@ DispatcherServlet создает вложенный AppCtx, содержащий
 Map.</li>
 <li>В представлении данные модели доступны через JSTL
 как параметры запроса ${spittleList}</li>
-<li><p>Способы передачи данных в контроллер:</p>
-<p>  1 При помощи параметров запроса:</p>
-<pre class="editor-colors lang-java"><div class="line"><span class="syntax--source syntax--java"><span class="syntax--meta syntax--declaration syntax--annotation syntax--java"><span class="syntax--storage syntax--type syntax--annotation syntax--java"><span class="syntax--punctuation syntax--definition syntax--annotation syntax--java"><span>@</span></span><span>RequestParam</span></span><span class="syntax--punctuation syntax--definition syntax--annotation-arguments syntax--begin syntax--bracket syntax--round syntax--java"><span>(</span></span><span class="syntax--constant syntax--other syntax--key syntax--java"><span>name</span></span><span>&nbsp;</span><span class="syntax--keyword syntax--operator syntax--assignment syntax--java"><span>=</span></span><span>&nbsp;</span><span class="syntax--string syntax--quoted syntax--double syntax--java"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--java"><span>"</span></span><span>count</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--java"><span>"</span></span></span><span class="syntax--punctuation syntax--separator syntax--delimiter syntax--java"><span>,</span></span><span class="syntax--constant syntax--other syntax--key syntax--java"><span>defaultValue</span></span><span>&nbsp;</span><span class="syntax--keyword syntax--operator syntax--assignment syntax--java"><span>=</span></span><span>&nbsp;</span><span class="syntax--string syntax--quoted syntax--double syntax--java"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--java"><span>"</span></span><span>2</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--java"><span>"</span></span></span><span class="syntax--punctuation syntax--definition syntax--annotation-arguments syntax--end syntax--bracket syntax--round syntax--java"><span>)</span></span></span></span></div><div class="line"><span class="syntax--source syntax--java"><span class="syntax--storage syntax--type syntax--primitive syntax--java"><span>int</span></span><span>&nbsp;count</span></span></div></pre>
-<p>  @RequestParam можно использовать для получения данных формы.</p>
-<p>   2 При помощи параметров адреса:</p>
-<pre class="editor-colors lang-java"><div class="line"><span class="syntax--source syntax--java"><span class="syntax--meta syntax--declaration syntax--annotation syntax--java"><span class="syntax--storage syntax--type syntax--annotation syntax--java"><span class="syntax--punctuation syntax--definition syntax--annotation syntax--java"><span>@</span></span><span>RequestMapping</span></span><span class="syntax--punctuation syntax--definition syntax--annotation-arguments syntax--begin syntax--bracket syntax--round syntax--java"><span>(</span></span><span class="syntax--constant syntax--other syntax--key syntax--java"><span>path</span></span><span>&nbsp;</span><span class="syntax--keyword syntax--operator syntax--assignment syntax--java"><span>=</span></span><span>&nbsp;</span><span class="syntax--string syntax--quoted syntax--double syntax--java"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--java"><span>"</span></span><span>/spittles/{spittleId}</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--java"><span>"</span></span></span><span class="syntax--punctuation syntax--separator syntax--delimiter syntax--java"><span>,</span></span></span></span></div><div class="line"><span class="syntax--source syntax--java"><span class="syntax--meta syntax--declaration syntax--annotation syntax--java"><span class="syntax--constant syntax--other syntax--key syntax--java"><span>method</span></span><span>&nbsp;</span><span class="syntax--keyword syntax--operator syntax--assignment syntax--java"><span>=</span></span><span>&nbsp;</span><span class="syntax--variable syntax--other syntax--object syntax--java"><span>RequestMethod</span></span><span class="syntax--punctuation syntax--separator syntax--period syntax--java"><span>.</span></span><span class="syntax--variable syntax--other syntax--property syntax--java"><span>GET</span></span><span class="syntax--punctuation syntax--definition syntax--annotation-arguments syntax--end syntax--bracket syntax--round syntax--java"><span>)</span></span></span></span></div><div class="line"><span class="syntax--source syntax--java"><span class="syntax--comment syntax--line syntax--double-slash syntax--java"><span class="syntax--punctuation syntax--definition syntax--comment syntax--java"><span>//</span></span><span>GET&nbsp;/spittles/12345</span><span>&nbsp;</span></span></span></div><div class="line"><span class="syntax--source syntax--java"><span class="syntax--storage syntax--modifier syntax--java"><span>public</span></span><span>&nbsp;</span><span class="syntax--storage syntax--type syntax--java"><span>String</span></span><span>&nbsp;</span><span class="syntax--meta syntax--function-call syntax--java"><span class="syntax--entity syntax--name syntax--function syntax--java"><span>spittle</span></span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--begin syntax--bracket syntax--round syntax--java"><span>(</span></span></span></span></div><div class="line"><span class="syntax--source syntax--java"><span class="syntax--meta syntax--function-call syntax--java"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="syntax--meta syntax--declaration syntax--annotation syntax--java"><span class="syntax--storage syntax--type syntax--annotation syntax--java"><span class="syntax--punctuation syntax--definition syntax--annotation syntax--java"><span>@</span></span><span>PathVariable</span></span><span class="syntax--punctuation syntax--definition syntax--annotation-arguments syntax--begin syntax--bracket syntax--round syntax--java"><span>(</span></span><span class="syntax--string syntax--quoted syntax--double syntax--java"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--java"><span>"</span></span><span>spittleId</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--java"><span>"</span></span></span><span class="syntax--punctuation syntax--definition syntax--annotation-arguments syntax--end syntax--bracket syntax--round syntax--java"><span>)</span></span></span><span>&nbsp;</span><span class="syntax--storage syntax--type syntax--primitive syntax--java"><span>long</span></span><span>&nbsp;spittleId</span><span class="syntax--punctuation syntax--separator syntax--delimiter syntax--java"><span>,</span></span></span></span></div><div class="line"><span class="syntax--source syntax--java"><span class="syntax--meta syntax--function-call syntax--java"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="syntax--storage syntax--type syntax--java"><span>Model</span></span><span>&nbsp;model</span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--end syntax--bracket syntax--round syntax--java"><span>)</span></span></span><span>&nbsp;</span><span class="syntax--punctuation syntax--section syntax--block syntax--begin syntax--bracket syntax--curly syntax--java"><span>{</span></span></span></div><div class="line"><span class="syntax--source syntax--java"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="syntax--punctuation syntax--separator syntax--period syntax--java"><span>.</span><span>.</span><span>.</span></span><span class="syntax--punctuation syntax--section syntax--block syntax--end syntax--bracket syntax--curly syntax--java"><span>}</span></span></span></div></pre>
-<p>  Если @RequestMapping указана на контроллере, то все методы будут иметь префикс пути равный пути контроллера.</p>
-<p>  3 Можно напрямую использовать HttpServletRequest:</p>
-<pre class="editor-colors lang-java"><div class="line"><span class="syntax--source syntax--java"><span class="syntax--storage syntax--modifier syntax--java"><span>public</span></span><span>&nbsp;</span><span class="syntax--storage syntax--type syntax--java"><span>String</span></span><span>&nbsp;</span><span class="syntax--meta syntax--function-call syntax--java"><span class="syntax--entity syntax--name syntax--function syntax--java"><span>register</span></span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--begin syntax--bracket syntax--round syntax--java"><span>(</span></span><span class="syntax--storage syntax--type syntax--java"><span>HttpServletRequest</span></span><span>&nbsp;request</span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--end syntax--bracket syntax--round syntax--java"><span>)</span></span></span><span>&nbsp;</span><span class="syntax--punctuation syntax--section syntax--block syntax--begin syntax--bracket syntax--curly syntax--java"><span>{</span></span></span></div><div class="line"><span class="syntax--source syntax--java"><span>&nbsp;&nbsp;</span><span class="syntax--punctuation syntax--separator syntax--period syntax--java"><span>.</span><span>.</span><span>.</span></span></span></div><div class="line"><span class="syntax--source syntax--java"><span class="syntax--punctuation syntax--section syntax--block syntax--end syntax--bracket syntax--curly syntax--java"><span>}</span></span></span></div></pre>
+</ul>
+<h3>Способы передачи данных в контроллер:</h3>
+<pre class="editor-colors lang-text"><span><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text">1 При помощи параметров запроса:</span></span></span></pre>
+<pre class="editor-colors lang-java"><span><span class="syntax--source syntax--java"><span class="syntax--meta syntax--declaration syntax--annotation syntax--java"><span class="syntax--storage syntax--type syntax--annotation syntax--java"><span class="syntax--punctuation syntax--definition syntax--annotation syntax--java">@</span>RequestParam</span><span class="syntax--punctuation syntax--definition syntax--annotation-arguments syntax--begin syntax--bracket syntax--round syntax--java">(</span><span class="syntax--constant syntax--other syntax--key syntax--java">name</span> <span class="syntax--keyword syntax--operator syntax--assignment syntax--java">=</span> <span class="syntax--string syntax--quoted syntax--double syntax--java"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--java">"</span>count<span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--java">"</span></span><span class="syntax--punctuation syntax--separator syntax--delimiter syntax--java">,</span><span class="syntax--constant syntax--other syntax--key syntax--java">defaultValue</span> <span class="syntax--keyword syntax--operator syntax--assignment syntax--java">=</span> <span class="syntax--string syntax--quoted syntax--double syntax--java"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--java">"</span>2<span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--java">"</span></span><span class="syntax--punctuation syntax--definition syntax--annotation-arguments syntax--end syntax--bracket syntax--round syntax--java">)</span></span></span></span>
+<span class=""><span class="syntax--source syntax--java"><span class="syntax--storage syntax--type syntax--primitive syntax--java">int</span> count</span></span></pre>
+<pre class="editor-colors lang-text"><span><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text">@RequestParam можно использовать для получения данных формы.</span></span></span>
+<span class=""></span> 
+<span class=""><span class="syntax--text syntax--plain"><span class="leading-whitespace"> </span><span class="syntax--meta syntax--paragraph syntax--text">2 При помощи параметров адреса:</span></span></span></pre>
+<pre class="editor-colors lang-java"><span><span class="syntax--source syntax--java"><span class="syntax--meta syntax--declaration syntax--annotation syntax--java"><span class="syntax--storage syntax--type syntax--annotation syntax--java"><span class="syntax--punctuation syntax--definition syntax--annotation syntax--java">@</span>RequestMapping</span><span class="syntax--punctuation syntax--definition syntax--annotation-arguments syntax--begin syntax--bracket syntax--round syntax--java">(</span><span class="syntax--constant syntax--other syntax--key syntax--java">path</span> <span class="syntax--keyword syntax--operator syntax--assignment syntax--java">=</span> <span class="syntax--string syntax--quoted syntax--double syntax--java"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--java">"</span>/spittles/{spittleId}<span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--java">"</span></span><span class="syntax--punctuation syntax--separator syntax--delimiter syntax--java">,</span></span></span></span>
+<span class=""><span class="syntax--source syntax--java"><span class="syntax--meta syntax--declaration syntax--annotation syntax--java"><span class="syntax--constant syntax--other syntax--key syntax--java">method</span> <span class="syntax--keyword syntax--operator syntax--assignment syntax--java">=</span> <span class="syntax--variable syntax--other syntax--object syntax--java">RequestMethod</span><span class="syntax--punctuation syntax--separator syntax--period syntax--java">.</span><span class="syntax--variable syntax--other syntax--property syntax--java">GET</span><span class="syntax--punctuation syntax--definition syntax--annotation-arguments syntax--end syntax--bracket syntax--round syntax--java">)</span></span></span></span>
+<span><span class="syntax--source syntax--java"><span class="syntax--comment syntax--line syntax--double-slash syntax--java"><span class="syntax--punctuation syntax--definition syntax--comment syntax--java">//</span>GET /spittles/12345</span></span></span>
+<span><span class="syntax--source syntax--java"><span class="syntax--storage syntax--modifier syntax--java">public</span> <span class="syntax--storage syntax--type syntax--java">String</span> <span class="syntax--meta syntax--function-call syntax--java"><span class="syntax--entity syntax--name syntax--function syntax--java">spittle</span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--begin syntax--bracket syntax--round syntax--java">(</span></span></span></span>
+<span><span class="syntax--source syntax--java"><span class="syntax--meta syntax--function-call syntax--java"><span class="leading-whitespace">    </span><span class="syntax--meta syntax--declaration syntax--annotation syntax--java"><span class="syntax--storage syntax--type syntax--annotation syntax--java"><span class="syntax--punctuation syntax--definition syntax--annotation syntax--java">@</span>PathVariable</span><span class="syntax--punctuation syntax--definition syntax--annotation-arguments syntax--begin syntax--bracket syntax--round syntax--java">(</span><span class="syntax--string syntax--quoted syntax--double syntax--java"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--java">"</span>spittleId<span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--java">"</span></span><span class="syntax--punctuation syntax--definition syntax--annotation-arguments syntax--end syntax--bracket syntax--round syntax--java">)</span></span> <span class="syntax--storage syntax--type syntax--primitive syntax--java">long</span> spittleId<span class="syntax--punctuation syntax--separator syntax--delimiter syntax--java">,</span></span></span></span>
+<span><span class="syntax--source syntax--java"><span class="syntax--meta syntax--function-call syntax--java"><span class="leading-whitespace">    </span><span class="syntax--storage syntax--type syntax--java">Model</span> model<span class="syntax--punctuation syntax--definition syntax--parameters syntax--end syntax--bracket syntax--round syntax--java">)</span></span> <span class="syntax--punctuation syntax--section syntax--block syntax--begin syntax--bracket syntax--curly syntax--java">{</span></span></span>
+<span><span class="syntax--source syntax--java"><span class="leading-whitespace">      </span><span class="syntax--punctuation syntax--separator syntax--period syntax--java">.</span><span class="syntax--punctuation syntax--separator syntax--period syntax--java">.</span><span class="syntax--punctuation syntax--separator syntax--period syntax--java">.</span><span class="syntax--punctuation syntax--section syntax--block syntax--end syntax--bracket syntax--curly syntax--java">}</span></span></span></pre>
+<pre class="editor-colors lang-text"><span><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text">Если @RequestMapping указана на контроллере, то все методы будут иметь префикс пути равный пути контроллера.</span></span></span>
+<span class=""></span> 
+<span class=""><span class="syntax--text syntax--plain"><span class="syntax--meta syntax--paragraph syntax--text">3 Можно напрямую использовать HttpServletRequest:</span></span></span></pre>
+<pre class="editor-colors lang-java"><span><span class="syntax--source syntax--java"><span class="syntax--storage syntax--modifier syntax--java">public</span> <span class="syntax--storage syntax--type syntax--java">String</span> <span class="syntax--meta syntax--function-call syntax--java"><span class="syntax--entity syntax--name syntax--function syntax--java">register</span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--begin syntax--bracket syntax--round syntax--java">(</span><span class="syntax--storage syntax--type syntax--java">HttpServletRequest</span> request<span class="syntax--punctuation syntax--definition syntax--parameters syntax--end syntax--bracket syntax--round syntax--java">)</span></span> <span class="syntax--punctuation syntax--section syntax--block syntax--begin syntax--bracket syntax--curly syntax--java">{</span></span></span>
+<span class=""><span class="syntax--source syntax--java"><span class="leading-whitespace">  </span><span class="syntax--punctuation syntax--separator syntax--period syntax--java">.</span><span class="syntax--punctuation syntax--separator syntax--period syntax--java">.</span><span class="syntax--punctuation syntax--separator syntax--period syntax--java">.</span></span></span>
+<span><span class="syntax--source syntax--java"><span class="syntax--punctuation syntax--section syntax--block syntax--end syntax--bracket syntax--curly syntax--java">}</span></span></span></pre>
+<ul>
+<li>
+<p>Вместо <span style="color:blue;">@RequestMapping</span> можно использовать <span style="color:blue;">@GetMapping,@PostMapping</span>.</p>
+</li>
+<li>
+<p>Если в @RequestMapping не указан метод, то все HTTP-методы будут обслуживаться этим методом контроллера.</p>
 </li>
 </ul>
+<h3>доступ к данным в jsp</h3>
 <ul>
-<li>Если в @RequestMapping не указан метод, то все HTTP-методы будут обслуживаться этим методом контроллера.<h3 id="-jsp">доступ к данным в jsp</h3>
-</li>
 <li>${param.studentName} - получить параметр запроса studentName</li>
-<li>${modelAttrName} - получить доступ к объекту модели.<h3 id="-">доступ к статическим ресурсам</h3>
-</li>
-<li>JSP EL-expression ${pageContext.request.contextPath} используется для получения корня веб-приложения. Например загрузка рисунка:<pre class="editor-colors lang-html"><div class="line"><span class="syntax--text syntax--html syntax--basic"><span class="syntax--meta syntax--tag syntax--inline syntax--img syntax--html"><span class="syntax--punctuation syntax--definition syntax--tag syntax--begin syntax--html"><span>&lt;</span></span><span class="syntax--entity syntax--name syntax--tag syntax--inline syntax--img syntax--html"><span>img</span></span><span>&nbsp;</span><span class="syntax--meta syntax--attribute-with-value syntax--html"><span class="syntax--entity syntax--other syntax--attribute-name syntax--html"><span>src</span></span><span class="syntax--punctuation syntax--separator syntax--key-value syntax--html"><span>=</span></span><span class="syntax--string syntax--quoted syntax--double syntax--html"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--html"><span>"</span></span><span>${pageContext.request.contextPath}/resources/images/spring-logo.png</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--html"><span>"</span></span></span></span><span class="syntax--punctuation syntax--definition syntax--tag syntax--end syntax--html"><span>/&gt;</span></span></span></span></div></pre>
-В xml-конфигурации следует указать располождение статических ресурсов относительно каталога webapp <b>location</b> и путь, по которому эти ресурсы будут доступны <b>mapping</b>:<pre class="editor-colors lang-xml"><div class="line"><span class="syntax--text syntax--xml"><span class="syntax--meta syntax--tag syntax--no-content syntax--xml"><span class="syntax--punctuation syntax--definition syntax--tag syntax--xml"><span>&lt;</span></span><span class="syntax--entity syntax--name syntax--tag syntax--xml"><span class="syntax--entity syntax--name syntax--tag syntax--namespace syntax--xml"><span>mvc</span></span><span class="syntax--punctuation syntax--separator syntax--namespace syntax--xml"><span>:</span></span><span class="syntax--entity syntax--name syntax--tag syntax--localname syntax--xml"><span>resources</span></span></span><span>&nbsp;</span><span class="syntax--entity syntax--other syntax--attribute-name syntax--localname syntax--xml"><span>mapping</span></span><span>=</span><span class="syntax--string syntax--quoted syntax--double syntax--xml"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--xml"><span>"</span></span><span>/resources/**</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--xml"><span>"</span></span></span><span>&nbsp;</span><span class="syntax--entity syntax--other syntax--attribute-name syntax--localname syntax--xml"><span>location</span></span><span>=</span><span class="syntax--string syntax--quoted syntax--double syntax--xml"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--xml"><span>"</span></span><span>/resources/</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--xml"><span>"</span></span></span><span class="syntax--punctuation syntax--definition syntax--tag syntax--xml"><span>&gt;</span><span>&lt;/</span></span><span class="syntax--entity syntax--name syntax--tag syntax--xml"><span class="syntax--entity syntax--name syntax--tag syntax--namespace syntax--xml"><span>mvc</span></span><span class="syntax--punctuation syntax--separator syntax--namespace syntax--xml"><span>:</span></span><span class="syntax--entity syntax--name syntax--tag syntax--localname syntax--xml"><span>resources</span></span></span><span class="syntax--punctuation syntax--definition syntax--tag syntax--xml"><span>&gt;</span></span></span></span></div><div class="line"><span class="syntax--text syntax--xml"><span>/**&nbsp;означает&nbsp;поиск&nbsp;ресурсов&nbsp;в&nbsp;поддиректориях&nbsp;&nbsp;</span></span></div></pre>
-Аналогичная конфигурация в java WebMvcConfigurerAdapter:<pre class="editor-colors lang-Java"><div class="line"><span class="syntax--source syntax--java"><span class="syntax--meta syntax--declaration syntax--annotation syntax--java"><span class="syntax--storage syntax--type syntax--annotation syntax--java"><span class="syntax--punctuation syntax--definition syntax--annotation syntax--java"><span>@</span></span><span>Override</span></span></span></span></div><div class="line"><span class="syntax--source syntax--java"><span class="syntax--storage syntax--modifier syntax--java"><span>public</span></span><span>&nbsp;</span><span class="syntax--storage syntax--type syntax--primitive syntax--java"><span>void</span></span><span>&nbsp;</span><span class="syntax--meta syntax--function-call syntax--java"><span class="syntax--entity syntax--name syntax--function syntax--java"><span>addResourceHandlers</span></span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--begin syntax--bracket syntax--round syntax--java"><span>(</span></span><span class="syntax--storage syntax--modifier syntax--java"><span>final</span></span><span>&nbsp;</span><span class="syntax--storage syntax--type syntax--java"><span>ResourceHandlerRegistry</span></span><span>&nbsp;registry</span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--end syntax--bracket syntax--round syntax--java"><span>)</span></span></span><span>&nbsp;</span><span class="syntax--punctuation syntax--section syntax--block syntax--begin syntax--bracket syntax--curly syntax--java"><span>{</span></span></span></div><div class="line"><span class="syntax--source syntax--java"><span>&nbsp;&nbsp;&nbsp;</span><span class="syntax--variable syntax--other syntax--object syntax--java"><span>registry</span></span><span class="syntax--meta syntax--method-call syntax--java"><span class="syntax--punctuation syntax--separator syntax--period syntax--java"><span>.</span></span><span class="syntax--entity syntax--name syntax--function syntax--java"><span>addResourceHandler</span></span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--begin syntax--bracket syntax--round syntax--java"><span>(</span></span><span class="syntax--string syntax--quoted syntax--double syntax--java"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--java"><span>"</span></span><span>/resources/**</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--java"><span>"</span></span></span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--end syntax--bracket syntax--round syntax--java"><span>)</span></span><span class="syntax--punctuation syntax--separator syntax--period syntax--java"><span>.</span></span><span class="syntax--entity syntax--name syntax--function syntax--java"><span>addResourceLocations</span></span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--begin syntax--bracket syntax--round syntax--java"><span>(</span></span><span class="syntax--string syntax--quoted syntax--double syntax--java"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--java"><span>"</span></span><span>/resources/</span><span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--java"><span>"</span></span></span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--end syntax--bracket syntax--round syntax--java"><span>)</span></span></span><span class="syntax--punctuation syntax--terminator syntax--java"><span>;</span></span></span></div><div class="line"><span class="syntax--source syntax--java"><span class="syntax--punctuation syntax--section syntax--block syntax--end syntax--bracket syntax--curly syntax--java"><span>}</span></span></span></div></pre>
-</li>
-<li><p>Переопределяя метод configureDefaultServletHandling() WebMvcConfigurerAdapter</p>
-<pre class="editor-colors lang-Java"><div class="line"><span class="syntax--source syntax--java"><span class="syntax--meta syntax--declaration syntax--annotation syntax--java"><span class="syntax--storage syntax--type syntax--annotation syntax--java"><span class="syntax--punctuation syntax--definition syntax--annotation syntax--java"><span>@</span></span><span>Override</span></span></span></span></div><div class="line"><span class="syntax--source syntax--java"><span class="syntax--storage syntax--modifier syntax--java"><span>public</span></span><span>&nbsp;</span><span class="syntax--storage syntax--type syntax--primitive syntax--java"><span>void</span></span><span>&nbsp;</span><span class="syntax--meta syntax--function-call syntax--java"><span class="syntax--entity syntax--name syntax--function syntax--java"><span>configureDefaultServletHandling</span></span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--begin syntax--bracket syntax--round syntax--java"><span>(</span></span><span class="syntax--storage syntax--type syntax--java"><span>DefaultServletHandlerConfigurer</span></span><span>&nbsp;configurer</span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--end syntax--bracket syntax--round syntax--java"><span>)</span></span></span><span>&nbsp;</span><span class="syntax--punctuation syntax--section syntax--block syntax--begin syntax--bracket syntax--curly syntax--java"><span>{</span></span></span></div><div class="line"><span class="syntax--source syntax--java"><span>&nbsp;&nbsp;</span><span class="syntax--variable syntax--other syntax--object syntax--java"><span>configurer</span></span><span class="syntax--meta syntax--method-call syntax--java"><span class="syntax--punctuation syntax--separator syntax--period syntax--java"><span>.</span></span><span class="syntax--entity syntax--name syntax--function syntax--java"><span>enable</span></span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--begin syntax--bracket syntax--round syntax--java"><span>(</span></span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--end syntax--bracket syntax--round syntax--java"><span>)</span></span></span><span class="syntax--punctuation syntax--terminator syntax--java"><span>;</span></span></span></div><div class="line"><span class="syntax--source syntax--java"><span class="syntax--punctuation syntax--section syntax--block syntax--end syntax--bracket syntax--curly syntax--java"><span>}</span></span></span></div></pre>
-<p>мы делегируем все необработанные запросы дефолтному сервлету контейнера, который обычно обслуживает статическое содержимое. В этом случае не надо дополнительно определять <b>mvc:resources</b> или <b>addResourceHandlers</b>.Это нужно, если DispatcherServlet зампелен на путь "/" т.к. он тогда начинает обслуживать все содержимое веб приложения, затирая дефолтный сервлет.</p>
-<h3 id="validators">validators</h3>
-</li>
-<li><p>Spring 3.0 поддерживает Java Validation API в
-spring MVC, чтобы использовать апи, нжно:</p>
+<li>${modelAttrName} - получить доступ к объекту модели.</li>
+</ul>
+<h3>доступ к статическим ресурсам</h3>
+<ul>
+<li>JSP EL-expression ${pageContext.request.contextPath} используется для получения корня веб-приложения. Например загрузка рисунка:</li>
+</ul>
+<pre class="editor-colors lang-html"><span class=""><span class="syntax--source syntax--html">&lt;<span class="syntax--entity syntax--name syntax--tag">img</span> <span class="syntax--entity syntax--other syntax--attribute-name">src</span>="<span class="syntax--string syntax--html">${pageContext.request.contextPath}/resources/images/spring-logo.png</span>"/&gt;</span></span></pre>
+<p>В xml-конфигурации следует указать располождение статических ресурсов относительно каталога webapp <b>location</b> и путь, по которому эти ресурсы будут доступны <b>mapping</b>:</p>
+<pre class="editor-colors lang-xml"><span><span class="syntax--text syntax--xml"><span class="syntax--meta syntax--tag syntax--no-content syntax--xml"><span class="syntax--punctuation syntax--definition syntax--tag syntax--xml">&lt;</span><span class="syntax--entity syntax--name syntax--tag syntax--xml"><span class="syntax--entity syntax--name syntax--tag syntax--namespace syntax--xml">mvc</span><span class="syntax--punctuation syntax--separator syntax--namespace syntax--xml">:</span><span class="syntax--entity syntax--name syntax--tag syntax--localname syntax--xml">resources</span></span> <span class="syntax--entity syntax--other syntax--attribute-name syntax--localname syntax--xml">mapping</span>=<span class="syntax--string syntax--quoted syntax--double syntax--xml"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--xml">"</span>/resources/**<span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--xml">"</span></span> <span class="syntax--entity syntax--other syntax--attribute-name syntax--localname syntax--xml">location</span>=<span class="syntax--string syntax--quoted syntax--double syntax--xml"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--xml">"</span>/resources/<span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--xml">"</span></span><span class="syntax--punctuation syntax--definition syntax--tag syntax--xml">&gt;</span><span class="syntax--punctuation syntax--definition syntax--tag syntax--xml">&lt;/</span><span class="syntax--entity syntax--name syntax--tag syntax--xml"><span class="syntax--entity syntax--name syntax--tag syntax--namespace syntax--xml">mvc</span><span class="syntax--punctuation syntax--separator syntax--namespace syntax--xml">:</span><span class="syntax--entity syntax--name syntax--tag syntax--localname syntax--xml">resources</span></span><span class="syntax--punctuation syntax--definition syntax--tag syntax--xml">&gt;</span></span></span></span>
+<span class=""><span class="syntax--text syntax--xml">/** означает поиск ресурсов в поддиректориях<span class="trailing-whitespace">  </span></span></span></pre>
+<p>Аналогичная конфигурация в java WebMvcConfigurerAdapter:</p>
+<pre class="editor-colors lang-Java"><span><span class="syntax--source syntax--java"><span class="syntax--meta syntax--declaration syntax--annotation syntax--java"><span class="syntax--storage syntax--type syntax--annotation syntax--java"><span class="syntax--punctuation syntax--definition syntax--annotation syntax--java">@</span>Override</span></span></span></span>
+<span class=""><span class="syntax--source syntax--java"><span class="syntax--storage syntax--modifier syntax--java">public</span> <span class="syntax--storage syntax--type syntax--primitive syntax--java">void</span> <span class="syntax--meta syntax--function-call syntax--java"><span class="syntax--entity syntax--name syntax--function syntax--java">addResourceHandlers</span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--begin syntax--bracket syntax--round syntax--java">(</span><span class="syntax--storage syntax--modifier syntax--java">final</span> <span class="syntax--storage syntax--type syntax--java">ResourceHandlerRegistry</span> registry<span class="syntax--punctuation syntax--definition syntax--parameters syntax--end syntax--bracket syntax--round syntax--java">)</span></span> <span class="syntax--punctuation syntax--section syntax--block syntax--begin syntax--bracket syntax--curly syntax--java">{</span></span></span>
+<span><span class="syntax--source syntax--java"><span class="leading-whitespace">     </span><span class="syntax--variable syntax--other syntax--object syntax--java">registry</span><span class="syntax--meta syntax--method-call syntax--java"><span class="syntax--punctuation syntax--separator syntax--period syntax--java">.</span><span class="syntax--entity syntax--name syntax--function syntax--java">addResourceHandler</span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--begin syntax--bracket syntax--round syntax--java">(</span><span class="syntax--string syntax--quoted syntax--double syntax--java"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--java">"</span>/resources/**<span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--java">"</span></span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--end syntax--bracket syntax--round syntax--java">)</span></span><span class="syntax--meta syntax--method-call syntax--java"><span class="syntax--punctuation syntax--separator syntax--period syntax--java">.</span><span class="syntax--entity syntax--name syntax--function syntax--java">addResourceLocations</span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--begin syntax--bracket syntax--round syntax--java">(</span><span class="syntax--string syntax--quoted syntax--double syntax--java"><span class="syntax--punctuation syntax--definition syntax--string syntax--begin syntax--java">"</span>/resources/<span class="syntax--punctuation syntax--definition syntax--string syntax--end syntax--java">"</span></span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--end syntax--bracket syntax--round syntax--java">)</span></span><span class="syntax--punctuation syntax--terminator syntax--java">;</span></span></span>
+<span><span class="syntax--source syntax--java"><span class="syntax--punctuation syntax--section syntax--block syntax--end syntax--bracket syntax--curly syntax--java">}</span></span></span></pre>
+<ul>
+<li>Переопределяя метод configureDefaultServletHandling() WebMvcConfigurerAdapter</li>
+</ul>
+<pre class="editor-colors lang-Java"><span><span class="syntax--source syntax--java"><span class="syntax--meta syntax--declaration syntax--annotation syntax--java"><span class="syntax--storage syntax--type syntax--annotation syntax--java"><span class="syntax--punctuation syntax--definition syntax--annotation syntax--java">@</span>Override</span></span></span></span>
+<span class=""><span class="syntax--source syntax--java"><span class="syntax--storage syntax--modifier syntax--java">public</span> <span class="syntax--storage syntax--type syntax--primitive syntax--java">void</span> <span class="syntax--meta syntax--function-call syntax--java"><span class="syntax--entity syntax--name syntax--function syntax--java">configureDefaultServletHandling</span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--begin syntax--bracket syntax--round syntax--java">(</span><span class="syntax--storage syntax--type syntax--java">DefaultServletHandlerConfigurer</span> configurer<span class="syntax--punctuation syntax--definition syntax--parameters syntax--end syntax--bracket syntax--round syntax--java">)</span></span> <span class="syntax--punctuation syntax--section syntax--block syntax--begin syntax--bracket syntax--curly syntax--java">{</span></span></span>
+<span><span class="syntax--source syntax--java"><span class="leading-whitespace">    </span><span class="syntax--variable syntax--other syntax--object syntax--java">configurer</span><span class="syntax--meta syntax--method-call syntax--java"><span class="syntax--punctuation syntax--separator syntax--period syntax--java">.</span><span class="syntax--entity syntax--name syntax--function syntax--java">enable</span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--begin syntax--bracket syntax--round syntax--java">(</span><span class="syntax--punctuation syntax--definition syntax--parameters syntax--end syntax--bracket syntax--round syntax--java">)</span></span><span class="syntax--punctuation syntax--terminator syntax--java">;</span></span></span>
+<span><span class="syntax--source syntax--java"><span class="syntax--punctuation syntax--section syntax--block syntax--end syntax--bracket syntax--curly syntax--java">}</span></span></span></pre>
+<p>мы делегируем все необработанные запросы дефолтному сервлету контейнера, который обычно обслуживает статическое содержимое. В этом случае не надо дополнительно определять <b>mvc:resources</b> или <b>addResourceHandlers</b>.Это нужно, если DispatcherServlet зампелен на путь “/” т.к. он тогда начинает обслуживать все содержимое веб приложения, затирая дефолтный сервлет.</p>
+<h3>validators</h3>
+<ul>
+<li>Spring 3.0 поддерживает Java Validation API в
+spring MVC, чтобы использовать апи, нжно:
 <ol>
 <li>Добавить в cp реализацию апи</li>
 <li>Аннотировать параметры Spitter спец. аннотациями.</li>
@@ -646,5 +780,7 @@ spring MVC, чтобы использовать апи, нжно:</p>
 </ol>
 </li>
 </ul>
-<p><img alt="validators" src="/data/DocNew/spring/chapter5/doc/validators.png"></p></body>
+<p><img src="validators.png" alt="validators"></p>
+
+  </body>
 </html>

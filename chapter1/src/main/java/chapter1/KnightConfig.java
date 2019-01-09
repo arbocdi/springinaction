@@ -10,7 +10,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class KnightConfig {
     //по умолчанию id бина = имя метода
-    @Bean(name = "knight")
+    //@Bean(name = "knight")
+    @Bean
     public Knight knight() {
         //spring перехватывает вызов метода quest()
         //и всегда возвращает один и тот же синглетон quest

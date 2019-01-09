@@ -110,3 +110,7 @@ TransactionCallback<T> и TransactionCallbackWithoutResult. Откат тран�
 * для каждой бд создаем свой LocalContainerEntityManagerFactoryBean и указываем ему PUname.
 * EntityManager инжектируется по имени PU(PersistenceUnit):@PersistenceContext(unitName = "PUname")
 * TransactionManager аннотируется квалификатором и используется как @Transactional(transactionManager = "qualifier"). Можно так же использовать имя PlatformTransactionManager-бина.
+### Services
+* <span style="color:blue">@Service</span> - это аннотация, которая указывает на то, что данный бин является реализацией паттерна фасад. Разновидность <b>@Component</b>. Именно сюда следует добавлять бизнес-логику. При этом можно аннотацию  <span style="color:blue">@Transactional</span> передвинуть на метод сервиса.
+![service](service.png)
+![serviceAnnotation](serviceAnnotation.png)
