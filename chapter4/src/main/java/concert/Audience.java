@@ -47,7 +47,8 @@ public class Audience {
     public void watchPerformance(ProceedingJoinPoint jp){
         try{
             System.out.println("before");
-            jp.proceed();
+            //jp.proceed();
+            jp.proceed(jp.getArgs());
             System.out.println("after OK");
         }
         catch(Throwable ex){
