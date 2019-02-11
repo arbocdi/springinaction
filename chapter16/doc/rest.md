@@ -40,6 +40,7 @@ List<Spittle> ->
 и указать доп. параметры ответа - код состояния и
 заголовки. Можно использовать для обработки ошибок
 и указания url вновь созданного ресурса.
+
 ![controllerExample](controllerExample.png)
 ### Обработка ошибок
 * Можно выбросить исключение в ресурс методе и перехватить его в методе обрабатывающем ошибку,
@@ -56,7 +57,7 @@ public ResponseEntity<StudentErrorResponse>handleException(Exception ex){
     return new ResponseEntity(error, HttpStatus.BAD_REQUEST);
 }
 ```
-* Обработку исключений можно организовать и так:
+* Обработку исключений можно организовать и так (maven/spring-rest-demo):
 ![exceptionHandler](exceptionHandler.png)
 ![exceptionHandlingSteps](exceptionHandlingSteps.png)
 ![exceptionHandlingStep1.png](exceptionHandlingStep1.png)
@@ -69,7 +70,7 @@ public ResponseEntity<StudentErrorResponse>handleException(Exception ex){
 ![controllerAdvice](controllerAdvice.png)
 * В него перемещаются все методы аннотированные <b>@ExceptionHandler</b>:
 ![controllerAdvice2](controllerAdvice2.png)
-* Этапы разработки rest-api:
+* Этапы разработки rest-api (maven/spring-crm-rest-demo):
 ![apiRequirements](apiRequirements.png)
 ![mainResource](mainResource.png)
 ![httpActions](httpActions.png)

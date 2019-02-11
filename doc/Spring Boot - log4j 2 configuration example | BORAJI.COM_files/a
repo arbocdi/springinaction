@@ -1,0 +1,14 @@
+/**/ _ate.cbs.rcb_blin0({
+   "share": {
+      "comment_count": 0,
+      "share_count": 0
+   },
+   "og_object": {
+      "id": "1840770845964404",
+      "description": "By default, if you are using the \u2018Starter\u2019 in your Spring Boot application, the Logback framework will be used for logging. In this post, you will learn how to configure the log4j 2 framework in Spring boot application. Tool and technologies used for this example are - Spring Boot 1.5.8.RELEASE Log4\u2026",
+      "title": "Spring Boot - log4j 2 configuration example | BORAJI.COM",
+      "type": "website",
+      "updated_time": "2018-02-02T17:19:50+0000"
+   },
+   "id": "https://www.boraji.com/spring-boot-log4j-2-configuration-example"
+});
