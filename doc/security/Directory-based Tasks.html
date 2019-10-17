@@ -1,0 +1,568 @@
+﻿<!DOCTYPE html><html lang="en"><head>
+    <base href="http://ant.apache.org/manual/dirtasks.html#patterns">
+<style data-savepage-href="stylesheets/style.css" type="text/css">/*
+ *  Licensed to the Apache Software Foundation (ASF) under one or more
+ *  contributor license agreements.  See the NOTICE file distributed with
+ *  this work for additional information regarding copyright ownership.
+ *  The ASF licenses this file to You under the Apache License, Version 2.0
+ *  (the "License"); you may not use this file except in compliance with
+ *  the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ *
+ */
+body {
+    font-family: "Palatino Linotype", Palatino, Georgia, "Century Schoolbook", serif;
+}
+
+h2 {
+  font-size: 200%;
+  background-color: white;
+}
+
+h3 {
+  font-size: 130%;
+  color: white;
+  background-color: #525d76;
+}
+
+h4 {
+  color: white;
+  background-color: #828da6;
+}
+
+h5 {
+  font-size: 100%;
+  color: white;
+  background-color: #a6adbe;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+
+h6 {
+  font-size: 100%;
+  color: white;
+  background-color: #c1c5d1;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+
+h5 + p, h6 + p {
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+}
+
+h3 > a, h4 > a, h5 > a, h6 > a {
+   color: white;
+}
+
+h3 > a:visited, h4 > a:visited, h5 > a:visited, h6 > a:visited,
+h3 > a:hover, h4 > a:hover, h5 > a:hover, h6 > a:hover {
+   color: lightskyblue;
+}
+
+var {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 0.8rem;
+}
+
+q {
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 0.8rem;
+}
+
+q.no-break {
+    white-space: nowrap;
+    hyphens: none;
+}
+
+code, samp, kbd {
+    white-space: nowrap;
+    hyphens: none;
+    font-size: 1.125rem;
+}
+
+h2 > code, h2 > samp {
+    font-size: 2rem;
+}
+
+h3 > code, h3 > samp {
+    font-size: 1.5rem;
+}
+
+h3 > var {
+    font-size: 1.125rem;
+}
+
+pre {
+   background-color: #efefef;
+   margin-right: 4rem;
+   margin-left: 4rem;
+   font-size: 1.125rem;
+}
+
+pre var, code var {
+    font-size: 0.65rem;
+}
+
+/* code snippets in examples and tutorials */
+.code {
+   background: #efefef;
+}
+
+/* highlight console input */
+.input, kbd {
+   color: white;
+   background: darkseagreen;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+/* highlight console output */
+.output {
+   color: white;
+   background: #837a67;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+
+/* a workaround for invisible
+   (white on white) overflows */
+pre.input:hover, pre.output:hover {
+    margin-right: 0;
+    margin-left: 0;
+    overflow: scroll;
+    text-overflow: initial;
+}
+
+td {
+   vertical-align: top;
+   background-color: #eeeeee;
+   color: black;
+}
+
+tr:hover > td {
+    background-color: whitesmoke;
+}
+
+th {
+   background-color: silver;
+   color: black;
+   vertical-align: middle;
+}
+
+td pre {
+    margin: 0 0 0 0;
+    font-size: 1rem;
+}
+
+thead.no-bold th {
+    font-weight: normal;
+    white-space: nowrap;
+}
+
+table.attr {
+    width: 100%;
+}
+
+table.attr td:first-child {
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+table.attr td:last-child {
+    text-align: center;
+}
+
+table.attr td.center, h1.center, p.center {
+    text-align: center;
+}
+
+table.attr td.left {
+    font-family: "Palatino Linotype", Palatino, Georgia, "Century Schoolbook", serif;
+    font-size: 1rem;
+    font-style: normal;
+    text-align: left;
+}
+
+table.attr td.var {
+    text-align: left;
+}
+
+td[rowspan] {
+   vertical-align: middle;
+}
+
+ul.inlinelist {
+   list-style-type: none;
+   margin-left: 0;
+   padding: 0;
+}
+
+li.indent {
+    padding-left: 1rem;
+}
+
+div.float {
+    margin-top: 0.5rem;
+    width: 100%;
+    min-height: 1.5rem;
+    line-height: 1.5rem;
+    background-color: silver;
+}
+
+div.float + table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+div.float + table th:first-child {
+    width: 20%;
+    white-space: nowrap;
+}
+
+div.float + table tr:first-child {
+    width: 20%;
+    white-space: nowrap;
+}
+
+span.left {
+    float: left;
+    font-family: Verdana, Geneva, sans-serif;
+    font-weight: bold;
+}
+
+span.right {
+    float: right;
+}
+
+span.left, span.right {
+    vertical-align: middle;
+    background-color: silver;
+}
+
+ol.refs {
+    counter-reset: refs;
+}
+
+ol.refs > li {
+    list-style: none;
+    position: relative;
+}
+
+ol.refs > li:before {
+    content: "[" counter(refs, decimal) "]";
+    counter-increment: refs;
+    position: absolute;
+    left: -2rem;
+}
+</style>
+<title>Directory-based Tasks</title>
+
+    <link rel="icon" href="data:image/vnd.microsoft.icon;base64,AAABAAEAICAQAAAAAADoAgAAFgAAACgAAAAgAAAAQAAAAAEABAAAAAAAgAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAACAAAAAgIAAgAAAAIAAgACAgAAAwMDAAICAgAAAAP8AAP8AAAD//wD/AAAA/wD/AP//AAD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmQAAAAAAAAAAAAAAAAAAmd2Q0AAAAAAAAAAAAAAACZndXdAAAAAAAAAAAAAAAJmd3URAAAAAAAAAAAAAAAmZndRESQAAAAAAAAAAAACZ3d1ETNkAAAAAAAAAAAAJnd1E3dmQAAAAAAAAAAAAmZ3URN3ZkAAAAAAAAAAACZ3URN3ZkAAAAAAAAAAAAJndRE3ZmQAAAAAAAAAAAAmZ3UTd2ZAAAAAAAAAAAACZ3URN2ZkAAAAAAAAAAAAJmdRE3ZmQAAAAAAAAAAAACZ3UTdmZAAAAAAAAAAAAAJndRN2ZAAAAAAAAAAAAAAmd1ETdkAAAAAAAAAAAAAAJ3UTdmQAAAAAAAAAAAAAAmdBNmQAAAAAAAAAAAAAAAJnQTZkAAAAAAAAAAAAAAAHQ1dkAAAAAAAAAAAAAAAAB0NXZAAAAAAAAAAAAAAAAOz2ZAAAAAAAAAAAAAAAACLtYAAAAAAAAAAAAAAAAAAi7WAAAAAAAAAAAAAAAAAADuwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD/////////////////////////////88f//8ED//+AG///AH///gA///wAP//4AH//8AB//+AB///AA///gAf//wAP//4AH//+AD///AD///gB///4A///8A////AP///gP///4D///8D///+D////g////4///////////////w==">
+    <script id="savepage-contentloaders" type="application/javascript">
+      "use strict"
+      savepage_ContentLoaders();
+      function savepage_ContentLoaders()
+      {
+        var resourceMimeType = new Array();
+        var resourceBase64Data = new Array();
+        var resourceBlobUrl = new Array();
+        window.addEventListener("DOMContentLoaded",
+        function(event)
+        {
+          savepage_ShadowLoader(5);
+          savepage_ResourceLoader(5);
+          document.getElementById('savepage-contentloaders').remove();
+        },false);
+        function savepage_ShadowLoader(c){createShadowDOMs(0,document.documentElement);function createShadowDOMs(a,b){var i;if(b.localName=="iframe"||b.localName=="frame"){if(a<c){try{if(b.contentDocument.documentElement!=null){createShadowDOMs(a+1,b.contentDocument.documentElement)}}catch(e){}}}else{if(b.children.length>=1&&b.children[0].localName=="template"&&b.children[0].hasAttribute("data-savepage-shadowroot")){b.attachShadow({mode:"open"}).appendChild(b.children[0].content);b.removeChild(b.children[0]);for(i=0;i<b.shadowRoot.children.length;i++)if(b.shadowRoot.children[i]!=null)createShadowDOMs(a,b.shadowRoot.children[i])}for(i=0;i<b.children.length;i++)if(b.children[i]!=null)createShadowDOMs(a,b.children[i])}}}
+        function savepage_ResourceLoader(f){createBlobURLs();replaceReferences(0,document.documentElement);function createBlobURLs(){var i,j,binaryString,blobData;var a=new Array();for(i=0;i<resourceMimeType.length;i++){if(typeof resourceMimeType[i]!="undefined"){binaryString=atob(resourceBase64Data[i]);resourceBase64Data[i]="";a.length=0;for(j=0;j<binaryString.length;j++){a[j]=binaryString.charCodeAt(j)}blobData=new Blob([new Uint8Array(a)],{type:resourceMimeType[i]});resourceMimeType[i]="";resourceBlobUrl[i]=window.URL.createObjectURL(blobData)}}}function replaceReferences(a,b){var i,regex1,regex2,csstext,blobData;regex1=/url\(\s*((?:"[^"]+")|(?:'[^']+')|(?:[^\s)]+))\s*\)/gi;regex2=/data:[^;]*;resource=(\d+);base64,/i;if(b.hasAttribute("style")){csstext=b.style.cssText;b.style.cssText=csstext.replace(regex1,replaceCSSRef)}if(b.localName=="style"){csstext=b.textContent;b.textContent=csstext.replace(regex1,replaceCSSRef)}else if(b.localName=="link"&&(b.rel.toLowerCase()=="icon"||b.rel.toLowerCase()=="shortcut icon")){if(b.href!="")b.href=b.href.replace(regex2,replaceRef)}else if(b.localName=="body"){if(b.background!="")b.background=b.background.replace(regex2,replaceRef)}else if(b.localName=="img"){if(b.src!="")b.src=b.src.replace(regex2,replaceRef)}else if(b.localName=="input"&&b.type.toLowerCase()=="image"){if(b.src!="")b.src=b.src.replace(regex2,replaceRef)}else if(b.localName=="audio"){if(b.src!=""){b.src=b.src.replace(regex2,replaceRef);b.load()}}else if(b.localName=="video"){if(b.src!=""){b.src=b.src.replace(regex2,replaceRef);b.load()}if(b.poster!="")b.poster=b.poster.replace(regex2,replaceRef)}else if(b.localName=="source"){if(b.src!=""){b.src=b.src.replace(regex2,replaceRef);b.parentElement.load()}}else if(b.localName=="track"){if(b.src!="")b.src=b.src.replace(regex2,replaceRef)}else if(b.localName=="object"){if(b.data!="")b.data=b.data.replace(regex2,replaceRef)}else if(b.localName=="embed"){if(b.src!="")b.src=b.src.replace(regex2,replaceRef)}if(b.localName=="iframe"||b.localName=="frame"){if(a<f){if(b.hasAttribute("data-savepage-sameorigin")){blobData=new Blob([decodeURIComponent(b.src.substr(29))],{type:"text/html;charset=utf-8"});b.onload=function(){try{if(b.contentDocument.documentElement!=null){replaceReferences(a+1,b.contentDocument.documentElement)}}catch(e){}};b.src=window.URL.createObjectURL(blobData)}}}else{if(b.shadowRoot!=null){for(i=0;i<b.shadowRoot.children.length;i++)if(b.shadowRoot.children[i]!=null)replaceReferences(a,b.shadowRoot.children[i])}for(i=0;i<b.children.length;i++)if(b.children[i]!=null)replaceReferences(a,b.children[i])}}function replaceCSSRef(a,b,c,d){var e=new Array();e=b.match(/data:[^;]*;resource=(\d+);base64,/i);if(e!=null)return"url("+resourceBlobUrl[+e[1]]+")";else return a}function replaceRef(a,b,c,d){return resourceBlobUrl[+b]}}
+      }
+    </script>
+    <meta name="savepage-url" content="http://ant.apache.org/manual/dirtasks.html#patterns">
+    <meta name="savepage-title" content="Directory-based Tasks">
+    <meta name="savepage-date" content="Mon Jul 29 2019 10:36:32 GMT+0300 (Москва, стандартное время)">
+    <meta name="savepage-state" content="Standard Items; Used resource loader; Retained cross-origin frames; Removed unsaved URLs; Max frame depth = 5; Max resource size = 50MB; Max resource time = 10s;">
+    <meta name="savepage-version" content="15.1">
+    <meta name="savepage-comments" content="">
+    <meta name="savepage-resourceloader" content=""></head>
+
+<body>
+
+<h2 id="directorybasedtasks">Directory-based Tasks</h2>
+<p>Some tasks use directory trees for the actions they perform.
+For example, the <a href="Tasks/javac.html">javac</a> task, which
+compiles a directory tree with <samp>.java</samp> files into
+<samp>.class</samp> files, is one of these directory-based tasks. Because
+some of these tasks do so much work with a directory tree, the task itself
+can act as an implicit <a href="Types/fileset.html">FileSet</a>.</p>
+
+<p>Whether the fileset is implicit or not, it can often be very useful to
+work on a subset of the directory tree. This section describes how you can
+select a subset of such a directory tree when using one of these
+directory-based tasks.</p>
+
+<p>Apache Ant gives you two ways to create a subset of files in a
+fileset, both of which can be used at the same time:</p>
+<ul>
+  <li>Only include files and directories that match any
+    <var>include</var> patterns and do not match any
+    <var>exclude</var> patterns in a given
+    <a href="Types/patternset.html">PatternSet</a>.</li>
+  <li>Select files based on selection criteria defined by a collection of
+    <a href="Types/selectors.html">selector</a> nested elements.</li>
+</ul>
+<h3 id="patternset">Patternset</h3>
+
+<p>We said that Directory-based tasks can sometimes act as an
+implicit <a href="Types/fileset.html"><code>&lt;fileset&gt;</code></a>,
+but in addition to that, a FileSet acts as an
+implicit <a href="Types/patternset.html"><code>&lt;patternset&gt;</code></a>.</p>
+
+<p>The inclusion and exclusion elements of the implicit PatternSet can be
+specified inside the directory-based task (or explicit fileset) via
+either:</p>
+<ul>
+  <li>the attributes <var>includes</var> and
+    <var>excludes</var>.</li>
+  <li>nested elements <code>&lt;include&gt;</code> and
+    <code>&lt;exclude&gt;</code>.</li>
+  <li>external files specified with the attributes
+    <var>includesfile</var> and <var>excludesfile</var>.</li>
+  <li>external files specified with the nested elements
+    <code>&lt;includesfile&gt;</code> and <code>&lt;excludesfile&gt;</code>.
+  </li>
+</ul>
+<p>
+When dealing with an external file, each line of the file
+is taken as a pattern that is added to the list of include or exclude
+patterns.</p>
+
+<p>When both inclusion and exclusion are used, only files/directories that
+match at least one of the include patterns and don't match any of the
+exclude patterns are used. If no include pattern is given, all files
+are assumed to match the include pattern (with the possible exception of
+the default excludes).</p>
+
+<h4 id="patterns">Patterns</h4>
+
+<p>As described earlier, patterns are used for the inclusion and exclusion
+of files. These patterns look very much like the patterns used in DOS and
+UNIX:</p>
+
+<p><q>*</q> matches zero or more characters, <q>?</q> matches one character.</p>
+
+<p>In general, patterns are considered relative paths, relative to a
+task dependent base directory (the <var>dir</var> attribute in the
+case of <code>&lt;fileset&gt;</code>).  Only files found below that base
+directory are considered.  So while a pattern
+like <samp>../foo.java</samp> is possible, it will not match
+anything when applied since the base directory's parent is never
+scanned for files.</p>
+
+<h5>Examples</h5>
+<p>
+<samp>*.java</samp>  matches  <samp>.java</samp>,
+<samp>x.java</samp> and <samp>FooBar.java</samp>, but
+not <samp>FooBar.xml</samp> (does not end with <samp>.java</samp>).</p>
+
+<p>
+<samp>?.java</samp>  matches  <samp>x.java</samp>,
+<samp>A.java</samp>, but not <samp>.java</samp> or <samp>xyz.java</samp>
+(both don't have one character before <samp>.java</samp>).</p>
+
+<p>Combinations of <q>*</q>'s and <q>?</q>'s are allowed.</p>
+
+<p>Matching is done per-directory. This means that first the first directory in
+the pattern is matched against the first directory in the path to match. Then
+the second directory is matched, and so on. For example, when we have
+the pattern <samp>/?abc/*/*.java</samp>
+and the path <samp>/xabc/foobar/test.java</samp>,
+the first <samp>?abc</samp> is matched with <samp>xabc</samp>,
+then <samp>*</samp> is matched with <samp>foobar</samp>,
+and finally <samp>*.java</samp> is matched with <samp>test.java</samp>.
+They all match, so the path matches the pattern.</p>
+
+<p>To make things a bit more flexible, we add one extra feature, which makes it
+possible to match multiple directory levels. This can be used to match a
+complete directory tree, or a file anywhere in the directory tree.
+To do this, <q>**</q> must be used as the name of a
+directory. When <samp>**</samp> is used as the name of a directory in
+the pattern, it matches zero or more directories. For
+example: <samp>/test/**</samp> matches all files/directories
+under <samp>/test/</samp>, such as <samp>/test/x.java</samp>,
+or <samp>/test/foo/bar/xyz.html</samp>, but not <samp>/xyz.xml</samp>.</p>
+
+<p>There is one "shorthand": if a pattern ends with <q>/</q>
+or <q>\</q>, then <q>**</q> is appended. For
+example, <samp>mypackage/test/</samp> is interpreted as if it
+were <samp>mypackage/test/**</samp>.</p>
+
+<h5>Example patterns</h5>
+<table>
+  <tbody><tr>
+    <td>Example</td>
+    <td>Explanation</td>
+  </tr>
+  <tr>
+    <td><samp>**/CVS/*</samp></td>
+    <td>Matches all files in <samp>CVS</samp>
+      directories that can be located
+      anywhere in the directory tree.<br>
+      Matches:
+<pre>CVS/Repository
+org/apache/CVS/Entries
+org/apache/jakarta/tools/ant/CVS/Entries</pre>
+But not:
+<pre>org/apache/CVS/foo/bar/Entries</pre>
+(<samp>foo/bar/</samp> part does not match)
+    </td>
+  </tr>
+  <tr>
+    <td><samp>org/apache/jakarta/**</samp></td>
+    <td>Matches all files in the <samp>org/apache/jakarta</samp>
+      directory tree.<br>
+      Matches:
+<pre>org/apache/jakarta/tools/ant/docs/index.html
+org/apache/jakarta/test.xml
+</pre>
+But not:
+<pre>org/apache/xyz.java</pre>
+(<code>jakarta/</code> part is missing).</td>
+  </tr>
+  <tr>
+    <td><samp>org/apache/**/CVS/*</samp></td>
+    <td>Matches all files in <samp>CVS</samp> directories
+      that are located anywhere in the directory tree under
+      <samp>org/apache</samp>.<br>
+      Matches:
+<pre>org/apache/CVS/Entries
+org/apache/jakarta/tools/ant/CVS/Entries</pre>
+But not:
+<pre>org/apache/CVS/foo/bar/Entries</pre>
+(<samp>foo/bar/</samp> part does not match)</td>
+  </tr>
+  <tr>
+    <td><samp>**/test/**</samp></td>
+    <td>Matches all files that have a <samp>test</samp>
+        element in their path, including <samp>test</samp> as a filename.</td>
+  </tr>
+</tbody></table>
+<p>When these patterns are used in inclusion and exclusion, you have a powerful
+way to select just the files you want.</p>
+
+<h3 id="selectors">Selectors</h3>
+<p>The <a href="Types/fileset.html"><code>&lt;fileset&gt;</code></a>,
+whether implicit or explicit in the directory-based task, also acts as
+an <a href="Types/selectors.html#andselect"><code>&lt;and&gt;</code></a>
+selector container. This can be used to create arbitrarily complicated
+selection criteria for the files the task should work with. See
+the <a href="Types/selectors.html">Selector</a> documentation for
+more information.</p>
+
+<h3 id="tasklist">Standard Tasks/FileSets</h3>
+<p>Many of the standard tasks in ant take one or more filesets which follow
+the rules given here. This list, a subset of those, is a list of standard ant
+tasks that can act as an implicit fileset:</p>
+<ul>
+  <li><a href="Tasks/checksum.html"><code>&lt;checksum&gt;</code></a></li>
+  <li><a href="Tasks/copydir.html"><code>&lt;copydir&gt;</code></a> (<em>deprecated</em>)</li>
+  <li><a href="Tasks/delete.html"><code>&lt;delete&gt;</code></a></li>
+  <li><a href="Tasks/dependset.html"><code>&lt;dependset&gt;</code></a></li>
+  <li><a href="Tasks/fixcrlf.html"><code>&lt;fixcrlf&gt;</code></a></li>
+  <li><a href="Tasks/javac.html"><code>&lt;javac&gt;</code></a></li>
+  <li><a href="Tasks/replace.html"><code>&lt;replace&gt;</code></a></li>
+  <li><a href="Tasks/rmic.html"><code>&lt;rmic&gt;</code></a></li>
+  <li><a href="Tasks/style.html"><code>&lt;xslt&gt;</code> (aka <code>&lt;style&gt;</code>)</a></li>
+  <li><a href="Tasks/tar.html"><code>&lt;tar&gt;</code></a></li>
+  <li><a href="Tasks/zip.html"><code>&lt;zip&gt;</code></a></li>
+  <li><a href="Tasks/ejb.html#ddcreator"><code>&lt;ddcreator&gt;</code></a></li>
+  <li><a href="Tasks/ejb.html#ejbjar"><code>&lt;ejbjar&gt;</code></a></li>
+  <li><a href="Tasks/ejb.html#ejbc"><code>&lt;ejbc&gt;</code></a></li>
+  <li><a href="Tasks/cab.html"><code>&lt;cab&gt;</code></a></li>
+  <li><a href="Tasks/native2ascii.html"><code>&lt;native2ascii&gt;</code></a></li>
+  <li><a href="Tasks/netrexxc.html"><code>&lt;netrexxc&gt;</code></a></li>
+  <li><a href="Tasks/renameextensions.html"><code>&lt;renameextensions&gt;</code></a></li>
+  <li><a href="Tasks/depend.html"><code>&lt;depend&gt;</code></a></li>
+  <li><a href="Tasks/translate.html"><code>&lt;translate&gt;</code></a></li>
+  <li><a href="Tasks/image.html"><code>&lt;image&gt;</code></a></li>
+  <li><a href="Tasks/jlink.html"><code>&lt;jlink&gt;</code></a> (<em>deprecated</em>)</li>
+  <li><a href="Tasks/jspc.html"><code>&lt;jspc&gt;</code></a> (<em>deprecated</em>)</li>
+  <li><a href="Tasks/wljspc.html"><code>&lt;wljspc&gt;</code></a></li>
+</ul>
+
+<h3 id="examples">Examples</h3>
+<pre>&lt;copy todir="${dist}"&gt;
+  &lt;fileset dir="${src}"
+           includes="**/images/*"
+           excludes="**/*.gif"/&gt;
+&lt;/copy&gt;</pre>
+<p>This copies all files in directories called <samp>images</samp> that are
+located in the directory tree defined by <samp>${src}</samp> to the
+destination directory defined by <samp>${dist}</samp>,
+but excludes all <samp>*.gif</samp> files from the copy.</p>
+<pre>&lt;copy todir="${dist}"&gt;
+  &lt;fileset dir="${src}"&gt;
+    &lt;include name="**/images/*"/&gt;
+    &lt;exclude name="**/*.gif"/&gt;
+  &lt;/fileset&gt;
+&lt;/copy&gt;</pre>
+<p>The same as the example above, but expressed using nested elements.</p>
+
+<pre>&lt;delete dir="${dist}"&gt;
+    &lt;include name="**/images/*"/&gt;
+    &lt;exclude name="**/*.gif"/&gt;
+&lt;/delete&gt;
+</pre>
+<p>Deleting the original set of files, the <code>delete</code> task can act
+as an implicit fileset.</p>
+
+<h3 id="defaultexcludes">Default Excludes</h3>
+<p>There are a set of definitions that are excluded by default from all
+directory-based tasks. <em>Since Ant 1.8.1</em> they are:</p>
+<pre>**/*~
+**/#*#
+**/.#*
+**/%*%
+**/._*
+**/CVS
+**/CVS/**
+**/.cvsignore
+**/SCCS
+**/SCCS/**
+**/vssver.scc
+**/.svn
+**/.svn/**
+**/.DS_Store</pre>
+<p><em>Since Ant 1.8.2</em>, additional default excludes are:</p>
+<pre>**/.git
+**/.git/**
+**/.gitattributes
+**/.gitignore
+**/.gitmodules
+**/.hg
+**/.hg/**
+**/.hgignore
+**/.hgsub
+**/.hgsubstate
+**/.hgtags
+**/.bzr
+**/.bzr/**
+**/.bzrignore</pre>
+<p>If you do not want these default excludes applied, you may disable
+them with the <var>defaultexcludes</var>=<q>no</q> attribute.</p>
+
+<p>This is the default list; note that you can modify the list of
+default excludes by using
+the <a href="Tasks/defaultexcludes.html">defaultexcludes</a> task.</p>
+
+
+
+</body><script data-savepage-src="moz-extension://ff0bdfff-cb7a-4f39-a197-a4622934b2d2/js/inject.js" src=""></script></html>

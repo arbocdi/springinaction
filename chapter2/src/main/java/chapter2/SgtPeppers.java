@@ -1,5 +1,6 @@
 package chapter2;
 
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 /**
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Component;
  * @author arbocdi
  */
 @Component("sgtPeppers")
+@Primary
 public class SgtPeppers implements CompactDisc {
 
     public static final String MSG="Playing sgtPeppers";

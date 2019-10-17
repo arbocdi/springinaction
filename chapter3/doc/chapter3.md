@@ -24,6 +24,11 @@ spring.profiles.default=profile3,profile4
   2. Как переменные jvm
   3. Как параметры сервлета
   4. @ActiveProfiles в тестах
+  5. В application.properties (boot)
+  6. Как параметры коммандной строки (boot)
+  ```
+  java jar xxx.jar --spring.profiles.active=...
+  ```
 
 ### Создание бинов по условию
 * Аннотация @Conditional(класс-наследник интерфейса Condition) позволяет

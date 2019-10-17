@@ -1,5 +1,7 @@
 package chapter1;
 
+import javax.inject.Inject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,7 +13,7 @@ import org.springframework.context.annotation.Configuration;
 public class KnightConfig {
     //по умолчанию id бина = имя метода
     //@Bean(name = "knight")
-    @Bean
+    @Bean()
     public Knight knight() {
         //spring перехватывает вызов метода quest()
         //и всегда возвращает один и тот же синглетон quest

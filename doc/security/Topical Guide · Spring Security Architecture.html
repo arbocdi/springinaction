@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html data-clipboard-buttons="" data-code-prettify="" data-code-sidebar="" data-hide-show-guide="" data-sts-import="" data-mobile-support="" data-search=""><script type="text/javascript" async="" src="Topical%20Guide%20%C2%B7%20Spring%20Security%20Architecture_files/analytics.js"></script><script async="" src="Topical%20Guide%20%C2%B7%20Spring%20Security%20Architecture_files/gtm.js"></script><script src="Topical%20Guide%20%C2%B7%20Spring%20Security%20Architecture_files/inject.js"></script><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Topical Guide · Spring Security Architecture</title>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1, minimum-scale=1, user-scalable=no" id="Viewport" name="viewport">
+<link rel="shortcut icon" type="image/x-icon" href="https://spring.io/img/favicon-ca31b78daf0dd9a106bbf3c6d87d4ec7.png">
+<link href="Topical%20Guide%20%C2%B7%20Spring%20Security%20Architecture_files/css.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="Topical%20Guide%20%C2%B7%20Spring%20Security%20Architecture_files/main-bc256dba5f9d253d6425441ccfb82576.css">
+<script src="Topical%20Guide%20%C2%B7%20Spring%20Security%20Architecture_files/system-eccc019329febb5a1b06bde008ca5614.js"></script>
+<script>
+    System.config({baseURL: "/01efacf"});
+  </script>
+<script src="Topical%20Guide%20%C2%B7%20Spring%20Security%20Architecture_files/config-5a675c9cddea3a5f55b71416e67d47d6.js"></script>
+<script>
+      System.import('app/main.js')
+  </script>
+<meta content="7qGntFPD9lWAVCtUu5U77v4l68PsTHf6xpzgjQv2j2M" name="google-site-verification">
+
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-KZM7GF6');</script>
+
+<link rel="stylesheet" type="text/css" href="Topical%20Guide%20%C2%B7%20Spring%20Security%20Architecture_files/gsguide-cce08ab7a9f46db88819a14148e45bad.css">
+
+<meta property="og:title" content="Spring Security Architecture">
+<meta property="og:image" content="/img/spring-by-pivotal-9066b55828deb3c10e27e609af322c40.png">
+<meta property="og:description" content="this topical is designed to be read and comprehended in under an hour, it provides broad coverage of a topic that is possibly nuanced or requires deeper understanding than you would get from a getting started guide">
+</head><body class="show-gradle">
+
+<noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-KZM7GF6" style="display:none;visibility:hidden" width="0"></iframe></noscript>
+
+<script type="text/javascript">
+    // Work around Google font rendering issues in webkit browsers on Windows 7
+    if (navigator.userAgent.indexOf("NT 6.1") != -1) {
+      document.body.style.WebkitTextStroke = "0.5px";
+    }
+  </script>
+<div class="viewport">
+<header class="navbar header--navbar desktop-only">
+<div class="navbar-inner">
+<div class="container-fluid">
+<div class="spring-logo--container">
+<a class="spring-logo" href="https://spring.io/"><span></span></a>
+</div>
+<ul class="nav pull-right">
+<li class="navbar-link">
+<a href="https://spring.io/projects">Projects</a>
+</li>
+<li class="navbar-link active">
+<a href="https://spring.io/guides">Guides</a>
+</li>
+<li class="navbar-link">
+<a href="https://spring.io/blog">Blog</a>
+</li>
+<li class="navbar-link">
+<a href="https://spring.io/services">Training &amp; Certification</a>
+</li>
+<li class="navbar-link nav-search js-nav-search">
+<a>
+<i class="icon-search navbar-search--icon js-search-input-open"></i>
+<span class="search-input-close js-search-input-close">
+<i class="icon-remove"></i>
+</span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="search-dropdown--container js-search-dropdown">
+<div class="container-fluid">
+<div class="search-form--container">
+<form action="/search" class="form-inline form-search" method="get">
+<input class="search-query search-form--form js-search-input" name="q" placeholder="Search for documentation, guides, and posts..." type="text">
+<button class="search-form--submit" type="submit"><i class="icon-search"></i></button>
+</form>
+</div>
+</div>
+</div>
+</header>
+<div>
+<div class="mobile-navigation--wrapper mobile-only">
+<div class="navigation-drawer--container">
+<div class="mobile-search--container">
+<form action="/search" class="form-inline form-search" method="get">
+<button class="search-form--submit" type="submit"><i class="icon-search"></i></button>
+<input class="search-query search-form--form js-search-input" name="q" placeholder="Search..." type="text">
+</form>
+</div>
+<div class="navigation-item-list">
+<div class="navbar-link">
+<a href="https://spring.io/">
+Home
+<i class="icon-chevron-right pull-right"></i>
+</a>
+</div>
+<div class="navbar-link">
+<a href="https://spring.io/projects">
+Projects
+<i class="icon-chevron-right pull-right"></i>
+</a>
+</div>
+<div class="navbar-link active">
+<a href="https://spring.io/guides">
+Guides
+<i class="icon-chevron-right pull-right"></i>
+</a>
+</div>
+<div class="navbar-link">
+<a href="https://spring.io/blog">
+Blog
+<i class="icon-chevron-right pull-right"></i>
+</a>
+</div>
+<div class="navbar-link">
+<a href="https://spring.io/services">
+Training &amp; Certification
+<i class="icon-chevron-right pull-right"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="mobile-nav">
+<div class="nav-icon js-open-nav-drawer">
+<i class="icon-reorder"></i>
+</div>
+<div class="header-center-icon">
+<a href="https://spring.io/">
+<div class="icon icon-spring-logo-mobile"></div>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="header--container"></div>
+<div class="container-fluid"></div>
+<div></div>
+<div class="container-fluid">
+<main class="main-body--wrapper">
+<div class="row-fluid">
+<div class="span8 mobile-left-pane">
+<div class="content--title desktop-only">Topical Guide</div>
+<article class="content--container">
+<h1 class="title">Spring Security Architecture</h1>
+<div class="article-body"><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This guide is a primer for Spring Security, offering insight into the
+ design and basic building blocks of the framework. We only cover the 
+very basics of application security but in doing so we can clear up some
+ of the confusion experienced by developers using Spring Security. To do
+ this we take a look at the way security is applied in web applications 
+using filters and more generally using method annotations. Use this 
+guide when you need to understand at a high level how a secure 
+application works, and how it can be customized, or if you just need to 
+learn how to think about application security.</p>
+</div>
+<div class="paragraph">
+<p>This guide is not intended as a manual or recipe for solving more 
+than the most basic problems (there are other sources for those), but it
+ could be useful for beginners and experts alike. Spring Boot is also 
+referred to a lot because it provides some default behaviour for a 
+secure application and it can be useful to understand how that fits in 
+with the overall architecture. All of the principles apply equally well 
+to applications that do not use Spring Boot.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_authentication_and_access_control">Authentication and Access Control</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Application security boils down to two more or less independent 
+problems: authentication (who are you?) and authorization (what are you 
+allowed to do?). Sometimes people say "access control" instead of 
+"authorization" which can get confusing, but it can be helpful to think 
+of it that way because "authorization" is overloaded in other places. 
+Spring Security has an architecture that is designed to separate 
+authentication from authorization, and has strategies and extension 
+points for both.</p>
+</div>
+<div class="sect2">
+<h3 id="_authentication">Authentication</h3>
+<div class="paragraph">
+<p>The main strategy interface for authentication is <code>AuthenticationManager</code> which only has one method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<button class="copy-button snippet" id="copy-button-0" data-clipboard-target="#code-block-0"></button><pre class="highlight prettyprint" id="code-block-0"><code class="language-java" data-lang="java"><span class="kwd">public</span><span class="pln"> </span><span class="kwd">interface</span><span class="pln"> </span><span class="typ">AuthenticationManager</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+  </span><span class="typ">Authentication</span><span class="pln"> authenticate</span><span class="pun">(</span><span class="typ">Authentication</span><span class="pln"> authentication</span><span class="pun">)</span><span class="pln">
+    </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">AuthenticationException</span><span class="pun">;</span><span class="pln">
+
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>An <code>AuthenticationManager</code> can do one of 3 things in its <code>authenticate()</code> method:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li> <p>return an <code>Authentication</code> (normally with <code>authenticated=true</code>) if it can verify that the input represents a valid principal.</p> </li>
+<li> <p>throw an <code>AuthenticationException</code> if it believes that the input represents an invalid principal.</p> </li>
+<li> <p>return <code>null</code> if it can’t decide.</p> </li>
+</ol>
+</div>
+<div class="paragraph">
+<p><code>AuthenticationException</code> is a runtime exception. It is 
+usually handled by an application in a generic way, depending on the 
+style or purpose of the application. In other words user code is not 
+normally expected to catch and handle it. For example, a web UI will 
+render a page that says that the authentication failed, and a backend 
+HTTP service will send a 401 response, with or without a <code>WWW-Authenticate</code> header depending on the context.</p>
+</div>
+<div class="paragraph">
+<p>The most commonly used implementation of <code>AuthenticationManager</code> is <code>ProviderManager</code>, which delegates to a chain of <code>AuthenticationProvider</code> instances. An <code>AuthenticationProvider</code> is a bit like an <code>AuthenticationManager</code> but it has an extra method to allow the caller to query if it supports a given <code>Authentication</code> type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<button class="copy-button snippet" id="copy-button-1" data-clipboard-target="#code-block-1"></button><pre class="highlight prettyprint" id="code-block-1"><code class="language-java" data-lang="java"><span class="kwd">public</span><span class="pln"> </span><span class="kwd">interface</span><span class="pln"> </span><span class="typ">AuthenticationProvider</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+	</span><span class="typ">Authentication</span><span class="pln"> authenticate</span><span class="pun">(</span><span class="typ">Authentication</span><span class="pln"> authentication</span><span class="pun">)</span><span class="pln">
+			</span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">AuthenticationException</span><span class="pun">;</span><span class="pln">
+
+	</span><span class="kwd">boolean</span><span class="pln"> supports</span><span class="pun">(</span><span class="typ">Class</span><span class="pun">&lt;?&gt;</span><span class="pln"> authentication</span><span class="pun">);</span><span class="pln">
+
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>Class&lt;?&gt;</code> argument in the <code>supports()</code> method is really <code>Class&lt;? extends Authentication&gt;</code> (it will only ever be asked if it supports something that will be passed into the <code>authenticate()</code> method). A <code>ProviderManager</code> can support multiple different authentication mechanisms in the same application by delegating to a chain of <code>AuthenticationProviders</code>. If a <code>ProviderManager</code> doesn’t recognise a particular <code>Authentication</code> instance type it will be skipped.</p>
+</div>
+<div class="paragraph">
+<p>A <code>ProviderManager</code> has an optional parent, which it can consult if all providers return <code>null</code>. If the parent is not available then a <code>null</code> <code>Authentication</code> results in an <code>AuthenticationException</code>.</p>
+</div>
+<div class="paragraph">
+<p>Sometimes an application has logical groups of protected resources (e.g. all web resources that match a path pattern <code>/api/**</code>), and each group can have its own dedicated <code>AuthenticationManager</code>. Often, each of those is a <code>ProviderManager</code>, and they share a parent. The parent is then a kind of "global" resource, acting as a fallback for all providers.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Topical%20Guide%20%C2%B7%20Spring%20Security%20Architecture_files/authentication.png" alt="ProviderManagers with a common parent" width="70%">
+</div>
+<div class="title">
+Figure 1. An
+<code>AuthenticationManager</code> hierarchy using
+<code>ProviderManager</code>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_customizing_authentication_managers">Customizing Authentication Managers</h3>
+<div class="paragraph">
+<p>Spring Security provides some configuration helpers to quickly get 
+common authentication manager features set up in your application. The 
+most commonly used helper is the <code>AuthenticationManagerBuilder</code> which is great for setting up in-memory, JDBC or LDAP user details, or for adding a custom <code>UserDetailsService</code>. Here’s an example of an application configuring the global (parent) <code>AuthenticationManager</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<button class="copy-button snippet" id="copy-button-2" data-clipboard-target="#code-block-2"></button><pre class="highlight prettyprint" id="code-block-2"><code class="language-java" data-lang="java"><span class="lit">@Configuration</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">ApplicationSecurity</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">WebSecurityConfigurerAdapter</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+   </span><span class="pun">...</span><span class="pln"> </span><span class="com">// web stuff here</span><span class="pln">
+
+  </span><span class="lit">@Autowired</span><span class="pln">
+  </span><span class="kwd">public</span><span class="pln"> initialize</span><span class="pun">(</span><span class="typ">AuthenticationManagerBuilder</span><span class="pln"> builder</span><span class="pun">,</span><span class="pln"> </span><span class="typ">DataSource</span><span class="pln"> dataSource</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    builder</span><span class="pun">.</span><span class="pln">jdbcAuthentication</span><span class="pun">().</span><span class="pln">dataSource</span><span class="pun">(</span><span class="pln">dataSource</span><span class="pun">).</span><span class="pln">withUser</span><span class="pun">(</span><span class="str">"dave"</span><span class="pun">)</span><span class="pln">
+      </span><span class="pun">.</span><span class="pln">password</span><span class="pun">(</span><span class="str">"secret"</span><span class="pun">).</span><span class="pln">roles</span><span class="pun">(</span><span class="str">"USER"</span><span class="pun">);</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This example relates to a web application, but the usage of <code>AuthenticationManagerBuilder</code> is more widely applicable (see below for more detail on how web application security is implemented). Note that the <code>AuthenticationManagerBuilder</code> is <code>@Autowired</code> into a method in a <code>@Bean</code> - that is what makes it build the global (parent) <code>AuthenticationManager</code>. In contrast if we had done it this way:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<button class="copy-button snippet" id="copy-button-3" data-clipboard-target="#code-block-3"></button><pre class="highlight prettyprint" id="code-block-3"><code class="language-java" data-lang="java"><span class="lit">@Configuration</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">ApplicationSecurity</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">WebSecurityConfigurerAdapter</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+  </span><span class="lit">@Autowired</span><span class="pln">
+  </span><span class="typ">DataSource</span><span class="pln"> dataSource</span><span class="pun">;</span><span class="pln">
+
+   </span><span class="pun">...</span><span class="pln"> </span><span class="com">// web stuff here</span><span class="pln">
+
+  </span><span class="lit">@Override</span><span class="pln">
+  </span><span class="kwd">public</span><span class="pln"> configure</span><span class="pun">(</span><span class="typ">AuthenticationManagerBuilder</span><span class="pln"> builder</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    builder</span><span class="pun">.</span><span class="pln">jdbcAuthentication</span><span class="pun">().</span><span class="pln">dataSource</span><span class="pun">(</span><span class="pln">dataSource</span><span class="pun">).</span><span class="pln">withUser</span><span class="pun">(</span><span class="str">"dave"</span><span class="pun">)</span><span class="pln">
+      </span><span class="pun">.</span><span class="pln">password</span><span class="pun">(</span><span class="str">"secret"</span><span class="pun">).</span><span class="pln">roles</span><span class="pun">(</span><span class="str">"USER"</span><span class="pun">);</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(using an <code>@Override</code> of a method in the configurer) then the <code>AuthenticationManagerBuilder</code> is only used to build a "local" <code>AuthenticationManager</code>, which is a child of the global one. In a Spring Boot application you can <code>@Autowired</code> the global one into another bean, but you can’t do that with the local one unless you explicitly expose it yourself.</p>
+</div>
+<div class="paragraph">
+<p>Spring Boot provides a default global <code>AuthenticationManager</code> (with just one user) unless you pre-empt it by providing your own bean of type <code>AuthenticationManager</code>. The default is secure enough on its own for you not to have to worry about it much, unless you actively need a custom global <code>AuthenticationManager</code>. If you do any configuration that builds an <code>AuthenticationManager</code> you can often do it locally to the resources that you are protecting and not worry about the global default.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_authorization_or_access_control">Authorization or Access Control</h3>
+<div class="paragraph">
+<p>Once authentication is successful, we can move on to authorization, and the core strategy here is <code>AccessDecisionManager</code>. There are three implementations provided by the framework and all three delegate to a chain of <code>AccessDecisionVoter</code>, a bit like the <code>ProviderManager</code> delegates to <code>AuthenticationProviders</code>.</p>
+</div>
+<div class="paragraph">
+<p>An <code>AccessDecisionVoter</code> considers an <code>Authentication</code> (representing a principal) and a secure <code>Object</code> which as been decorated with <code>ConfigAttributes</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<button class="copy-button snippet" id="copy-button-4" data-clipboard-target="#code-block-4"></button><pre class="highlight prettyprint" id="code-block-4"><code class="language-java" data-lang="java"><span class="kwd">boolean</span><span class="pln"> supports</span><span class="pun">(</span><span class="typ">ConfigAttribute</span><span class="pln"> attribute</span><span class="pun">);</span><span class="pln">
+
+</span><span class="kwd">boolean</span><span class="pln"> supports</span><span class="pun">(</span><span class="typ">Class</span><span class="pun">&lt;?&gt;</span><span class="pln"> clazz</span><span class="pun">);</span><span class="pln">
+
+</span><span class="kwd">int</span><span class="pln"> vote</span><span class="pun">(</span><span class="typ">Authentication</span><span class="pln"> authentication</span><span class="pun">,</span><span class="pln"> S </span><span class="kwd">object</span><span class="pun">,</span><span class="pln">
+        </span><span class="typ">Collection</span><span class="pun">&lt;</span><span class="typ">ConfigAttribute</span><span class="pun">&gt;</span><span class="pln"> attributes</span><span class="pun">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>Object</code> is completely generic in the signatures of the <code>AccessDecisionManager</code> and <code>AccessDecisionVoter</code>
+ - it represents anything that a user might want to access (a web 
+resource or a method in a Java class are the two most common cases). The
+ <code>ConfigAttributes</code> are also fairly generic, representing a decoration of the secure <code>Object</code> with some metadata that determine the level of permission required to access it. <code>ConfigAttribute</code> is an interface but it only has one method which is quite generic and returns a <code>String</code>,
+ so these strings encode in some way the intention of the owner of the 
+resource, expressing rules about who is allowed to access it. A typical <code>ConfigAttribute</code> is the name of a user role (like <code>ROLE_ADMIN</code> or <code>ROLE_AUDIT</code>), and they often have special formats (like the <code>ROLE_</code> prefix) or represent expressions that need to be evaluated.</p>
+</div>
+<div class="paragraph">
+<p>Most people just use the default <code>AccessDecisionManager</code> which is <code>AffirmativeBased</code>
+ (if no voters decline then access is granted). Any customization tends 
+to happen in the voters, either adding new ones, or modifying the way 
+that the existing ones work.</p>
+</div>
+<div class="paragraph">
+<p>It is very common to use <code>ConfigAttributes</code> that are Spring Expression Language (SpEL) expressions, for example <code>isFullyAuthenticated() &amp;&amp; hasRole('FOO')</code>. This is supported by an <code>AccessDecisionVoter</code>
+ that can handle the expressions and create a context for them. To 
+extend the range of expressions that can be handled requires a custom 
+implementation of <code>SecurityExpressionRoot</code> and sometimes also <code>SecurityExpressionHandler</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_web_security">Web Security</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Spring Security in the web tier (for UIs and HTTP back ends) is based on Servlet <code>Filters</code>, so it is helpful to look at the role of <code>Filters</code> generally first. The picture below shows the typical layering of the handlers for a single HTTP request.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Topical%20Guide%20%C2%B7%20Spring%20Security%20Architecture_files/filters.png" alt="Filter chain delegating to a Servlet" width="70%">
+</div>
+</div>
+<div class="paragraph">
+<p>The client sends a request to the app, and the container decides 
+which filters and which servlet apply to it based on the path of the 
+request URI. At most one servlet can handle a single request, but 
+filters form a chain, so they are ordered, and in fact a filter can veto
+ the rest of the chain if it wants to handle the request itself. A 
+filter can also modify the request and/or the response used in the 
+downstream filters and servlet. The order of the filter chain is very 
+important, and Spring Boot manages it through 2 mechanisms: one is that <code>@Beans</code> of type <code>Filter</code> can have an <code>@Order</code> or implement <code>Ordered</code>, and the other is that they can be part of a <code>FilterRegistrationBean</code>
+ that itself has an order as part of its API. Some off-the-shelf filters
+ define their own constants to help signal what order they like to be in
+ relative to each other (e.g. the <code>SessionRepositoryFilter</code> from Spring Session has a <code>DEFAULT_ORDER</code> of <code>Integer.MIN_VALUE + 50</code>, which tells us it likes to be early in the chain, but it doesn’t rule out other filters coming before it).</p>
+</div>
+<div class="paragraph">
+<p>Spring Security is installed as a single <code>Filter</code> in the chain, and its concerete type is <code>FilterChainProxy</code>, for reasons that will become apparent soon. In a Spring Boot app the security filter is a <code>@Bean</code> in the <code>ApplicationContext</code>, and it is installed by default so that it is applied to every request. It is installed at a position defined by <code>SecurityProperties.DEFAULT_FILTER_ORDER</code>, which in turn is anchored by <code>FilterRegistrationBean.REQUEST_WRAPPER_FILTER_MAX_ORDER</code>
+ (the maximum order that a Spring Boot app expects filters to have if 
+they wrap the request, modifying its behaviour). There’s more to it than
+ that though: from the point of view of the container Spring Security is
+ a single filter, but inside it there are additional filters, each 
+playing a special role. Here’s a picture:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Topical%20Guide%20%C2%B7%20Spring%20Security%20Architecture_files/security-filters.png" alt="Spring Security Filter" width="70%">
+</div>
+<div class="title">
+Figure 2. Spring Security is a single physical
+<code>Filter</code> but delegates processing to a chain of internal filters
+</div>
+</div>
+<div class="paragraph">
+<p>In fact there is even one more layer of indirection in the security filter: it is usually installed in the container as a <code>DelegatingFilterProxy</code>, which does not have to be a Spring <code>@Bean</code>. The proxy delegates to a <code>FilterChainProxy</code> which is always a <code>@Bean</code>, usually with a fixed name of <code>springSecurityFilterChain</code>. It is the <code>FilterChainProxy</code>
+ which contains all the security logic arranged internally as a chain 
+(or chains) of filters. All the filters have the same API (they all 
+implement the <code>Filter</code> interface from the Servlet Spec) and they all have the opportunity to veto the rest of the chain.</p>
+</div>
+<div class="paragraph">
+<p>There can be multiple filter chains all managed by Spring Security in the same top level <code>FilterChainProxy</code>
+ and all unknown to the container. The Spring Security filter contains a
+ list of filter chains, and dispatches a request to the first chain that
+ matches it. The picture below shows the dispatch happening based on 
+matching the request path (<code>/foo/**</code> matches before <code>/**</code>).
+ This is very common but not the only way to match a request. The most 
+important feature of this dispatch process is that only one chain ever 
+handles a request.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="Topical%20Guide%20%C2%B7%20Spring%20Security%20Architecture_files/security-filters-dispatch.png" alt="Security Filter Dispatch" width="70%">
+</div>
+<div class="title">
+Figure 3. The Spring Security
+<code>FilterChainProxy</code> dispatches requests to the first chain that matches.
+</div>
+</div>
+<div class="paragraph">
+<p>A vanilla Spring Boot application with no custom security 
+configuration has a several (call it n) filter chains, where usually 
+n=6. The first (n-1) chains are there just to ignore static resource 
+patterns, like <code>/css/**</code> and <code>/images/**</code>, and the error view <code>/error</code> (the paths can be controlled by the user with <code>security.ignored</code> from the <code>SecurityProperties</code> configuration bean). The last chain matches the catch all path <code>/**</code>
+ and is more active, containing logic for authentication, authorization,
+ exception handling, session handling, header writing, etc. There are a 
+total of 11 filters in this chain by default, but normally it is not 
+necessary for users to concern themselves with which filters are used 
+and when.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody>
+<tr>
+<td class="icon">
+<div class="title">
+Note
+</div> </td>
+<td class="content"> The fact that all filters internal to Spring 
+Security are unknown to the container is important, especially in a 
+Spring Boot application, where all <code>@Beans</code> of type <code>Filter</code>
+ are registered automatically with the container by default. So if you 
+want to add a custom filter to the security chain, you need to either 
+not make it a <code>@Bean</code> or wrap it in a <code>FilterRegistrationBean</code> that explicitly disables the container registration. </td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_creating_and_customizing_filter_chains">Creating and Customizing Filter Chains</h3>
+<div class="paragraph">
+<p>The default fallback filter chain in a Spring Boot app (the one with the <code>/**</code> request matcher) has a predefined order of <code>SecurityProperties.BASIC_AUTH_ORDER</code>. You can switch it off completely by setting <code>security.basic.enabled=false</code>, or you can use it as a fallback and just define other rules with a lower order. To do that just add a <code>@Bean</code> of type <code>WebSecurityConfigurerAdapter</code> (or <code>WebSecurityConfigurer</code>) and decorate the class with <code>@Order</code>. Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<button class="copy-button snippet" id="copy-button-5" data-clipboard-target="#code-block-5"></button><pre class="highlight prettyprint" id="code-block-5"><code class="language-java" data-lang="java"><span class="lit">@Configuration</span><span class="pln">
+</span><span class="lit">@Order</span><span class="pun">(</span><span class="typ">SecurityProperties</span><span class="pun">.</span><span class="pln">BASIC_AUTH_ORDER </span><span class="pun">-</span><span class="pln"> </span><span class="lit">10</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">ApplicationConfigurerAdapter</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">WebSecurityConfigurerAdapter</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="lit">@Override</span><span class="pln">
+  </span><span class="kwd">protected</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> configure</span><span class="pun">(</span><span class="typ">HttpSecurity</span><span class="pln"> http</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    http</span><span class="pun">.</span><span class="pln">antMatcher</span><span class="pun">(</span><span class="str">"/foo/**"</span><span class="pun">)</span><span class="pln">
+     </span><span class="pun">...;</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This bean will cause Spring Security to add a new filter chain and order it before the fallback.</p>
+</div>
+<div class="paragraph">
+<p>Many applications have completely different access rules for one set 
+of resources compared to another. For example an application that hosts a
+ UI and a backing API might support cookie-based authentication with a 
+redirect to a login page for the UI parts, and token-based 
+authentication with a 401 response to unauthenticated requests for the 
+API parts. Each set of resources has its own <code>WebSecurityConfigurerAdapter</code> with a unique order and a its own request matcher. If the matching rules overlap the earliest ordered filter chain will win.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_request_matching_for_dispatch_and_authorization">Request Matching for Dispatch and Authorization</h3>
+<div class="paragraph">
+<p>A security filter chain (or equivalently a <code>WebSecurityConfigurerAdapter</code>)
+ has a request matcher that is used for deciding whether to apply it to 
+an HTTP request. Once the decision is made to apply a particular filter 
+chain, no others are applied. But within a filter chain you can have 
+more fine grained control of authorization by setting additional 
+matchers in the <code>HttpSecurity</code> configurer. Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<button class="copy-button snippet" id="copy-button-6" data-clipboard-target="#code-block-6"></button><pre class="highlight prettyprint" id="code-block-6"><code class="language-java" data-lang="java"><span class="lit">@Configuration</span><span class="pln">
+</span><span class="lit">@Order</span><span class="pun">(</span><span class="typ">SecurityProperties</span><span class="pun">.</span><span class="pln">BASIC_AUTH_ORDER </span><span class="pun">-</span><span class="pln"> </span><span class="lit">10</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">ApplicationConfigurerAdapter</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">WebSecurityConfigurerAdapter</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="lit">@Override</span><span class="pln">
+  </span><span class="kwd">protected</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> configure</span><span class="pun">(</span><span class="typ">HttpSecurity</span><span class="pln"> http</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    http</span><span class="pun">.</span><span class="pln">antMatcher</span><span class="pun">(</span><span class="str">"/foo/**"</span><span class="pun">)</span><span class="pln">
+      </span><span class="pun">.</span><span class="pln">authorizeRequests</span><span class="pun">()</span><span class="pln">
+        </span><span class="pun">.</span><span class="pln">antMatchers</span><span class="pun">(</span><span class="str">"/foo/bar"</span><span class="pun">).</span><span class="pln">hasRole</span><span class="pun">(</span><span class="str">"BAR"</span><span class="pun">)</span><span class="pln">
+        </span><span class="pun">.</span><span class="pln">antMatchers</span><span class="pun">(</span><span class="str">"/foo/spam"</span><span class="pun">).</span><span class="pln">hasRole</span><span class="pun">(</span><span class="str">"SPAM"</span><span class="pun">)</span><span class="pln">
+        </span><span class="pun">.</span><span class="pln">anyRequest</span><span class="pun">().</span><span class="pln">isAuthenticated</span><span class="pun">();</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>One of the easiest mistakes to make with configuring Spring Security 
+is to forget that these matchers apply to different processes, one is a 
+request matcher for the whole filter chain, and the other is only to 
+choose the access rule to apply.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_combining_application_security_rules_with_actuator_rules">Combining Application Security Rules with Actuator Rules</h3>
+<div class="paragraph">
+<p>If you are using the Spring Boot Actuator for management endpoints, 
+you probably want them to be secure, and by default they will be. In 
+fact as soon as you add the Actuator to a secure application you get an 
+additional filter chain that applies only to the actuator endpoints. It 
+is defined with a request matcher that matches only actuator endpoints 
+and it has an order of <code>ManagementServerProperties.BASIC_AUTH_ORDER</code> which is 5 fewer than the default <code>SecurityProperties</code> fallback filter, so it is consulted before the fallback.</p>
+</div>
+<div class="paragraph">
+<p>If you want your application security rules to apply to the actuator 
+endpoints you can add a filter chain ordered earlier than the actuator 
+one and with a request matcher that includes all actuator endpoints. If 
+you prefer the default security settings for the actuator endpoints, 
+then the easiest thing is to add your own filter later than the actuator
+ one, but earlier than the fallback (e.g. <code>ManagementServerProperties.BASIC_AUTH_ORDER + 1</code>). Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<button class="copy-button snippet" id="copy-button-7" data-clipboard-target="#code-block-7"></button><pre class="highlight prettyprint" id="code-block-7"><code class="language-java" data-lang="java"><span class="lit">@Configuration</span><span class="pln">
+</span><span class="lit">@Order</span><span class="pun">(</span><span class="typ">ManagementServerProperties</span><span class="pun">.</span><span class="pln">BASIC_AUTH_ORDER </span><span class="pun">+</span><span class="pln"> </span><span class="lit">1</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">ApplicationConfigurerAdapter</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">WebSecurityConfigurerAdapter</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="lit">@Override</span><span class="pln">
+  </span><span class="kwd">protected</span><span class="pln"> </span><span class="kwd">void</span><span class="pln"> configure</span><span class="pun">(</span><span class="typ">HttpSecurity</span><span class="pln"> http</span><span class="pun">)</span><span class="pln"> </span><span class="kwd">throws</span><span class="pln"> </span><span class="typ">Exception</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    http</span><span class="pun">.</span><span class="pln">antMatcher</span><span class="pun">(</span><span class="str">"/foo/**"</span><span class="pun">)</span><span class="pln">
+     </span><span class="pun">...;</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tbody>
+<tr>
+<td class="icon">
+<div class="title">
+Note
+</div> </td>
+<td class="content"> Spring Security in the web tier is currently tied 
+to the Servlet API, so it is only really applicable when running an app 
+in a servlet container, either embedded or otherwise. It is not, 
+however, tied to Spring MVC or the rest of the Spring web stack, so it 
+can be used in any servlet application, for instance one using JAX-RS. </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_method_security">Method Security</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As well as support for securing web applications, Spring Security 
+offers support for applying access rules to Java method executions. For 
+Spring Security this is just a different type of "protected resource". 
+For users it means the access rules are declared using the same format 
+of <code>ConfigAttribute</code> strings (e.g. roles or expressions), but
+ in a different place in your code. The first step is to enable method 
+security, for example in the top level configuration for our app:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<button class="copy-button snippet" id="copy-button-8" data-clipboard-target="#code-block-8"></button><pre class="highlight prettyprint" id="code-block-8"><code class="language-java" data-lang="java"><span class="lit">@SpringBootApplication</span><span class="pln">
+</span><span class="lit">@EnableGlobalMethodSecurity</span><span class="pun">(</span><span class="pln">securedEnabled </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">SampleSecureApplication</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then we can decorate the method resources directly, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<button class="copy-button snippet" id="copy-button-9" data-clipboard-target="#code-block-9"></button><pre class="highlight prettyprint" id="code-block-9"><code class="language-java" data-lang="java"><span class="lit">@Service</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">MyService</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+  </span><span class="lit">@Secured</span><span class="pun">(</span><span class="str">"ROLE_USER"</span><span class="pun">)</span><span class="pln">
+  </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> secure</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="str">"Hello Security"</span><span class="pun">;</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This sample is a service with a secure method. If Spring creates a <code>@Bean</code>
+ of this type then it will be proxied and callers will have to go 
+through a security interceptor before the method is actually executed. 
+If the access is denied the caller will get an <code>AccessDeniedException</code> instead of the actual method result.</p>
+</div>
+<div class="paragraph">
+<p>There are other annotations that can be used on methods to enforce security constraints, notably <code>@PreAuthorize</code> and <code>@PostAuthorize</code>, which allow you to write expressions containing references to method parameters and return values respectively.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tbody>
+<tr>
+<td class="icon">
+<div class="title">
+Tip
+</div> </td>
+<td class="content"> It is not uncommon to combine Web security and 
+method security. The filter chain provides the user experience features,
+ like authentication and redirect to login pages etc, and the method 
+security provides protection at a more granular level. </td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_working_with_threads">Working with Threads</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Spring Security is fundamentally thread bound because it needs to 
+make the current authenticated principal available to a wide variety of 
+downstream consumers. The basic building block is the <code>SecurityContext</code> which may contain an <code>Authentication</code> (and when a user is logged in it will be an <code>Authentication</code> that is explicitly <code>authenticated</code>). You can always access and manipulate the <code>SecurityContext</code> via static convenience methods in <code>SecurityContextHolder</code> which in turn simply manipulate a <code>TheadLocal</code>, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<button class="copy-button snippet" id="copy-button-10" data-clipboard-target="#code-block-10"></button><pre class="highlight prettyprint" id="code-block-10"><code class="language-java" data-lang="java"><span class="typ">SecurityContext</span><span class="pln"> context </span><span class="pun">=</span><span class="pln"> </span><span class="typ">SecurityContextHolder</span><span class="pun">.</span><span class="pln">getContext</span><span class="pun">();</span><span class="pln">
+</span><span class="typ">Authentication</span><span class="pln"> authentication </span><span class="pun">=</span><span class="pln"> context</span><span class="pun">.</span><span class="pln">getAuthentication</span><span class="pun">();</span><span class="pln">
+</span><span class="kwd">assert</span><span class="pun">(</span><span class="pln">authentication</span><span class="pun">.</span><span class="pln">isAuthenticated</span><span class="pun">);</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is <strong>not</strong> common for user application code to do 
+this, but it can be useful if you, for instance, need to write a custom 
+authentication filter (although even then there are base classes in 
+Spring Security that can be used where you would avoid needing to use 
+the <code>SecurityContextHolder</code>).</p>
+</div>
+<div class="paragraph">
+<p>If you need access to the currently authenticated user in a web endpoint, you can use a method parameter in a <code>@RequestMapping</code>. E.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<button class="copy-button snippet" id="copy-button-11" data-clipboard-target="#code-block-11"></button><pre class="highlight prettyprint" id="code-block-11"><code class="language-java" data-lang="java"><span class="lit">@RequestMapping</span><span class="pun">(</span><span class="str">"/foo"</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> foo</span><span class="pun">(</span><span class="lit">@AuthenticationPrincipal</span><span class="pln"> </span><span class="typ">User</span><span class="pln"> user</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="pun">...</span><span class="pln"> </span><span class="com">// do stuff with user</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This annotation pulls the current <code>Authentication</code> out of the <code>SecurityContext</code> and calls the <code>getPrincipal()</code> method on it to yield the method parameter. The type of the <code>Principal</code> in an <code>Authentication</code> is dependent on the <code>AuthenticationManager</code> used to validate the authentication, so this can be a useful little trick to get a type safe reference to your user data.</p>
+</div>
+<div class="paragraph">
+<p>If Spring Security is in use the <code>Principal</code> from the <code>HttpServletRequest</code> will be of type <code>Authentication</code>, so you can also use that directly:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<button class="copy-button snippet" id="copy-button-12" data-clipboard-target="#code-block-12"></button><pre class="highlight prettyprint" id="code-block-12"><code class="language-java" data-lang="java"><span class="lit">@RequestMapping</span><span class="pun">(</span><span class="str">"/foo"</span><span class="pun">)</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="typ">String</span><span class="pln"> foo</span><span class="pun">(</span><span class="typ">Principal</span><span class="pln"> principal</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="typ">Authentication</span><span class="pln"> authentication </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="typ">Authentication</span><span class="pun">)</span><span class="pln"> principal</span><span class="pun">;</span><span class="pln">
+  </span><span class="typ">User</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="typ">User</span><span class="pun">)</span><span class="pln"> authentication</span><span class="pun">.</span><span class="pln">getPrincipal</span><span class="pun">();</span><span class="pln">
+  </span><span class="pun">...</span><span class="pln"> </span><span class="com">// do stuff with user</span><span class="pln">
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This can sometimes be useful if you need to write code that works 
+when Spring Security is not in use (you would need to be more defensive 
+about loading the <code>Authentication</code> class).</p>
+</div>
+<div class="sect2">
+<h3 id="_processing_secure_methods_asynchronously">Processing Secure Methods Asynchronously</h3>
+<div class="paragraph">
+<p>Since the <code>SecurityContext</code> is thread bound, if you want to do any background processing that calls secure methods, e.g. with <code>@Async</code>, you need to ensure that the context is propagated. This boils down to wrapping the <code>SecurityContext</code> up with the task (<code>Runnable</code>, <code>Callable</code> etc.) that is executed in the background. Spring Security provides some helpers to make this easier, such as wrappers for <code>Runnable</code> and <code>Callable</code>. To propagate the <code>SecurityContext</code> to <code>@Async</code> methods you need to supply an <code>AsyncConfigurer</code> and ensure the <code>Executor</code> is of the correct type:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<button class="copy-button snippet" id="copy-button-13" data-clipboard-target="#code-block-13"></button><pre class="highlight prettyprint" id="code-block-13"><code class="language-java" data-lang="java"><span class="lit">@Configuration</span><span class="pln">
+</span><span class="kwd">public</span><span class="pln"> </span><span class="kwd">class</span><span class="pln"> </span><span class="typ">ApplicationConfiguration</span><span class="pln"> </span><span class="kwd">extends</span><span class="pln"> </span><span class="typ">AsyncConfigurerSupport</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+  </span><span class="lit">@Override</span><span class="pln">
+  </span><span class="kwd">public</span><span class="pln"> </span><span class="typ">Executor</span><span class="pln"> getAsyncExecutor</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">DelegatingSecurityContextExecutorService</span><span class="pun">(</span><span class="typ">Executors</span><span class="pun">.</span><span class="pln">newFixedThreadPool</span><span class="pun">(</span><span class="lit">5</span><span class="pun">));</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+
+</span><span class="pun">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</article>
+</div>
+<aside class="span4 content-right-pane--container mobile-left-pane" id="sidebar">
+<a class="ci-status desktop-only" href="https://travis-ci.org/spring-guides/top-spring-security-architecture">
+<img src="Topical%20Guide%20%C2%B7%20Spring%20Security%20Architecture_files/top-spring-security-architecture.svg">
+</a>
+<div class="right-pane-widget--container desktop-only">
+<div class="github-actions https">
+<h2>Get the Code</h2>
+<div class="btn-group">
+<button class="btn" data-protocol="https">HTTPS</button>
+<button class="btn" data-protocol="ssh">SSH</button>
+<button class="btn" data-protocol="subversion">Subversion</button>
+</div>
+<div class="clone-url https">
+<input id="clone-url-https" readonly="readonly" type="text" value="https://github.com/spring-guides/top-spring-security-architecture.git">
+<button class="copy-button github" data-toggle="tooltip" data-clipboard-text="https://github.com/spring-guides/top-spring-security-architecture.git"></button>
+</div>
+<div class="clone-url ssh">
+<input id="clone-url-ssh" readonly="readonly" type="text" value="git@github.com:spring-guides/top-spring-security-architecture.git">
+<button class="copy-button github" data-toggle="tooltip" data-clipboard-text="git@github.com:spring-guides/top-spring-security-architecture.git"></button>
+</div>
+<div class="clone-url subversion">
+<input id="clone-url-subversion" readonly="readonly" type="text" value="https://github.com/spring-guides/top-spring-security-architecture">
+<button class="copy-button github" data-toggle="tooltip" data-clipboard-text="https://github.com/spring-guides/top-spring-security-architecture"></button>
+</div>
+<a class="github_download btn btn-black uppercase" href="https://github.com/spring-guides/top-spring-security-architecture/archive/master.zip">Download ZIP</a>
+<a class="gs-guide-import" href="https://github.com/spring-guides/top-spring-security-architecture">Import into STS</a>
+<div class="go-to-repo--container">
+<a href="https://github.com/spring-guides/top-spring-security-architecture">
+<i class="icon-github"></i>
+Go To Repo
+</a>
+</div>
+</div>
+</div>
+<div class="right-pane-widget--container">
+<div>
+<h3><a class="anchor" href="#table-of-contents" name="table-of-contents"></a>Table of contents</h3>
+<div><ul class="sectlevel1">
+<li><a href="#_authentication_and_access_control">Authentication and Access Control</a> </li>
+<li><a href="#_web_security">Web Security</a> </li>
+<li><a href="#_method_security">Method Security</a></li>
+<li><a href="#_working_with_threads">Working with Threads</a> </li>
+</ul></div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</div>
+<footer class="footer">
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="span12">
+<div class="navbar">
+<div class="container">
+<ul class="nav">
+<li><a href="https://spring.io/team">Team</a></li>
+<li><a href="https://spring.io/tools">Tools</a></li>
+<li><a href="https://store.pivotal.io/">Store</a></li>
+<li><a href="https://spring.io/blog">Newsletter</a></li>
+</ul>
+</div>
+</div>
+© <span>2019</span> <a href="https://www.pivotal.io/">Pivotal Software</a>, Inc. All Rights Reserved.
+<a href="https://pivotal.io/terms-of-use">Terms of Use</a> •
+<a href="https://pivotal.io/privacy-policy">Privacy</a> •
+<a href="https://spring.io/trademarks">Trademark Guidelines</a>
+<div id="teconsent" style="display:inline-block;"></div>
+</div>
+</div>
+</div>
+</footer>
+<div id="scrim"></div>
+<script async="async" crossorigin="" src="Topical%20Guide%20%C2%B7%20Spring%20Security%20Architecture_files/notice"></script>
+</div>
+</body></html>

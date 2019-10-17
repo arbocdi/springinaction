@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/net.sf.arbocdi.chapter1.iml" filepath="$PROJECT_DIR$/.idea/modules/net.sf.arbocdi.chapter1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-693465157/net.sf.arbocdi.chapter10.iml" filepath="$PROJECT_DIR$/.idea/modules/-693465157/net.sf.arbocdi.chapter10.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-693465156/net.sf.arbocdi.chapter11_-_hibernate_jpa.iml" filepath="$PROJECT_DIR$/.idea/modules/-693465156/net.sf.arbocdi.chapter11_-_hibernate_jpa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-693465153/net.sf.arbocdi.chapter14_-_rest_services_with_auth.iml" filepath="$PROJECT_DIR$/.idea/modules/-693465153/net.sf.arbocdi.chapter14_-_rest_services_with_auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-693465151/net.sf.arbocdi.chapter16_-_rest.iml" filepath="$PROJECT_DIR$/.idea/modules/-693465151/net.sf.arbocdi.chapter16_-_rest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1823485162/net.sf.arbocdi.chapter2.iml" filepath="$PROJECT_DIR$/.idea/modules/-1823485162/net.sf.arbocdi.chapter2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1823485161/net.sf.arbocdi.chapter3.iml" filepath="$PROJECT_DIR$/.idea/modules/-1823485161/net.sf.arbocdi.chapter3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1823485160/net.sf.arbocdi.chapter4.iml" filepath="$PROJECT_DIR$/.idea/modules/-1823485160/net.sf.arbocdi.chapter4.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1823485159/net.sf.arbocdi.chapter5.iml" filepath="$PROJECT_DIR$/.idea/modules/-1823485159/net.sf.arbocdi.chapter5.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1823485158/net.sf.arbocdi.chapter6.iml" filepath="$PROJECT_DIR$/.idea/modules/-1823485158/net.sf.arbocdi.chapter6.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1823485157/net.sf.arbocdi.chapter7.iml" filepath="$PROJECT_DIR$/.idea/modules/-1823485157/net.sf.arbocdi.chapter7.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1823485155/net.sf.arbocdi.chapter9_-_web_security.iml" filepath="$PROJECT_DIR$/.idea/modules/-1823485155/net.sf.arbocdi.chapter9_-_web_security.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-758594210/spring.iml" filepath="$PROJECT_DIR$/.idea/modules/-758594210/spring.iml" />
+    </modules>
+  </component>
+</project>

@@ -11,12 +11,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @author arbocdi
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes=ConcertConfig.class)
+@ContextConfiguration(classes = ConcertConfig.class)
 public class EncorableTest {
+
     @Autowired
     private Performance perf;
+
     @Test
-    public void introducionTest(){
-        ((Encorable)perf).enchor();
+    public void introducionTest() {
+        ((Encorable) perf).enchor();
     }
 }

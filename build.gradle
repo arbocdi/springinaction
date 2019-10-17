@@ -11,11 +11,23 @@ subprojects{
 
     version = 0.1
     group = 'net.sf.arbocdi'
+    
+    apply plugin: 'idea'
+
+    idea {
+        module {
+            downloadJavadoc = true
+            downloadSources = false
+        }
+    }
+        
     // In this section you declare where to find the dependencies of your project
     repositories {
         // Use 'jcenter' for resolving your dependencies.
         // You can declare any Maven/Ivy/file repository here.
         jcenter()
+        mavenCentral()
+        mavenLocal()
     }
 
     // In this section you declare the dependencies for your production and test code
@@ -35,8 +47,9 @@ subprojects{
         compile group: 'org.springframework', name: 'spring-test', version: springVersion
         compile group: 'org.aspectj', name: 'aspectjweaver', version: '1.8.4'
         
-        compile group: 'org.projectlombok', name: 'lombok', version: '1.16.10'
-    
+        compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.10'
+        testCompile group: 'org.projectlombok', name: 'lombok', version: '1.16.10'
+        
         testCompile group: 'com.github.stefanbirkner', name: 'system-rules', version: '1.15.1'
         testCompile group: 'org.mockito', name: 'mockito-core', version: '1.10.19'
         
