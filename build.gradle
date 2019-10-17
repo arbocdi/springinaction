@@ -64,5 +64,9 @@ subprojects{
     test {
         testLogging.showStandardStreams = true
     }
+    task cleanBuildDir(type: Delete) {
+        delete "${projectDir}/out"
+    }
+    clean.dependsOn(cleanBuildDir)
 
 }
